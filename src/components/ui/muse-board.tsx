@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import board from '../../../public/board/contents.json';
 import { Card } from './card';
@@ -18,12 +18,14 @@ const withParentLink = (Comp) => ({id, recurse, ...rest}) => {
     return <Comp id={id} recurse={recurse} {...rest} />;
   }
   const parent = parents[id];
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+  const isMusePath = pathname.startsWith('/muse');
+  
   return (
     <>
       <div style={{position: "absolute", right: 50, zIndex: 1000}}>
         <Link 
-          href={parent === board.root ? "/muse" : `/muse/${parent}`}
-          
+          href={parent === board.root ? (isMusePath ? "/muse" : "/") : `/${parent}`}
           style={{textDecoration: "none"}}
         >
           ↑ Parent
@@ -74,58 +76,59 @@ const Text = withParentLink(({ original_file }) => {
 });
 
 const MuseCard = withParentLink(({ type, document_id, position_x, position_y, size_height, size_width, recurse, z, ...rest }) => {
-  const router = useRouter();
-  const cardInfo = board.documents[document_id];
-  const scale = cardInfo.snapshot_scale === 0 ? 0.1 : cardInfo.snapshot_scale;
-  
-  return (
-    <div style={{
-      position: "absolute",
-      left: position_x, 
-      top: position_y,
-      width: size_width, 
-      height: size_height,
-      zIndex: z,
-      cursor: cardInfo.type === "text" ? undefined : "pointer",
-    }}>
-      {cardInfo.type === "url" ? null :
-        <div style={{
-          color: "black", 
-          top: -20, 
-          position: "absolute", 
-          width: size_width - 20, 
-          textOverflow: "ellipsis", 
-          overflow: "hidden", 
-          whiteSpace: "nowrap"
-        }}>
-          {cardInfo.label}
-        </div>
-      }
-      <div
-        style={cardInfo.type === "text" ? {} : {
-          width: size_width, 
-          height: size_height,
-          borderRadius: 9,
-          boxShadow: "rgb(206, 206, 205) 0px 0px 10px",
-          backgroundColor: "#F0F0EE",
-          overflow: "hidden"
-        }}
-        onClick={() => {
-          if (recurse === 1 && cardInfo.type !== "url") {
-            router.push(`/muse/${document_id}`)
-          }
-        }}
-      >
-        {cardInfo.type !== "board" 
-          ? <CardForType {...cardInfo} id={document_id} />
-          : <div style={{position: "relative", transform: `scale(${scale})`, width: 0}}>
-              {recurse <= 3 ? <Board {...cardInfo} id={document_id} recurse={recurse + 1} /> : null}
-            </div>
+    const router = useRouter();
+    const cardInfo = board.documents[document_id];
+    const scale = cardInfo.snapshot_scale === 0 ? 0.1 : cardInfo.snapshot_scale;
+    
+    return (
+      <div style={{
+        position: "absolute",
+        left: position_x, 
+        top: position_y,
+        width: size_width, 
+        height: size_height,
+        zIndex: z,
+        cursor: cardInfo.type === "text" ? undefined : "pointer",
+      }}>
+        {cardInfo.type === "url" ? null :
+          <div style={{
+            color: "black", 
+            top: -20, 
+            position: "absolute", 
+            width: size_width - 20, 
+            textOverflow: "ellipsis", 
+            overflow: "hidden", 
+            whiteSpace: "nowrap"
+          }}>
+            {cardInfo.label}
+          </div>
         }
+        <div
+          style={cardInfo.type === "text" ? {} : {
+            width: size_width, 
+            height: size_height,
+            borderRadius: 9,
+            boxShadow: "rgb(206, 206, 205) 0px 0px 10px",
+            backgroundColor: "#F0F0EE",
+            overflow: "hidden"
+          }}
+          onClick={() => {
+            if (recurse === 1 && cardInfo.type !== "url") {
+              router.push(`/${document_id}`);
+            }
+          }}
+        >
+          {cardInfo.type !== "board" 
+            ? <CardForType {...cardInfo} id={document_id} />
+            : <div style={{position: "relative", transform: `scale(${scale})`, width: 0}}>
+                {recurse <= 3 ? <Board {...cardInfo} id={document_id} recurse={recurse + 1} /> : null}
+              </div>
+          }
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  });
+  
 
 const inkToArray = (ink_models) => {
   return Object.entries(ink_models || {})
@@ -185,8 +188,14 @@ const CardForType = ({ type, ...cardInfo }) => {
 };
 
 const Muse = () => {
-  const pathname = window.location.pathname;
-  const boardId = pathname.split('/').pop() || board.root;
+  const pathname = usePathname();
+  const [boardId, setBoardId] = useState(board.root);
+  
+  useEffect(() => {
+    const id = pathname?.split('/').pop() || board.root;
+    setBoardId(id === 'muse' ? board.root : id);
+  }, [pathname]);
+
   const currentBoard = board.documents[boardId];
 
   return (
