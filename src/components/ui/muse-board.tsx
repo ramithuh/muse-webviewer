@@ -98,7 +98,8 @@ const MuseCard = withParentLink(({ type, document_id, position_x, position_y, si
             width: size_width - 20, 
             textOverflow: "ellipsis", 
             overflow: "hidden", 
-            whiteSpace: "nowrap"
+            whiteSpace: "nowrap",
+            maxWidth: "30ch"
           }}>
             {cardInfo.label}
           </div>
@@ -146,7 +147,8 @@ const Board = withParentLink(({ cards, ink_models, recurse, type, label, id, ...
         width: 200, 
         textOverflow: "ellipsis", 
         overflow: "hidden", 
-        whiteSpace: "nowrap"
+        whiteSpace: "nowrap",
+        maxWidth: "30ch"
       }}>
         {label}
       </div>
