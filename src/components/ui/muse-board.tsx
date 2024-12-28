@@ -11,6 +11,15 @@ const findParents = (board, card) => {
   return currentLevel.concat(nextLevel);
 };
 
+// In muse-board.tsx, update the global styles
+<style jsx global>{`
+  body {
+    background-color: #DFDFDE;
+    font-family: var(--font-geist-sans);
+  }
+`}</style>
+
+
 const parents = Object.fromEntries(findParents(board, {...board.documents[board.root], id: board.root}));
 
 const withParentLink = (Comp) => ({id, recurse, ...rest}) => {
@@ -72,7 +81,15 @@ const Text = withParentLink(({ original_file }) => {
       .catch(console.error);
   }, [original_file]);
   
-  return <div style={{fontSize: 18, lineHeight: 1.2, fontFamily: "helvetica"}}>{fileContent}</div>;
+//   return <div style={{fontSize: 18, lineHeight: 1.2, fontFamily: "helvetica"}}>{fileContent}</div>;
+  return <div style={{
+    fontSize: 14,
+    lineHeight: 1.5,
+    fontFamily: "var(--font-geist-sans)",
+    whiteSpace: "wrap",
+    color: "rgb(34, 34, 34)",
+    padding: "12px 14px"
+  }}>{fileContent}</div>;
 });
 
 const MuseCard = withParentLink(({ type, document_id, position_x, position_y, size_height, size_width, recurse, z, ...rest }) => {
@@ -91,16 +108,19 @@ const MuseCard = withParentLink(({ type, document_id, position_x, position_y, si
         cursor: cardInfo.type === "text" ? undefined : "pointer",
       }}>
         {cardInfo.type === "url" ? null :
-          <div style={{
-            color: "black", 
-            top: -20, 
-            position: "absolute", 
-            width: size_width - 20, 
-            textOverflow: "ellipsis", 
-            overflow: "hidden", 
+            <div style={{
+            color: "rgb(34, 34, 34)",  // Darker, more readable color
+            top: -24,                  // Slightly higher position
+            position: "absolute",
+            width: size_width - 20,
+            textOverflow: "ellipsis",
+            overflow: "hidden",
             whiteSpace: "nowrap",
-            maxWidth: "30ch"
-          }}>
+            maxWidth: "30ch",
+            fontSize: "14px",         // Consistent size
+            fontWeight: 550,          // Medium weight
+            padding: "2px 0"
+            }}>
             {cardInfo.label}
           </div>
         }
@@ -140,16 +160,19 @@ const inkToArray = (ink_models) => {
 const Board = withParentLink(({ cards, ink_models, recurse, type, label, id, ...rest }) => {
   return <>
     {recurse !== 0 ? null : 
-      <div style={{
-        color: "black", 
-        top: 20, 
-        position: "absolute", 
-        width: 200, 
-        textOverflow: "ellipsis", 
-        overflow: "hidden", 
+        <div style={{
+        color: "rgb(34, 34, 34)",
+        top: 16,
+        position: "absolute",
+        width: 200,
+        textOverflow: "ellipsis",
+        overflow: "hidden",
         whiteSpace: "nowrap",
-        maxWidth: "30ch"
-      }}>
+        maxWidth: "30ch",
+        fontSize: "16px",
+        fontWeight: 600,
+        letterSpacing: "-0.1px"
+        }}>
         {label}
       </div>
     }
