@@ -80,36 +80,42 @@ const Pdf = withParentLink(({ original_file, recurse }) => {
     const [pages, setPages] = useState([]);
     
     useEffect(() => {
-      // Load PDF.js library
-      const pdfjsLib = window.pdfjsLib;
-      
       async function loadPDF() {
         const pdf = await pdfjsLib.getDocument(`/board/files/${original_file}`).promise;
         const pagePromises = [];
         
-        // Load first 6 pages
+        // Increase scale for better quality
+        const scale = 2.0; // Higher scale for better resolution
+        
         for(let i = 1; i <= Math.min(6, pdf.numPages); i++) {
           const page = await pdf.getPage(i);
-          const viewport = page.getViewport({scale: 0.5});
+          const viewport = page.getViewport({ scale });
           const canvas = document.createElement('canvas');
           const context = canvas.getContext('2d');
+          
+          // Set canvas dimensions to match viewport
           canvas.width = viewport.width;
           canvas.height = viewport.height;
           
-          await page.render({
+          // Improve rendering quality
+          const renderContext = {
             canvasContext: context,
-            viewport: viewport
-          }).promise;
+            viewport: viewport,
+            intent: 'display',
+            renderInteractiveForms: true,
+            canvasFactory: null,
+            background: 'rgb(255, 255, 255)'
+          };
           
-          pagePromises.push(canvas.toDataURL());
+          await page.render(renderContext).promise;
+          pagePromises.push(canvas.toDataURL('image/jpeg', 1.0));
         }
-        
         setPages(await Promise.all(pagePromises));
       }
       
       loadPDF().catch(console.error);
     }, [original_file]);
-    
+  
     return (
       <div style={{
         display: "grid",
@@ -129,13 +135,15 @@ const Pdf = withParentLink(({ original_file, recurse }) => {
             alt={`PDF page ${index + 1}`}
             style={{
               width: "100%",
-              objectFit: "contain"
+              objectFit: "contain",
+              imageRendering: "high-quality"
             }}
           />
         ))}
       </div>
     );
   });
+  
   
 
 const Text = withParentLink(({ original_file }) => {
