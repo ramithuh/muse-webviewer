@@ -363,27 +363,74 @@ const Board = withParentLink(({ cards, ink_models, recurse, type, label, id, ...
 
     // Only show breadcrumbs for non-text cards and root level
     const shouldShowBreadcrumbs = recurse === 0 && board.documents[id]?.type !== 'text';
+    const HEADER_HEIGHT = 128;
     
     return (
         <>
             {!shouldShowBreadcrumbs ? null : (
-                <nav aria-label="breadcrumb" style={{
+            <div style={{
                     position: "absolute",
-                    top: 16,
-                    left: 16,
+                    top: 5,
+                    left: 5,
+                    right: 5,
+                    display: "flex",
+                    alignItems: "center",
+                    backgroundColor: "rgba(246, 245, 245, 1)",
+                    backdropFilter: "blur(8px)",
+                    padding: "11px 16px",
+                    borderRadius: "6px",
+                    boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
+                    zIndex: 1000,
+            }}>
+                {/* macOS buttons */}
+                <div style={{
+                    display: "flex",
+                    gap: "6px",
+                    alignItems: "center",
+                    marginRight: "12px",
+                    paddingRight: "12px",
+                    borderRight: "1px solid rgba(0, 0, 0, 0.1)"
+                }}>
+                    <div style={{
+                        width: "12px",
+                        height: "12px",
+                        borderRadius: "50%",
+                        backgroundColor: "#FF5F56",
+                        border: "0.5px solid rgba(0, 0, 0, 0.15)"
+                    }} />
+                    <div style={{
+                        width: "12px",
+                        height: "12px",
+                        borderRadius: "50%",
+                        backgroundColor: "#FFBD2E",
+                        border: "0.5px solid rgba(0, 0, 0, 0.15)"
+                    }} />
+                    <div style={{
+                        width: "12px",
+                        height: "12px",
+                        borderRadius: "50%",
+                        backgroundColor: "#27C93F",
+                        border: "0.5px solid rgba(0, 0, 0, 0.15)"
+                    }} />
+                </div>
+
+                {/* Breadcrumbs */}
+                <div style={{
                     display: "flex",
                     alignItems: "center",
                     gap: "8px",
                     color: "rgb(34, 34, 34)",
                     fontSize: "14px",
-                    fontWeight: 500,
-                    maxWidth: "calc(100% - 32px)",
+                    fontWeight: 550,
                     overflow: "hidden"
                 }}>
                     {getBreadcrumbs().map((item, index) => (
                         <React.Fragment key={`breadcrumb_${item.id}_${index}`}>
                             {index > 0 && (
-                                <span style={{ color: "rgb(155, 155, 155)" }}>{">"}</span>
+                                <span style={{ 
+                                    color: "rgb(155, 155, 155)",
+                                    margin: "0 2px"
+                                }}>{">"}</span>
                             )}
                             <Link
                                 href={item.path}
@@ -400,24 +447,34 @@ const Board = withParentLink(({ cards, ink_models, recurse, type, label, id, ...
                             </Link>
                         </React.Fragment>
                     ))}
-                </nav>
-            )}
-            {(cards || []).map((card, index) => (
-                <MuseCard
-                    key={`${id}_${card.document_id}_${index}`}
-                    {...card}
-                    recurse={recurse + 1}
-                    id={card.document_id}
-                    parentId={id}
-                />
-            ))}
-            
-            {inkToArray(ink_models).map((ink, index) => (
-                <Ink 
-                    key={`${id}_${ink.ink_svg}_${index}`} 
-                    {...ink} 
-                />
-            ))}
+                </div>
+            </div>
+        )}
+
+        {/* New wrapper div for content with padding */}
+        <div style={{
+                position: "relative",
+                paddingTop: shouldShowBreadcrumbs ? HEADER_HEIGHT : 0,
+                width: "100%",
+                height: "100%"
+        }}>
+        {(cards || []).map((card, index) => (
+            <MuseCard
+                key={`${id}_${card.document_id}_${index}`}
+                {...card}
+                recurse={recurse + 1}
+                id={card.document_id}
+                parentId={id}
+            />
+        ))}
+                
+        {inkToArray(ink_models).map((ink, index) => (
+            <Ink 
+                key={`${id}_${ink.ink_svg}_${index}`} 
+                {...ink} 
+            />
+        ))}
+        </div>
         </>
     );
 });
