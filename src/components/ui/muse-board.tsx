@@ -1,135 +1,320 @@
-"use client"
-import { useState, useEffect } from 'react';
-import * as React from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import Link from 'next/link';
-import board from '../../../public/board/contents.json';
-import { Card } from './card';
-import * as pdfjs from 'pdfjs-dist';
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
+"use client";
+
+import * as React from "react";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+// For PDF rendering
+import * as pdfjsLib from "pdfjs-dist";
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
   import.meta.url
 ).toString();
 
+// Import your board JSON (Muse-exported data)
+import board from "../../../public/board/contents.json";
 
-const findParents = (board, card, visited = new Set()) => {
-    if (!card || visited.has(card.id)) return [];
-    visited.add(card.id);
-    
-    const relationships = [];
-    if (card.cards) {
-        for (const childCard of card.cards) {
-            relationships.push([childCard.document_id, card.id]);
-            relationships.push(...findParents(
-                board, 
-                {...board.documents[childCard.document_id], id: childCard.document_id},
-                visited
-            ));
-        }
+/* ------------------------------------------------------------------
+   1) Build the "parents" map:
+   This is used to figure out each document's direct parent so we
+   can do things like "↑ Parent" or build full breadcrumbs.
+------------------------------------------------------------------ */
+function findParents(boardData: any, card: any, visited = new Set()) {
+  if (!card || visited.has(card.id)) return [];
+  visited.add(card.id);
+
+  const relationships: Array<[string, string]> = [];
+  if (card.cards) {
+    for (const childCard of card.cards) {
+      relationships.push([childCard.document_id, card.id]);
+      relationships.push(
+        ...findParents(
+          boardData,
+          { ...boardData.documents[childCard.document_id], id: childCard.document_id },
+          visited
+        )
+      );
     }
-    return relationships;
-};
-
-// In muse-board.tsx, update the global styles
-<style jsx global>{`
-  body {
-    background-color: #DFDFDE;
-    font-family: var(--font-geist-sans);
   }
-`}</style>
+  return relationships;
+}
 
+export const parents: Record<string, string> = Object.fromEntries(
+  findParents(board, { ...board.documents[board.root], id: board.root })
+);
 
-const parents = Object.fromEntries(findParents(board, {...board.documents[board.root], id: board.root}));
+/* ------------------------------------------------------------------
+   2) A helper to build full breadcrumb data for the current path.
+   We'll show this in the top bar (mac traffic lights + breadcrumb).
+------------------------------------------------------------------ */
+function getBreadcrumbs(pathname: string) {
+  const paths = pathname.split("/").filter(Boolean);
+  const breadcrumbs: Array<{ id: string; label: string; path: string }> = [];
 
-const withParentLink = (Comp) => ({id, recurse, ...rest}) => {
-    if (recurse !== 0 || board.root === id) {
-      return <Comp id={id} recurse={recurse} {...rest} />;
+  // Always add home (root)
+  if (board.documents?.[board.root]) {
+    breadcrumbs.push({
+      id: board.root,
+      label: board.documents[board.root].label || "Home",
+      path: "/",
+    });
+  }
+
+  const visited = new Set([board.root]);
+  let currentPath = "";
+
+  for (const seg of paths) {
+    const doc = board.documents[seg];
+    if (!doc) continue;
+
+    // Build up the parent chain
+    const parentChain = [];
+    let currentId = seg;
+    while (parents[currentId] && !visited.has(parents[currentId])) {
+      const parentId = parents[currentId];
+      const parentDoc = board.documents[parentId];
+      if (parentDoc && parentId !== board.root) {
+        parentChain.unshift({
+          id: parentId,
+          label: parentDoc.label || "Board",
+          path: `/${parentId}`,
+        });
+        visited.add(parentId);
+      }
+      currentId = parentId;
     }
-    const parent = parents[id];
-    
+
+    // Add parent chain
+    breadcrumbs.push(...parentChain);
+
+    // Add the current doc
+    if (!visited.has(seg)) {
+      currentPath += `/${seg}`;
+      breadcrumbs.push({
+        id: seg,
+        label: doc.label || seg,
+        path: currentPath,
+      });
+      visited.add(seg);
+    }
+  }
+
+  return breadcrumbs;
+}
+
+/* ------------------------------------------------------------------
+   3) The "withParentLink" HOC:
+   - Renders a breadcrumb bar if `recurse === 0`.
+   - Renders an "↑ Parent" link (if there's a parent).
+   - Then renders whatever card/component was wrapped.
+------------------------------------------------------------------ */
+function withParentLink<T extends { id: string; recurse: number }>(
+  WrappedComponent: React.ComponentType<T>
+) {
+  return function ParentLinkedComponent(props: T) {
+    const { id, recurse } = props;
+    const pathname = usePathname();
+    const parentId = parents[id];
+
+    // We only show the breadcrumbs if we’re at recursion level 0 (top-level).
+    const showBreadcrumbs = recurse === 0;
+
     return (
       <>
-        <div style={{position: "absolute", right: 50, zIndex: 1000}}>
-          <Link 
-            href={parent === board.root ? "/" : `/${parent}`}
-            style={{textDecoration: "none"}}
+        {/* BREADCRUMB BAR (visible at top-level) */}
+        {showBreadcrumbs && (
+          <div
+            style={{
+              position: "fixed",
+              top: 5,
+              left: 5,
+              right: 5,
+              display: "flex",
+              alignItems: "center",
+              backgroundColor: "rgba(246, 245, 245, 1)",
+              backdropFilter: "blur(8px)",
+              padding: "11px 16px",
+              borderRadius: "6px",
+              boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
+              zIndex: 1000,
+            }}
           >
-            <b>↑ Parent</b>
-          </Link>
-        </div>
-        <Comp id={id} recurse={recurse} {...rest} />
+            {/* Mac traffic lights (optional) */}
+            <div
+              style={{
+                display: "flex",
+                gap: "6px",
+                alignItems: "center",
+                marginRight: "12px",
+                paddingRight: "12px",
+                borderRight: "1px solid rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              {/* Red */}
+              <div
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "50%",
+                  backgroundColor: "#FF5F56",
+                  border: "0.5px solid rgba(0, 0, 0, 0.15)",
+                }}
+              />
+              {/* Yellow */}
+              <div
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "50%",
+                  backgroundColor: "#FFBD2E",
+                  border: "0.5px solid rgba(0, 0, 0, 0.15)",
+                }}
+              />
+              {/* Green */}
+              <div
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "50%",
+                  backgroundColor: "#27C93F",
+                  border: "0.5px solid rgba(0, 0, 0, 0.15)",
+                }}
+              />
+            </div>
+
+            {/* Actual breadcrumb links */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                color: "rgb(34, 34, 34)",
+                fontSize: "14px",
+                fontWeight: 550,
+                overflow: "hidden",
+              }}
+            >
+              {getBreadcrumbs(pathname || "").map((crumb, index) => (
+                <React.Fragment key={crumb.id}>
+                  {index > 0 && (
+                    <span
+                      style={{
+                        color: "rgb(155, 155, 155)",
+                        margin: "0 2px",
+                      }}
+                    >
+                      {">"}
+                    </span>
+                  )}
+                  <Link
+                    href={crumb.path}
+                    style={{
+                      color: "inherit",
+                      textDecoration: "none",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      maxWidth: "150px",
+                    }}
+                  >
+                    {crumb.label}
+                  </Link>
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* OPTIONAL: Show an "↑ Parent" link if not at root and top-level */}
+        {showBreadcrumbs && parentId && parentId !== board.root && (
+          <div style={{ position: "absolute", right: 50, zIndex: 500 }}>
+            <Link
+              href={parentId === board.root ? "/" : `/${parentId}`}
+              style={{ textDecoration: "none" }}
+            >
+              <b>↑ Parent</b>
+            </Link>
+          </div>
+        )}
+
+        {/* Render the actual component we wrapped */}
+        <WrappedComponent {...(props as T)} />
       </>
     );
   };
-  
+}
 
-const Image = withParentLink(({ original_file, recurse }) => {
-  const size = recurse === 0 ? {} : {width: "100%", height: "100%"};
-  return <img 
-    style={{position: "absolute", ...size}} 
-    src={`/board/files/${original_file}`}
-    alt={`Board ${original_file}`}
-  />;
+/* ------------------------------------------------------------------
+   4) Components for each Muse "type":
+   - Board, Image, Ink, PDF, Text, URL
+   - Each one is wrapped with "withParentLink".
+   - Because they're all wrapped, they can show the breadcrumb bar.
+------------------------------------------------------------------ */
+
+// IMAGE
+const Image = withParentLink(({ original_file, recurse }: any) => {
+  // If it's nested, scale it. If top-level, fill container.
+  const size = recurse === 0 ? {} : { width: "100%", height: "100%" };
+  return (
+    <img
+      style={{ position: "absolute", ...size }}
+      src={`/board/files/${original_file}`}
+      alt={`Image: ${original_file}`}
+    />
+  );
 });
 
-const Ink = withParentLink(({ ink_svg }) => {
-  return <img 
-    style={{position: "absolute"}} 
-    src={`/board/files/${ink_svg}`}
-    alt="Ink drawing"
-  />;
+// INK
+const Ink = withParentLink(({ ink_svg }: any) => {
+  return (
+    <img
+      style={{ position: "absolute" }}
+      src={`/board/files/${ink_svg}`}
+      alt="Ink drawing"
+    />
+  );
 });
 
-// const Pdf = withParentLink(({ original_file, recurse }) => {
-//   const size = recurse === 0 ? {} : {width: "100%"};
-//   return <img 
-//     style={{...size}} 
-//     src={`/board/files/${original_file}-0.png`}
-//     alt={`PDF ${original_file}`}
-//   />;
-// });
-const Pdf = withParentLink(({ original_file, recurse }) => {
-    const [pages, setPages] = useState([]);
-    
-    useEffect(() => {
-      async function loadPDF() {
-        const pdf = await pdfjsLib.getDocument(`/board/files/${original_file}`).promise;
-        const pagePromises = [];
-        
-        // Increase scale for better quality
-        const scale = 2.0; // Higher scale for better resolution
-        
-        for(let i = 1; i <= Math.min(6, pdf.numPages); i++) {
-          const page = await pdf.getPage(i);
-          const viewport = page.getViewport({ scale });
-          const canvas = document.createElement('canvas');
-          const context = canvas.getContext('2d');
-          
-          // Set canvas dimensions to match viewport
-          canvas.width = viewport.width;
-          canvas.height = viewport.height;
-          
-          // Improve rendering quality
-          const renderContext = {
-            canvasContext: context,
-            viewport: viewport,
-            intent: 'display',
-            renderInteractiveForms: true,
-            canvasFactory: null,
-            background: 'rgb(255, 255, 255)'
-          };
-          
-          await page.render(renderContext).promise;
-          pagePromises.push(canvas.toDataURL('image/jpeg', 1.0));
-        }
-        setPages(await Promise.all(pagePromises));
+// PDF
+const Pdf = withParentLink(({ original_file, recurse }: any) => {
+  const [pages, setPages] = useState<string[]>([]);
+
+  useEffect(() => {
+    async function loadPDF() {
+      const pdf = await pdfjsLib.getDocument(`/board/files/${original_file}`).promise;
+      const pagePromises: Promise<string>[] = [];
+
+      const scale = 2.0; // for better resolution
+      const maxPages = Math.min(6, pdf.numPages);
+
+      for (let i = 1; i <= maxPages; i++) {
+        const page = await pdf.getPage(i);
+        const viewport = page.getViewport({ scale });
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d")!;
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        const renderContext = {
+          canvasContext: context,
+          viewport,
+          background: "rgb(255, 255, 255)",
+        };
+        await page.render(renderContext).promise;
+        pagePromises.push(canvas.toDataURL("image/jpeg", 1.0));
       }
-      
-      loadPDF().catch(console.error);
-    }, [original_file]);
-  
-    return (
-      <div style={{
+
+      const result = await Promise.all(pagePromises);
+      setPages(result);
+    }
+
+    loadPDF().catch(console.error);
+  }, [original_file]);
+
+  return (
+    <div
+      style={{
         display: "grid",
         gridTemplateColumns: "repeat(2, 1fr)",
         gap: "4px",
@@ -138,379 +323,91 @@ const Pdf = withParentLink(({ original_file, recurse }) => {
         height: "100%",
         backgroundColor: "rgb(233,232,231)",
         borderRadius: "3px",
-        boxSizing: "border-box"
-      }}>
-        {pages.map((dataUrl, index) => (
-          <img 
-            key={index}
-            src={dataUrl}
-            alt={`PDF page ${index + 1}`}
-            style={{
-              width: "100%",
-              objectFit: "contain",
-              imageRendering: "high-quality"
-            }}
-          />
-        ))}
-      </div>
-    );
-  });
-  
-  
-
-const Text = withParentLink(({ original_file }) => {
-    const [fileContent, setFileContent] = useState(null);
-    
-    useEffect(() => {
-      fetch(`/board/files/${original_file}`)
-        .then(resp => resp.text())
-        .then(setFileContent)
-        .catch(console.error);
-    }, [original_file]);
-    
-    return <div style={{
-      fontSize: 14,
-      lineHeight: 1.3,
-      fontFamily: '-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-      fontWeight: 500,
-      color: "rgb(55, 53, 47)",
-      padding: "13px 13px",
-      whiteSpace: "pre-wrap",
-      backgroundColor: "rgb(233,232,231)",
-      borderRadius: "3px",
-      boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
-      height: "100%",
-      width: "100%",
-      position: "absolute",
-      boxSizing: "border-box",
-      overflow: "hidden"
-    }}>{fileContent}</div>;
-});
-  
-const MuseCard = withParentLink(({ type, document_id, position_x, position_y, size_height, size_width, recurse, z, ...rest }) => {
-    const router = useRouter();
-    const cardInfo = board.documents[document_id];
-    const [isVisible, setIsVisible] = useState(false);
-    
-    useEffect(() => {
-      setIsVisible(true);
-    }, []);
-  
-    const calculateContentExtent = (boardInfo) => {
-      if (!boardInfo.cards) return { width: 0, height: 0 };
-      
-      return boardInfo.cards.reduce((max, card) => {
-        const rightEdge = card.position_x + card.size_width;
-        const bottomEdge = card.position_y + card.size_height;
-        return {
-          width: Math.max(max.width, rightEdge),
-          height: Math.max(max.height, bottomEdge)
-        };
-      }, { width: 0, height: 0 });
-    };
-  
-    const getScale = () => {
-      if (cardInfo.type !== 'board') return 0.1;
-      
-      const extent = calculateContentExtent(cardInfo);
-      const scaleX = size_width / (extent.width || size_width);
-      const scaleY = size_height / (extent.height || size_height);
-      return Math.min(scaleX, scaleY, 1) * 0.9;
-    };
-  
-    const scale = getScale();
-    
-    return (
-      <div style={{
-        position: "absolute",
-        left: position_x, 
-        top: position_y,
-        width: size_width, 
-        height: size_height,
-        zIndex: z,
-        cursor: cardInfo.type === "text" ? undefined : "pointer",
-        opacity: isVisible ? 1 : 0,
-        transform: `scale(${isVisible ? 1 : 0.8})`,
-        transition: 'opacity 0.3s ease-out, transform 0.3s ease-out'
-      }}>
-        {cardInfo.type === "url" ? null :
-          <div style={{
-            color: "black", 
-            top: -25, 
-            position: "absolute", 
-            width: size_width - 20, 
-            textOverflow: "ellipsis",
-            overflow: "hidden",
-            whiteSpace: "nowrap",
-            maxWidth: "30ch",
-            fontSize: "13px",
-            fontWeight: 550,
-            padding: "2px 0"
-          }}>
-            {cardInfo.label}
-          </div>
-        }
-        <div
-          style={cardInfo.type === "text" ? {} : {
-            width: size_width, 
-            height: size_height,
-            borderRadius: 8,
-            boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
-            backgroundColor: "#F0F0EE",
-            overflow: "hidden"
-          }}
-          onClick={() => {
-            if (recurse === 1 && cardInfo.type !== "url") {
-              router.push(`/${document_id}`);
-            }
-          }}
-        >
-          {cardInfo.type !== "board" 
-            ? <CardForType {...cardInfo} id={document_id} />
-            : <div style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                overflow: "hidden"
-              }}>
-                <div style={{
-                  position: "absolute",
-                  transform: `scale(${scale})`,
-                  transformOrigin: "0 0",
-                  width: `${100/scale}%`,
-                  height: `${100/scale}%`
-                }}>
-                  {recurse <= 3 ? <Board {...cardInfo} id={document_id} recurse={recurse + 1} /> : null}
-                </div>
-              </div>
-          }
-        </div>
-      </div>
-    );
-  });
-  
-
-const inkToArray = (ink_models) => {
-  return Object.entries(ink_models || {})
-    .filter(([k, v]) => v.ink_svg)
-    .map(([k, v]) => v);
-};
-
-const Board = withParentLink(({ cards, ink_models, recurse, type, label, id, ...rest }) => {
-    const pathname = usePathname();
-    
-    const getBreadcrumbs = () => {
-        const paths = pathname?.split('/').filter(Boolean) || [];
-        const breadcrumbs = [];
-        let currentPath = '';
-        
-        // Add root
-        if (board?.documents?.[board.root]) {
-            breadcrumbs.push({
-                id: board.root,
-                label: board.documents[board.root].label || 'Home',
-                path: '/'
-            });
-        }
-        
-        // Track visited nodes to prevent duplicates
-        const visited = new Set([board.root]);
-        
-        // Process each path segment
-        for (const path of paths) {
-            const doc = board.documents[path];
-            if (!doc) continue;
-            
-            // Build parent chain
-            const parentChain = [];
-            let currentId = path;
-            
-            // Traverse up the parent chain until root or already visited node
-            while (parents[currentId] && !visited.has(parents[currentId])) {
-                const parentId = parents[currentId];
-                const parentDoc = board.documents[parentId];
-                
-                if (parentDoc && parentId !== board.root) {
-                    parentChain.unshift({
-                        id: parentId,
-                        label: parentDoc.label || 'Board',
-                        path: `/${parentId}`
-                    });
-                    visited.add(parentId);
-                }
-                currentId = parentId;
-            }
-            
-            // Add parent chain to breadcrumbs
-            breadcrumbs.push(...parentChain);
-            
-            // Add current document
-            if (!visited.has(path)) {
-                currentPath += `/${path}`;
-                breadcrumbs.push({
-                    id: path,
-                    label: doc.label || path,
-                    path: currentPath
-                });
-                visited.add(path);
-            }
-        }
-        
-        return breadcrumbs;
-    };
-
-    // Only show breadcrumbs for non-text cards and root level
-    const shouldShowBreadcrumbs = recurse === 0 && board.documents[id]?.type !== 'text';
-    const HEADER_HEIGHT = 128;
-    
-    return (
-        <>
-            {!shouldShowBreadcrumbs ? null : (
-            <div style={{
-                    position: "absolute",
-                    top: 5,
-                    left: 5,
-                    right: 5,
-                    display: "flex",
-                    alignItems: "center",
-                    backgroundColor: "rgba(246, 245, 245, 1)",
-                    backdropFilter: "blur(8px)",
-                    padding: "11px 16px",
-                    borderRadius: "6px",
-                    boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
-                    zIndex: 1000,
-            }}>
-                {/* macOS buttons */}
-                <div style={{
-                    display: "flex",
-                    gap: "6px",
-                    alignItems: "center",
-                    marginRight: "12px",
-                    paddingRight: "12px",
-                    borderRight: "1px solid rgba(0, 0, 0, 0.1)"
-                }}>
-                    <div style={{
-                        width: "12px",
-                        height: "12px",
-                        borderRadius: "50%",
-                        backgroundColor: "#FF5F56",
-                        border: "0.5px solid rgba(0, 0, 0, 0.15)"
-                    }} />
-                    <div style={{
-                        width: "12px",
-                        height: "12px",
-                        borderRadius: "50%",
-                        backgroundColor: "#FFBD2E",
-                        border: "0.5px solid rgba(0, 0, 0, 0.15)"
-                    }} />
-                    <div style={{
-                        width: "12px",
-                        height: "12px",
-                        borderRadius: "50%",
-                        backgroundColor: "#27C93F",
-                        border: "0.5px solid rgba(0, 0, 0, 0.15)"
-                    }} />
-                </div>
-
-                {/* Breadcrumbs */}
-                <div style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    color: "rgb(34, 34, 34)",
-                    fontSize: "14px",
-                    fontWeight: 550,
-                    overflow: "hidden"
-                }}>
-                    {getBreadcrumbs().map((item, index) => (
-                        <React.Fragment key={`breadcrumb_${item.id}_${index}`}>
-                            {index > 0 && (
-                                <span style={{ 
-                                    color: "rgb(155, 155, 155)",
-                                    margin: "0 2px"
-                                }}>{">"}</span>
-                            )}
-                            <Link
-                                href={item.path}
-                                style={{
-                                    color: "inherit",
-                                    textDecoration: "none",
-                                    whiteSpace: "nowrap",
-                                    overflow: "hidden",
-                                    textOverflow: "ellipsis",
-                                    maxWidth: "150px"
-                                }}
-                            >
-                                {item.label}
-                            </Link>
-                        </React.Fragment>
-                    ))}
-                </div>
-            </div>
-        )}
-
-        {/* New wrapper div for content with padding */}
-        <div style={{
-                position: "relative",
-                paddingTop: shouldShowBreadcrumbs ? HEADER_HEIGHT : 0,
-                width: "100%",
-                height: "100%"
-        }}>
-        {(cards || []).map((card, index) => (
-            <MuseCard
-                key={`${id}_${card.document_id}_${index}`}
-                {...card}
-                recurse={recurse + 1}
-                id={card.document_id}
-                parentId={id}
-            />
-        ))}
-                
-        {inkToArray(ink_models).map((ink, index) => (
-            <Ink 
-                key={`${id}_${ink.ink_svg}_${index}`} 
-                {...ink} 
-            />
-        ))}
-        </div>
-        </>
-    );
-});
-
-
-const truncateTitle = (title: string, maxLength: number = 31) => {
-    if (title.length > maxLength) {
-      return title.slice(0, maxLength);
-    }
-    return title;
-  };
-  
-const LinkIcon = () => (
-    <svg 
-      width="16" 
-      height="16" 
-      viewBox="0 0 256 256" 
-      style={{
-        flexShrink: 0,
-        marginTop: "2px",
-        color: "rgb(55, 53, 47)"
+        boxSizing: "border-box",
       }}
     >
-      <path 
-        d="M33.5,128v118H128h94.5v-94.4V57.2l-23.6-23.6L175.2,10h-70.9H33.5V128z M151.6,57.1l0.1,23.6l23.6,0.1L199,81l-0.1,70.7l-0.1,70.6H128H57.2l-0.1-93.8c0-51.6,0-94.1,0.1-94.4c0.1-0.4,10-0.6,47.2-0.6h47L151.6,57.1z"
-        fill="currentColor"
-      />
-    </svg>
+      {pages.map((dataUrl, idx) => (
+        <img
+          key={idx}
+          src={dataUrl}
+          alt={`PDF page ${idx + 1}`}
+          style={{
+            width: "100%",
+            objectFit: "contain",
+          }}
+        />
+      ))}
+    </div>
   );
-  
-  const Url = withParentLink(({url, title, label}) => {
-    const domain = url ? new URL(url).hostname : '';
-    const truncatedTitle = truncateTitle(label || title);
-    
-    return (
-      <div style={{
+});
+
+// TEXT
+const Text = withParentLink(({ original_file }: any) => {
+  const [fileContent, setFileContent] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch(`/board/files/${original_file}`)
+      .then((resp) => resp.text())
+      .then(setFileContent)
+      .catch(console.error);
+  }, [original_file]);
+
+  return (
+    <div
+      style={{
+        fontSize: 14,
+        lineHeight: 1.3,
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+        fontWeight: 500,
+        color: "rgb(55, 53, 47)",
+        padding: "13px 13px",
+        whiteSpace: "pre-wrap",
+        backgroundColor: "rgb(233,232,231)",
+        borderRadius: "3px",
+        boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
+        height: "100%",
+        width: "100%",
+        position: "absolute",
+        boxSizing: "border-box",
+        overflow: "hidden",
+      }}
+    >
+      {fileContent}
+    </div>
+  );
+});
+
+// URL
+function truncateTitle(title: string, maxLength = 31) {
+  return title.length > maxLength ? title.slice(0, maxLength) + "…" : title;
+}
+
+const LinkIcon = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 256 256"
+    style={{
+      flexShrink: 0,
+      marginTop: "2px",
+      color: "rgb(55, 53, 47)",
+    }}
+  >
+    <path
+      d="M33.5,128v118H128h94.5v-94.4V57.2l-23.6-23.6L175.2,10h-70.9H33.5V128z M151.6,57.1l0.1,23.6l23.6,0.1L199,81l-0.1,70.7l-0.1,70.6H128H57.2l-0.1-93.8c0-51.6,0-94.1,0.1-94.4c0.1-0.4,10-0.6,47.2-0.6h47L151.6,57.1z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+const Url = withParentLink(({ url, title, label }: any) => {
+  const domain = url ? new URL(url).hostname : "";
+  const truncatedTitle = truncateTitle(label || title || "Link");
+
+  return (
+    <div
+      style={{
         padding: "10px 10px",
         backgroundColor: "rgb(233,232,231)",
         borderRadius: "3px",
@@ -519,79 +416,279 @@ const LinkIcon = () => (
         width: "100%",
         position: "absolute",
         boxSizing: "border-box",
-      }}>
-        <div style={{
+      }}
+    >
+      <div
+        style={{
           display: "flex",
           alignItems: "flex-start",
-          gap: "8px"
-        }}>
-          <LinkIcon />
-          <div style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "4px"
-          }}>
-            <a 
-              href={url}
-              style={{
-                textDecoration: "none",
-                color: "rgb(55, 53, 47)",
-                fontSize: "14px",
-                fontWeight: 550,
-                lineHeight: 1.3
-              }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {truncatedTitle}
-            </a>
-            <div style={{
+          gap: "8px",
+        }}
+      >
+        <LinkIcon />
+        <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+          <a
+            href={url}
+            style={{
+              textDecoration: "none",
+              color: "rgb(55, 53, 47)",
+              fontSize: "14px",
+              fontWeight: 550,
+              lineHeight: 1.3,
+            }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {truncatedTitle}
+          </a>
+          <div
+            style={{
               color: "rgb(120, 119, 116)",
               fontSize: "12px",
-              fontWeight: 400
-            }}>
-              {domain}
-            </div>
+              fontWeight: 400,
+            }}
+          >
+            {domain}
           </div>
         </div>
       </div>
+    </div>
+  );
+});
+
+/* ------------------------------------------------------------------
+   5) The "Board" component (for type="board"):
+   - Renders child cards + ink drawings.
+   - No breadcrumb logic here; that's in "withParentLink".
+------------------------------------------------------------------ */
+function inkToArray(ink_models: any) {
+  return Object.entries(ink_models || {})
+    .filter(([_, v]) => v.ink_svg)
+    .map(([_, v]) => v);
+}
+
+const Board = withParentLink(
+  ({ cards = [], ink_models, recurse, id }: any) => {
+    const HEADER_HEIGHT = 128;
+
+    return (
+      <div
+        style={{
+          position: "relative",
+          paddingTop: HEADER_HEIGHT,
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        {cards.map((card: any, index: number) => (
+          <MuseCard
+            key={`${id}_${card.document_id}_${index}`}
+            {...card}
+            recurse={recurse + 1}
+            id={card.document_id}
+          />
+        ))}
+
+        {inkToArray(ink_models).map((ink: any, i: number) => (
+          <Ink key={`${id}_${ink.ink_svg}_${i}`} {...ink} />
+        ))}
+      </div>
     );
-  });
-  
-
-const CardForType = ({ type, ...cardInfo }) => {
-  switch (type) {
-    case "image": return <Image {...cardInfo} />;
-    case "text": return <Text {...cardInfo} />;
-    case "board": return <Board {...cardInfo} />;
-    case "pdf": return <Pdf {...cardInfo} />;
-    case "url": return <Url {...cardInfo} />;
-    default: return JSON.stringify({type, ...cardInfo}, null, 2);
   }
-};
+);
 
-const Muse = () => {
+/* ------------------------------------------------------------------
+   6) "MuseCard" for rendering each card in a board.
+   - If it's a "board" card, we'll recursively render <Board>.
+   - Otherwise we pick the correct sub-component (image, text, etc.).
+------------------------------------------------------------------ */
+const MuseCard = withParentLink(
+  ({
+    type,
+    document_id,
+    position_x,
+    position_y,
+    size_height,
+    size_width,
+    recurse,
+    z,
+  }: any) => {
+    const router = useRouter();
+    const cardInfo = board.documents[document_id];
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+      setIsVisible(true);
+    }, []);
+
+    const calculateContentExtent = (boardInfo: any) => {
+      if (!boardInfo.cards) return { width: 0, height: 0 };
+      return boardInfo.cards.reduce(
+        (max: any, c: any) => {
+          const rightEdge = c.position_x + c.size_width;
+          const bottomEdge = c.position_y + c.size_height;
+          return {
+            width: Math.max(max.width, rightEdge),
+            height: Math.max(max.height, bottomEdge),
+          };
+        },
+        { width: 0, height: 0 }
+      );
+    };
+
+    const getScale = () => {
+      if (cardInfo.type !== "board") return 0.1;
+      const extent = calculateContentExtent(cardInfo);
+      const scaleX = size_width / (extent.width || size_width);
+      const scaleY = size_height / (extent.height || size_height);
+      return Math.min(scaleX, scaleY, 1) * 0.9;
+    };
+
+    const scale = getScale();
+
+    return (
+      <div
+        style={{
+          position: "absolute",
+          left: position_x,
+          top: position_y,
+          width: size_width,
+          height: size_height,
+          zIndex: z,
+          cursor: cardInfo.type === "text" ? undefined : "pointer",
+          opacity: isVisible ? 1 : 0,
+          transform: `scale(${isVisible ? 1 : 0.8})`,
+          transition: "opacity 0.3s ease-out, transform 0.3s ease-out",
+        }}
+      >
+        {/* If it's a URL, skip showing label. Otherwise, show label above. */}
+        {cardInfo.type === "url" ? null : (
+          <div
+            style={{
+              color: "black",
+              top: -25,
+              position: "absolute",
+              width: size_width - 20,
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              maxWidth: "30ch",
+              fontSize: "13px",
+              fontWeight: 550,
+              padding: "2px 0",
+            }}
+          >
+            {cardInfo.label}
+          </div>
+        )}
+
+        <div
+          style={
+            cardInfo.type === "text"
+              ? {}
+              : {
+                  width: size_width,
+                  height: size_height,
+                  borderRadius: 8,
+                  boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
+                  backgroundColor: "#F0F0EE",
+                  overflow: "hidden",
+                }
+          }
+          onClick={() => {
+            // If we’re in a board (recurse=1) and the card isn't a URL,
+            // navigate to that card’s route.
+            if (recurse === 1 && cardInfo.type !== "url") {
+              router.push(`/${document_id}`);
+            }
+          }}
+        >
+          {cardInfo.type !== "board" ? (
+            <CardForType {...cardInfo} id={document_id} />
+          ) : (
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                overflow: "hidden",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  transform: `scale(${scale})`,
+                  transformOrigin: "0 0",
+                  width: `${100 / scale}%`,
+                  height: `${100 / scale}%`,
+                }}
+              >
+                {recurse <= 3 ? (
+                  <Board {...cardInfo} id={document_id} recurse={recurse + 1} />
+                ) : null}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+);
+
+/* ------------------------------------------------------------------
+   7) "CardForType" to pick the right sub-component for any card type.
+   Notice how each sub-component is already "withParentLink"-wrapped,
+   so they can show breadcrumbs if top-level.
+------------------------------------------------------------------ */
+function CardForType({ type, ...cardInfo }: any) {
+  switch (type) {
+    case "image":
+      return <Image {...cardInfo} />;
+    case "text":
+      return <Text {...cardInfo} />;
+    case "board":
+      return <Board {...cardInfo} />;
+    case "pdf":
+      return <Pdf {...cardInfo} />;
+    case "url":
+      return <Url {...cardInfo} />;
+    default:
+      // If there's an unknown type, just show JSON for debugging
+      return <pre>{JSON.stringify({ type, ...cardInfo }, null, 2)}</pre>;
+  }
+}
+
+/* ------------------------------------------------------------------
+   8) The main "Muse" component that picks which board/card to show
+      based on the current URL. This is typically your top-level route.
+------------------------------------------------------------------ */
+export function MuseBoard() {
   const pathname = usePathname();
   const [boardId, setBoardId] = useState(board.root);
-  
+
   useEffect(() => {
-    const id = pathname?.split('/').pop() || board.root;
-    setBoardId(id === 'muse' ? board.root : id);
+    // e.g. /abc => boardId= "abc"
+    const segments = pathname?.split("/").filter(Boolean) || [];
+    const lastSegment = segments[segments.length - 1] || board.root;
+    setBoardId(lastSegment === "muse" ? board.root : lastSegment);
   }, [pathname]);
 
-  const currentBoard = board.documents[boardId];
+  const currentDoc = board.documents[boardId] || board.documents[board.root];
 
   return (
     <>
+      {/* Global style override */}
       <style jsx global>{`
         body {
-          background-color: #DFDFDE;
+          background-color: #dfdfde;
           font-family: sans-serif;
         }
       `}</style>
-      <CardForType {...currentBoard} id={boardId} recurse={0} />
+
+      {/* Render the chosen card/board at top-level (recurse=0) */}
+      <CardForType {...currentDoc} id={boardId} recurse={0} />
     </>
   );
-};
-
-export { Muse as MuseBoard };
+}
