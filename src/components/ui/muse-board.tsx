@@ -12,10 +12,22 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 
-const findParents = (board, card) => {
-  const currentLevel = card?.cards?.map(x => [x.document_id, card.id]) ?? [];
-  const nextLevel = currentLevel.flatMap(([x, _]) => findParents(board, {...board.documents[x], id: x}));
-  return currentLevel.concat(nextLevel);
+const findParents = (board, card, visited = new Set()) => {
+    if (!card || visited.has(card.id)) return [];
+    visited.add(card.id);
+    
+    const relationships = [];
+    if (card.cards) {
+        for (const childCard of card.cards) {
+            relationships.push([childCard.document_id, card.id]);
+            relationships.push(...findParents(
+                board, 
+                {...board.documents[childCard.document_id], id: childCard.document_id},
+                visited
+            ));
+        }
+    }
+    return relationships;
 };
 
 // In muse-board.tsx, update the global styles
@@ -290,103 +302,126 @@ const Board = withParentLink(({ cards, ink_models, recurse, type, label, id, ...
     const pathname = usePathname();
     
     const getBreadcrumbs = () => {
-      const paths = pathname?.split('/').filter(Boolean) || [];
-      const breadcrumbs = [];
-      let currentPath = '';
-      
-      for (let i = 0; i < paths.length; i++) {
-        const path = paths[i];
-        currentPath += `/${path}`;
-        const doc = board.documents[path];
+        const paths = pathname?.split('/').filter(Boolean) || [];
+        const breadcrumbs = [];
+        let currentPath = '';
         
-        if (doc) {
-          // Check if it's a nested board
-          const parentId = parents[path];
-          const parentDoc = board.documents[parentId];
-          
-          // Add parent board if it exists and hasn't been added
-          if (parentDoc && !breadcrumbs.find(b => b.id === parentId)) {
+        // Add root
+        if (board?.documents?.[board.root]) {
             breadcrumbs.push({
-              id: parentId,
-              label: parentDoc.label || 'Board',
-              path: `/${parentId}`
+                id: board.root,
+                label: board.documents[board.root].label || 'Home',
+                path: '/'
             });
-          }
-          
-          breadcrumbs.push({
-            id: path,
-            label: doc.label || path,
-            path: currentPath
-          });
         }
-      }
-  
-      return [
-        {
-          id: board.root,
-          label: 'Home',
-          path: '/'
-        },
-        ...breadcrumbs
-      ];
+        
+        // Track visited nodes to prevent duplicates
+        const visited = new Set([board.root]);
+        
+        // Process each path segment
+        for (const path of paths) {
+            const doc = board.documents[path];
+            if (!doc) continue;
+            
+            // Build parent chain
+            const parentChain = [];
+            let currentId = path;
+            
+            // Traverse up the parent chain until root or already visited node
+            while (parents[currentId] && !visited.has(parents[currentId])) {
+                const parentId = parents[currentId];
+                const parentDoc = board.documents[parentId];
+                
+                if (parentDoc && parentId !== board.root) {
+                    parentChain.unshift({
+                        id: parentId,
+                        label: parentDoc.label || 'Board',
+                        path: `/${parentId}`
+                    });
+                    visited.add(parentId);
+                }
+                currentId = parentId;
+            }
+            
+            // Add parent chain to breadcrumbs
+            breadcrumbs.push(...parentChain);
+            
+            // Add current document
+            if (!visited.has(path)) {
+                currentPath += `/${path}`;
+                breadcrumbs.push({
+                    id: path,
+                    label: doc.label || path,
+                    path: currentPath
+                });
+                visited.add(path);
+            }
+        }
+        
+        return breadcrumbs;
     };
-  
+
+    // Only show breadcrumbs for non-text cards and root level
+    const shouldShowBreadcrumbs = recurse === 0 && board.documents[id]?.type !== 'text';
+    
     return (
-      <>
-        {recurse !== 0 ? null : (
-          <div style={{
-            position: "absolute",
-            top: 16,
-            left: 16,
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            color: "rgb(34, 34, 34)",
-            fontSize: "14px",
-            fontWeight: 500,
-            maxWidth: "calc(100% - 32px)",
-            overflow: "hidden"
-          }}>
-            {getBreadcrumbs().map((item, index) => (
-              <React.Fragment key={item.id}>
-                {index > 0 && (
-                  <span style={{ color: "rgb(155, 155, 155)" }}>{">"}</span>
-                )}
-                <Link
-                  href={item.path}
-                  style={{
-                    color: "inherit",
-                    textDecoration: "none",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    maxWidth: "150px"
-                  }}
-                >
-                  {item.label}
-                </Link>
-              </React.Fragment>
+        <>
+            {!shouldShowBreadcrumbs ? null : (
+                <nav aria-label="breadcrumb" style={{
+                    position: "absolute",
+                    top: 16,
+                    left: 16,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    color: "rgb(34, 34, 34)",
+                    fontSize: "14px",
+                    fontWeight: 500,
+                    maxWidth: "calc(100% - 32px)",
+                    overflow: "hidden"
+                }}>
+                    {getBreadcrumbs().map((item, index) => (
+                        <React.Fragment key={`breadcrumb_${item.id}_${index}`}>
+                            {index > 0 && (
+                                <span style={{ color: "rgb(155, 155, 155)" }}>{">"}</span>
+                            )}
+                            <Link
+                                href={item.path}
+                                style={{
+                                    color: "inherit",
+                                    textDecoration: "none",
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                    maxWidth: "150px"
+                                }}
+                            >
+                                {item.label}
+                            </Link>
+                        </React.Fragment>
+                    ))}
+                </nav>
+            )}
+            {(cards || []).map((card, index) => (
+                <MuseCard
+                    key={`${id}_${card.document_id}_${index}`}
+                    {...card}
+                    recurse={recurse + 1}
+                    id={card.document_id}
+                    parentId={id}
+                />
             ))}
-          </div>
-        )}
-        {(cards || []).map(card => (
-          <MuseCard
-            key={card.document_id}
-            {...card}
-            recurse={recurse + 1}
-            id={card.document_id}
-          />
-        ))}
-        {inkToArray(ink_models).map(ink => (
-          <Ink key={ink.ink_svg} {...ink} />
-        ))}
-      </>
+            
+            {inkToArray(ink_models).map((ink, index) => (
+                <Ink 
+                    key={`${id}_${ink.ink_svg}_${index}`} 
+                    {...ink} 
+                />
+            ))}
+        </>
     );
-  });
-  
+});
 
-
-  
 
 const truncateTitle = (title: string, maxLength: number = 31) => {
     if (title.length > maxLength) {
