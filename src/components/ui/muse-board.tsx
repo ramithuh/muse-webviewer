@@ -4,6 +4,12 @@ import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import board from '../../../public/board/contents.json';
 import { Card } from './card';
+import * as pdfjs from 'pdfjs-dist';
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url
+).toString();
+
 
 const findParents = (board, card) => {
   const currentLevel = card?.cards?.map(x => [x.document_id, card.id]) ?? [];
@@ -62,14 +68,75 @@ const Ink = withParentLink(({ ink_svg }) => {
   />;
 });
 
+// const Pdf = withParentLink(({ original_file, recurse }) => {
+//   const size = recurse === 0 ? {} : {width: "100%"};
+//   return <img 
+//     style={{...size}} 
+//     src={`/board/files/${original_file}-0.png`}
+//     alt={`PDF ${original_file}`}
+//   />;
+// });
 const Pdf = withParentLink(({ original_file, recurse }) => {
-  const size = recurse === 0 ? {} : {width: "100%"};
-  return <img 
-    style={{...size}} 
-    src={`/board/files/${original_file}-0.png`}
-    alt={`PDF ${original_file}`}
-  />;
-});
+    const [pages, setPages] = useState([]);
+    
+    useEffect(() => {
+      // Load PDF.js library
+      const pdfjsLib = window.pdfjsLib;
+      
+      async function loadPDF() {
+        const pdf = await pdfjsLib.getDocument(`/board/files/${original_file}`).promise;
+        const pagePromises = [];
+        
+        // Load first 6 pages
+        for(let i = 1; i <= Math.min(6, pdf.numPages); i++) {
+          const page = await pdf.getPage(i);
+          const viewport = page.getViewport({scale: 0.5});
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          
+          await page.render({
+            canvasContext: context,
+            viewport: viewport
+          }).promise;
+          
+          pagePromises.push(canvas.toDataURL());
+        }
+        
+        setPages(await Promise.all(pagePromises));
+      }
+      
+      loadPDF().catch(console.error);
+    }, [original_file]);
+    
+    return (
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        gap: "4px",
+        padding: "8px",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgb(233,232,231)",
+        borderRadius: "3px",
+        boxSizing: "border-box"
+      }}>
+        {pages.map((dataUrl, index) => (
+          <img 
+            key={index}
+            src={dataUrl}
+            alt={`PDF page ${index + 1}`}
+            style={{
+              width: "100%",
+              objectFit: "contain"
+            }}
+          />
+        ))}
+      </div>
+    );
+  });
+  
 
 const Text = withParentLink(({ original_file }) => {
     const [fileContent, setFileContent] = useState(null);
@@ -98,14 +165,40 @@ const Text = withParentLink(({ original_file }) => {
       boxSizing: "border-box",
       overflow: "hidden"
     }}>{fileContent}</div>;
-  });
+});
   
-  
-
 const MuseCard = withParentLink(({ type, document_id, position_x, position_y, size_height, size_width, recurse, z, ...rest }) => {
     const router = useRouter();
     const cardInfo = board.documents[document_id];
-    const scale = cardInfo.snapshot_scale === 0 ? 0.1 : cardInfo.snapshot_scale;
+    const [isVisible, setIsVisible] = useState(false);
+    
+    useEffect(() => {
+      setIsVisible(true);
+    }, []);
+  
+    const calculateContentExtent = (boardInfo) => {
+      if (!boardInfo.cards) return { width: 0, height: 0 };
+      
+      return boardInfo.cards.reduce((max, card) => {
+        const rightEdge = card.position_x + card.size_width;
+        const bottomEdge = card.position_y + card.size_height;
+        return {
+          width: Math.max(max.width, rightEdge),
+          height: Math.max(max.height, bottomEdge)
+        };
+      }, { width: 0, height: 0 });
+    };
+  
+    const getScale = () => {
+      if (cardInfo.type !== 'board') return 0.1;
+      
+      const extent = calculateContentExtent(cardInfo);
+      const scaleX = size_width / (extent.width || size_width);
+      const scaleY = size_height / (extent.height || size_height);
+      return Math.min(scaleX, scaleY, 1) * 0.9;
+    };
+  
+    const scale = getScale();
     
     return (
       <div style={{
@@ -116,21 +209,24 @@ const MuseCard = withParentLink(({ type, document_id, position_x, position_y, si
         height: size_height,
         zIndex: z,
         cursor: cardInfo.type === "text" ? undefined : "pointer",
+        opacity: isVisible ? 1 : 0,
+        transform: `scale(${isVisible ? 1 : 0.8})`,
+        transition: 'opacity 0.3s ease-out, transform 0.3s ease-out'
       }}>
         {cardInfo.type === "url" ? null :
-            <div style={{
-            color: "rgb(34, 34, 34)",  // Darker, more readable color
-            top: -24,                  // Slightly higher position
-            position: "absolute",
-            width: size_width - 20,
+          <div style={{
+            color: "black", 
+            top: -25, 
+            position: "absolute", 
+            width: size_width - 20, 
             textOverflow: "ellipsis",
             overflow: "hidden",
             whiteSpace: "nowrap",
             maxWidth: "30ch",
-            fontSize: "14px",         // Consistent size
-            fontWeight: 550,          // Medium weight
+            fontSize: "13px",
+            fontWeight: 550,
             padding: "2px 0"
-            }}>
+          }}>
             {cardInfo.label}
           </div>
         }
@@ -138,8 +234,8 @@ const MuseCard = withParentLink(({ type, document_id, position_x, position_y, si
           style={cardInfo.type === "text" ? {} : {
             width: size_width, 
             height: size_height,
-            borderRadius: 9,
-            boxShadow: "rgb(206, 206, 205) 0px 0px 10px",
+            borderRadius: 8,
+            boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
             backgroundColor: "#F0F0EE",
             overflow: "hidden"
           }}
@@ -151,8 +247,23 @@ const MuseCard = withParentLink(({ type, document_id, position_x, position_y, si
         >
           {cardInfo.type !== "board" 
             ? <CardForType {...cardInfo} id={document_id} />
-            : <div style={{position: "relative", transform: `scale(${scale})`, width: 0}}>
-                {recurse <= 3 ? <Board {...cardInfo} id={document_id} recurse={recurse + 1} /> : null}
+            : <div style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                overflow: "hidden"
+              }}>
+                <div style={{
+                  position: "absolute",
+                  transform: `scale(${scale})`,
+                  transformOrigin: "0 0",
+                  width: `${100/scale}%`,
+                  height: `${100/scale}%`
+                }}>
+                  {recurse <= 3 ? <Board {...cardInfo} id={document_id} recurse={recurse + 1} /> : null}
+                </div>
               </div>
           }
         </div>
