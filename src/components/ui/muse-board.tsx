@@ -72,25 +72,35 @@ const Pdf = withParentLink(({ original_file, recurse }) => {
 });
 
 const Text = withParentLink(({ original_file }) => {
-  const [fileContent, setFileContent] = useState(null);
+    const [fileContent, setFileContent] = useState(null);
+    
+    useEffect(() => {
+      fetch(`/board/files/${original_file}`)
+        .then(resp => resp.text())
+        .then(setFileContent)
+        .catch(console.error);
+    }, [original_file]);
+    
+    return <div style={{
+      fontSize: 14,
+      lineHeight: 1.3,
+      fontFamily: '-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+      fontWeight: 500,
+      color: "rgb(55, 53, 47)",
+      padding: "13px 13px",
+      whiteSpace: "pre-wrap",
+      backgroundColor: "rgb(233,232,231)",
+      borderRadius: "3px",
+      boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
+      height: "100%",
+      width: "100%",
+      position: "absolute",
+      boxSizing: "border-box",
+      overflow: "hidden"
+    }}>{fileContent}</div>;
+  });
   
-  useEffect(() => {
-    fetch(`/board/files/${original_file}`)
-      .then(resp => resp.text())
-      .then(setFileContent)
-      .catch(console.error);
-  }, [original_file]);
   
-//   return <div style={{fontSize: 18, lineHeight: 1.2, fontFamily: "helvetica"}}>{fileContent}</div>;
-  return <div style={{
-    fontSize: 14,
-    lineHeight: 1.5,
-    fontFamily: "var(--font-geist-sans)",
-    whiteSpace: "wrap",
-    color: "rgb(34, 34, 34)",
-    padding: "12px 14px"
-  }}>{fileContent}</div>;
-});
 
 const MuseCard = withParentLink(({ type, document_id, position_x, position_y, size_height, size_width, recurse, z, ...rest }) => {
     const router = useRouter();
@@ -185,21 +195,84 @@ const Board = withParentLink(({ cards, ink_models, recurse, type, label, id, ...
   </>;
 });
 
-const Url = withParentLink(({url, title, label}) => {
-  return (
-    <div style={{padding: 10}}>
-      <a 
-        href={url}
-        title={title}
-        style={{textDecoration: "none"}}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {label}
-      </a>
-    </div>
+const truncateTitle = (title: string, maxLength: number = 31) => {
+    if (title.length > maxLength) {
+      return title.slice(0, maxLength);
+    }
+    return title;
+  };
+  
+const LinkIcon = () => (
+    <svg 
+      width="16" 
+      height="16" 
+      viewBox="0 0 256 256" 
+      style={{
+        flexShrink: 0,
+        marginTop: "2px",
+        color: "rgb(55, 53, 47)"
+      }}
+    >
+      <path 
+        d="M33.5,128v118H128h94.5v-94.4V57.2l-23.6-23.6L175.2,10h-70.9H33.5V128z M151.6,57.1l0.1,23.6l23.6,0.1L199,81l-0.1,70.7l-0.1,70.6H128H57.2l-0.1-93.8c0-51.6,0-94.1,0.1-94.4c0.1-0.4,10-0.6,47.2-0.6h47L151.6,57.1z"
+        fill="currentColor"
+      />
+    </svg>
   );
-});
+  
+  const Url = withParentLink(({url, title, label}) => {
+    const domain = url ? new URL(url).hostname : '';
+    const truncatedTitle = truncateTitle(label || title);
+    
+    return (
+      <div style={{
+        padding: "10px 10px",
+        backgroundColor: "rgb(233,232,231)",
+        borderRadius: "3px",
+        boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
+        height: "100%",
+        width: "100%",
+        position: "absolute",
+        boxSizing: "border-box",
+      }}>
+        <div style={{
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "8px"
+        }}>
+          <LinkIcon />
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "4px"
+          }}>
+            <a 
+              href={url}
+              style={{
+                textDecoration: "none",
+                color: "rgb(55, 53, 47)",
+                fontSize: "14px",
+                fontWeight: 550,
+                lineHeight: 1.3
+              }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {truncatedTitle}
+            </a>
+            <div style={{
+              color: "rgb(120, 119, 116)",
+              fontSize: "12px",
+              fontWeight: 400
+            }}>
+              {domain}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  });
+  
 
 const CardForType = ({ type, ...cardInfo }) => {
   switch (type) {
