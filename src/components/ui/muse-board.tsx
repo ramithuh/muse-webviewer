@@ -286,32 +286,50 @@ const inkToArray = (ink_models) => {
     .map(([k, v]) => v);
 };
 
-
 const Board = withParentLink(({ cards, ink_models, recurse, type, label, id, ...rest }) => {
     const pathname = usePathname();
     
     const getBreadcrumbs = () => {
-        const paths = pathname?.split('/').filter(Boolean) || [];
-        let currentPath = '';
-        const breadcrumbs = paths.reduce((acc, path) => {
-          currentPath += `/${path}`;
-          const doc = board.documents[path];
-          if (doc) {
-            acc.push({
-              id: path,
-              label: doc.label || path,
-              path: currentPath
+      const paths = pathname?.split('/').filter(Boolean) || [];
+      const breadcrumbs = [];
+      let currentPath = '';
+      
+      for (let i = 0; i < paths.length; i++) {
+        const path = paths[i];
+        currentPath += `/${path}`;
+        const doc = board.documents[path];
+        
+        if (doc) {
+          // Check if it's a nested board
+          const parentId = parents[path];
+          const parentDoc = board.documents[parentId];
+          
+          // Add parent board if it exists and hasn't been added
+          if (parentDoc && !breadcrumbs.find(b => b.id === parentId)) {
+            breadcrumbs.push({
+              id: parentId,
+              label: parentDoc.label || 'Board',
+              path: `/${parentId}`
             });
           }
-          return acc;
-        }, []);
-      
-        return [
-          { id: board.root, label: 'Home', path: '/' },
-          ...breadcrumbs
-        ];
+          
+          breadcrumbs.push({
+            id: path,
+            label: doc.label || path,
+            path: currentPath
+          });
+        }
+      }
+  
+      return [
+        {
+          id: board.root,
+          label: 'Home',
+          path: '/'
+        },
+        ...breadcrumbs
+      ];
     };
-      
   
     return (
       <>
@@ -325,46 +343,49 @@ const Board = withParentLink(({ cards, ink_models, recurse, type, label, id, ...
             gap: "8px",
             color: "rgb(34, 34, 34)",
             fontSize: "14px",
-            fontWeight: 500
+            fontWeight: 500,
+            maxWidth: "calc(100% - 32px)",
+            overflow: "hidden"
           }}>
             {getBreadcrumbs().map((item, index) => (
               <React.Fragment key={item.id}>
                 {index > 0 && (
-                  <span style={{ color: "rgb(155, 155, 155)" }}>
-                    {">"}
-                  </span>
+                  <span style={{ color: "rgb(155, 155, 155)" }}>{">"}</span>
                 )}
-                <Link 
-                    href={item.path}
-                    style={{
-                        color: "inherit",
-                        textDecoration: "none",
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        maxWidth: "150px"
-                    }}
-                    >
-                    {item.label}
-                    </Link>
+                <Link
+                  href={item.path}
+                  style={{
+                    color: "inherit",
+                    textDecoration: "none",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    maxWidth: "150px"
+                  }}
+                >
+                  {item.label}
+                </Link>
               </React.Fragment>
             ))}
           </div>
         )}
-        {(cards || []).map(card => 
-          <MuseCard 
-            key={card.document_id} 
-            {...card} 
-            recurse={recurse + 1} 
-            id={card.document_id} 
+        {(cards || []).map(card => (
+          <MuseCard
+            key={card.document_id}
+            {...card}
+            recurse={recurse + 1}
+            id={card.document_id}
           />
-        )}
-        {inkToArray(ink_models).map(ink => 
+        ))}
+        {inkToArray(ink_models).map(ink => (
           <Ink key={ink.ink_svg} {...ink} />
-        )}
+        ))}
       </>
     );
   });
+  
+
+
   
 
 const truncateTitle = (title: string, maxLength: number = 31) => {
