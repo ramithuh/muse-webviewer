@@ -29,27 +29,26 @@ const findParents = (board, card) => {
 const parents = Object.fromEntries(findParents(board, {...board.documents[board.root], id: board.root}));
 
 const withParentLink = (Comp) => ({id, recurse, ...rest}) => {
-  if (recurse !== 0 || board.root === id) {
-    return <Comp id={id} recurse={recurse} {...rest} />;
-  }
-  const parent = parents[id];
-  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
-  const isMusePath = pathname.startsWith('/muse');
+    if (recurse !== 0 || board.root === id) {
+      return <Comp id={id} recurse={recurse} {...rest} />;
+    }
+    const parent = parents[id];
+    
+    return (
+      <>
+        <div style={{position: "absolute", right: 50, zIndex: 1000}}>
+          <Link 
+            href={parent === board.root ? "/" : `/${parent}`}
+            style={{textDecoration: "none"}}
+          >
+            <b>↑ Parent</b>
+          </Link>
+        </div>
+        <Comp id={id} recurse={recurse} {...rest} />
+      </>
+    );
+  };
   
-  return (
-    <>
-      <div style={{position: "absolute", right: 50, zIndex: 1000}}>
-        <Link 
-          href={parent === board.root ? (isMusePath ? "/muse" : "/") : `/${parent}`}
-          style={{textDecoration: "none"}}
-        >
-          ↑ Parent
-        </Link>
-      </div>
-      <Comp id={id} recurse={recurse} {...rest} />
-    </>
-  );
-};
 
 const Image = withParentLink(({ original_file, recurse }) => {
   const size = recurse === 0 ? {} : {width: "100%", height: "100%"};
