@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
+import * as React from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import board from '../../../public/board/contents.json';
@@ -285,33 +286,86 @@ const inkToArray = (ink_models) => {
     .map(([k, v]) => v);
 };
 
+
 const Board = withParentLink(({ cards, ink_models, recurse, type, label, id, ...rest }) => {
-  return <>
-    {recurse !== 0 ? null : 
-        <div style={{
-        color: "rgb(34, 34, 34)",
-        top: 16,
-        position: "absolute",
-        width: 200,
-        textOverflow: "ellipsis",
-        overflow: "hidden",
-        whiteSpace: "nowrap",
-        maxWidth: "30ch",
-        fontSize: "16px",
-        fontWeight: 600,
-        letterSpacing: "-0.1px"
-        }}>
-        {label}
-      </div>
-    }
-    {(cards || []).map(card => 
-      <MuseCard key={card.document_id} {...card} recurse={recurse + 1} id={card.document_id} />
-    )}
-    {inkToArray(ink_models).map(ink => 
-      <Ink key={ink.ink_svg} {...ink} />
-    )}
-  </>;
-});
+    const pathname = usePathname();
+    
+    const getBreadcrumbs = () => {
+        const paths = pathname?.split('/').filter(Boolean) || [];
+        let currentPath = '';
+        const breadcrumbs = paths.reduce((acc, path) => {
+          currentPath += `/${path}`;
+          const doc = board.documents[path];
+          if (doc) {
+            acc.push({
+              id: path,
+              label: doc.label || path,
+              path: currentPath
+            });
+          }
+          return acc;
+        }, []);
+      
+        return [
+          { id: board.root, label: 'Home', path: '/' },
+          ...breadcrumbs
+        ];
+    };
+      
+  
+    return (
+      <>
+        {recurse !== 0 ? null : (
+          <div style={{
+            position: "absolute",
+            top: 16,
+            left: 16,
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            color: "rgb(34, 34, 34)",
+            fontSize: "14px",
+            fontWeight: 500
+          }}>
+            {getBreadcrumbs().map((item, index) => (
+              <React.Fragment key={item.id}>
+                {index > 0 && (
+                  <span style={{ color: "rgb(155, 155, 155)" }}>
+                    {">"}
+                  </span>
+                )}
+                <Link 
+                    href={item.path}
+                    style={{
+                        color: "inherit",
+                        textDecoration: "none",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        maxWidth: "150px"
+                    }}
+                    >
+                    {item.label}
+                    </Link>
+              </React.Fragment>
+            ))}
+          </div>
+        )}
+        {(cards || []).map(card => 
+          <MuseCard 
+            key={card.document_id} 
+            {...card} 
+            recurse={recurse + 1} 
+            id={card.document_id} 
+          />
+        )}
+        {inkToArray(ink_models).map(ink => 
+          <Ink key={ink.ink_svg} {...ink} />
+        )}
+      </>
+    );
+  });
+  
 
 const truncateTitle = (title: string, maxLength: number = 31) => {
     if (title.length > maxLength) {
