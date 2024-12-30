@@ -118,6 +118,10 @@
         {
           "card_id" : "335afbb0b704862816bbb649eb79c194",
           "document_id" : "335afbb0b4c3ebb4cc3e898f16fb3351",
+          "ink_model" : {
+            "ink_svg" : "335afbb0b704862816bbb649eb79c194_card_ink.svg",
+            "scale" : 1
+          },
           "position_x" : 458,
           "position_y" : 790,
           "size_height" : 150,
@@ -224,12 +228,6 @@
         ]
       ],
       "created_at" : "2024-12-30T01:53:47Z",
-      "ink_models" : {
-        "0" : {
-          "ink_svg" : "335aeef66ec12472601054f5d4a518580_0_ink.svg",
-          "scale" : 1
-        }
-      },
       "label" : "ICLR 2025 Workshops",
       "type" : "board"
     },
