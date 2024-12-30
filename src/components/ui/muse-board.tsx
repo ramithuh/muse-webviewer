@@ -35,6 +35,7 @@ interface Document {
     size_height: number;
     size_width: number;
     z: number;
+    color?: string; // Add optional color property
   }>;
   connections: string[][];
   created_at: string;
@@ -48,6 +49,20 @@ interface InkModel {
 }
 
 
+// Add a color helper function
+const getBackgroundColor = (color?: string, type?: string) => {
+  // Only apply colors to text and url types
+  if (!color || (type !== 'text' && type !== 'url')) return "rgb(233,232,231)";
+  
+  switch (color.toLowerCase()) {
+    case "yellow":
+      return "rgb(254,249,233)";
+    case "red":
+      return "rgb(251,229,224)";
+    default:
+      return "rgb(233,232,231)";
+  }
+};
 
 /* ------------------------------------------------------------------
    1) Build the "parents" map:
@@ -385,9 +400,10 @@ const Pdf = withParentLink(({ original_file, recurse }: any) => {
 
 
 // TEXT
-const Text = withParentLink(({ original_file }: any) => {
+// Update Text component
+const Text = withParentLink(({ original_file, color }: any) => {
   const [fileContent, setFileContent] = useState<string | null>(null);
-
+  
   useEffect(() => {
     fetch(`/${b_name}/files/${original_file}`)
       .then((resp) => resp.text())
@@ -396,26 +412,23 @@ const Text = withParentLink(({ original_file }: any) => {
   }, [original_file]);
 
   return (
-    <div
-      style={{
-        fontSize: 14,
-        lineHeight: 1.3,
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-        fontWeight: 500,
-        color: "rgb(55, 53, 47)",
-        padding: "13px 13px",
-        whiteSpace: "pre-wrap",
-        backgroundColor: "rgb(233,232,231)",
-        borderRadius: "3px",
-        boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
-        height: "100%",
-        width: "100%",
-        position: "absolute",
-        boxSizing: "border-box",
-        overflow: "hidden",
-      }}
-    >
+    <div style={{
+      fontSize: 14,
+      lineHeight: 1.3,
+      fontFamily: '-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto',
+      fontWeight: 500,
+      color: "rgb(55, 53, 47)",
+      padding: "13px 13px",
+      whiteSpace: "pre-wrap",
+      backgroundColor: getBackgroundColor(color, 'text'),
+      borderRadius: "3px",
+      boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
+      height: "100%",
+      width: "100%",
+      position: "absolute",
+      boxSizing: "border-box",
+      overflow: "hidden",
+    }}>
       {fileContent}
     </div>
   );
@@ -444,23 +457,21 @@ const LinkIcon = () => (
   </svg>
 );
 
-const Url = withParentLink(({ url, title, label }: any) => {
+const Url = withParentLink(({ url, title, label, color }: any) => {
   const domain = url ? new URL(url).hostname : "";
   const truncatedTitle = truncateTitle(label || title || "Link");
-
+  
   return (
-    <div
-      style={{
-        padding: "10px 10px",
-        backgroundColor: "rgb(233,232,231)",
-        borderRadius: "3px",
-        boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
-        height: "100%",
-        width: "100%",
-        position: "absolute",
-        boxSizing: "border-box",
-      }}
-    >
+    <div style={{
+      padding: "10px 10px",
+      backgroundColor: getBackgroundColor(color, 'url'),
+      borderRadius: "3px",
+      boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
+      height: "100%",
+      width: "100%",
+      position: "absolute",
+      boxSizing: "border-box",
+    }}>
       <div
         style={{
           display: "flex",
@@ -636,6 +647,7 @@ const MuseCard = withParentLink(
     size_width,
     recurse,
     z,
+    color
   }: any) => {
     const router = useRouter();
     const cardInfo = board.documents[document_id];
@@ -668,7 +680,21 @@ const MuseCard = withParentLink(
       return Math.min(scaleX, scaleY, 1) * 0.9;
     };
 
+    const getBackgroundColor = (color?: string, type?: string) => {
+      if (!color || (type !== 'text' && type !== 'url')) return "#F0F0EE";
+      
+      switch (color.toLowerCase()) {
+        case "yellow":
+          return "rgb(254,249,233)";
+        case "red":
+          return "rgb(251,229,224)";
+        default:
+          return "#F0F0EE";
+      }
+    };
+
     const scale = getScale();
+    const backgroundColor = getBackgroundColor(color, cardInfo.type);
 
     return (
       <div
@@ -685,7 +711,6 @@ const MuseCard = withParentLink(
           transition: "opacity 0.3s ease-out, transform 0.3s ease-out",
         }}
       >
-        {/* If it's a URL, skip showing label. Otherwise, show label above. */}
         {cardInfo.type === "url" ? null : (
           <div
             style={{
@@ -715,20 +740,18 @@ const MuseCard = withParentLink(
                   height: size_height,
                   borderRadius: 8,
                   boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
-                  backgroundColor: "#F0F0EE",
+                  backgroundColor,
                   overflow: "hidden",
                 }
           }
           onClick={() => {
-            // If we’re in a board (recurse=1) and the card isn't a URL,
-            // navigate to that card’s route.
             if (recurse === 1 && cardInfo.type !== "url") {
               router.push(`/${document_id}`);
             }
           }}
         >
           {cardInfo.type !== "board" ? (
-            <CardForType {...cardInfo} id={document_id} />
+            <CardForType {...cardInfo} id={document_id} color={color} />
           ) : (
             <div
               style={{
@@ -750,7 +773,7 @@ const MuseCard = withParentLink(
                 }}
               >
                 {recurse <= 3 ? (
-                  <Board {...cardInfo} id={document_id} recurse={recurse + 1}  />
+                  <Board {...cardInfo} id={document_id} recurse={recurse + 1} />
                 ) : null}
               </div>
             </div>
@@ -760,6 +783,7 @@ const MuseCard = withParentLink(
     );
   }
 );
+
 
 /* ------------------------------------------------------------------
    7) "CardForType" to pick the right sub-component for any card type.
