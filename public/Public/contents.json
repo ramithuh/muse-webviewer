@@ -5,164 +5,172 @@
         {
           "card_id" : "335aef1458865bb2cca99d5471c0586b",
           "document_id" : "335aef1451fa7bfc104f1ba1a4ad7414",
-          "position_x" : 79,
-          "position_y" : 75,
+          "position_x" : 779,
+          "position_y" : 443,
           "size_height" : 155,
           "size_width" : 206,
-          "z" : 151
+          "z" : 348
         },
         {
           "card_id" : "335aef4d02c8d462f1dc103fd4f80d32",
           "document_id" : "335aef4b50566319d5978e8b0bbd349b",
-          "position_x" : 79,
-          "position_y" : 282,
-          "size_height" : 56,
-          "size_width" : 300,
-          "z" : 155
+          "position_x" : 800,
+          "position_y" : 643,
+          "size_height" : 98,
+          "size_width" : 268,
+          "z" : 356
         },
         {
           "card_id" : "335aefe76ee88da74e09c86e36482e68",
           "document_id" : "335aefe76c5e98ffd2f9aa5e0af4c77f",
-          "position_x" : 417,
-          "position_y" : 75,
+          "position_x" : 420,
+          "position_y" : 92,
           "size_height" : 152,
           "size_width" : 202,
-          "z" : 152
-        },
-        {
-          "card_id" : "335af00b6854d210131987e1286f5a16",
-          "document_id" : "335af009f45727fc2fae6691e8cbe2e7",
-          "position_x" : 418,
-          "position_y" : 282,
-          "size_height" : 56,
-          "size_width" : 300,
-          "z" : 156
+          "z" : 343
         },
         {
           "card_id" : "335af20ccbc54f7e73f04f9f95e6f67b",
           "document_id" : "335af20caf3f743499f01af5285ed8b7",
-          "position_x" : 778,
-          "position_y" : 75,
+          "position_x" : 77,
+          "position_y" : 92,
           "size_height" : 153,
           "size_width" : 204,
-          "z" : 153
-        },
-        {
-          "card_id" : "335af26387df8f1bb39d73c31cac212b",
-          "document_id" : "335af261fd6c62a7f548d7355634b0a1",
-          "position_x" : 778,
-          "position_y" : 282,
-          "size_height" : 56,
-          "size_width" : 300,
-          "z" : 157
+          "z" : 349
         },
         {
           "card_id" : "335af2c2969dccf27a25fa59b82c275c",
           "document_id" : "335af2c051fad8e499285c950492bc03",
-          "position_x" : 79,
-          "position_y" : 640,
-          "size_height" : 56,
-          "size_width" : 300,
-          "z" : 163
+          "position_x" : 400,
+          "position_y" : 643,
+          "size_height" : 60,
+          "size_width" : 318,
+          "z" : 358
         },
         {
           "card_id" : "335af364435579deb0fa04c8b70ff6d3",
           "document_id" : "335af36441968681ee06eb11066b1fa5",
-          "position_x" : 79,
-          "position_y" : 420,
+          "position_x" : 406,
+          "position_y" : 443,
           "size_height" : 162,
           "size_width" : 216,
-          "z" : 159
-        },
-        {
-          "card_id" : "335af3dfc95a835b30102c3fe789449e",
-          "document_id" : "335af3de47fdf3d7d47c909dd854a2c4",
-          "position_x" : 416,
-          "position_y" : 640,
-          "size_height" : 56,
-          "size_width" : 300,
-          "z" : 164
+          "z" : 344
         },
         {
           "card_id" : "335af4180e70d3b3ed12cf98eb4beda6",
           "document_id" : "335af4180c149b33bf3b189c27b659ed",
-          "position_x" : 416,
-          "position_y" : 420,
+          "position_x" : 1113,
+          "position_y" : 92,
           "size_height" : 151,
           "size_width" : 201,
-          "z" : 160
+          "z" : 345
         },
         {
           "card_id" : "335af52bf35f5ffeb1971520df0d5813",
           "document_id" : "335af52bedd2571712a41fea384b8d78",
-          "position_x" : 779,
-          "position_y" : 420,
+          "position_x" : 77,
+          "position_y" : 443,
+          "scroll_position" : 0.1959261870922071,
           "size_height" : 148,
           "size_width" : 197,
-          "z" : 161
+          "z" : 350
         },
         {
           "card_id" : "335af534a268fcf88f8caad9e38dbea1",
           "document_id" : "335af5314896b321d095386acb1c862c",
-          "position_x" : 778,
-          "position_y" : 640,
-          "size_height" : 56,
-          "size_width" : 300,
-          "z" : 165
+          "position_x" : 101,
+          "position_y" : 643,
+          "size_height" : 96,
+          "size_width" : 217,
+          "z" : 357
         },
         {
           "card_id" : "335af5de11dfe99eed31ca8e7beaa789",
           "document_id" : "335af5de0f0001ca92de3e3a35c2621e",
-          "position_x" : 1139,
-          "position_y" : 75,
+          "position_x" : 779,
+          "position_y" : 92,
+          "scroll_position" : 0.3549502874556652,
           "size_height" : 150,
           "size_width" : 200,
-          "z" : 154
-        },
-        {
-          "card_id" : "335af5e282925fe716ae8a559b581b01",
-          "document_id" : "335af5e0ad5d5a6acc3133ff724a00ea",
-          "position_x" : 1139,
-          "position_y" : 282,
-          "size_height" : 56,
-          "size_width" : 300,
-          "z" : 158
+          "z" : 347
         },
         {
           "card_id" : "335af918727b1f800bd1dd69d44a8a25",
           "document_id" : "335af91870d1181b07256694cef29987",
-          "position_x" : 1141,
-          "position_y" : 420,
+          "position_x" : 1113,
+          "position_y" : 443,
           "size_height" : 150,
           "size_width" : 200,
-          "z" : 162
-        },
-        {
-          "card_id" : "335af92162cca39ff4cf11537d1187b3",
-          "document_id" : "335af91e451699664fc7967856d63f34",
-          "position_x" : 1146,
-          "position_y" : 640,
-          "size_height" : 56,
-          "size_width" : 300,
-          "z" : 166
+          "z" : 346
         },
         {
           "card_id" : "335afbb0b704862816bbb649eb79c194",
           "document_id" : "335afbb0b4c3ebb4cc3e898f16fb3351",
           "position_x" : 458,
-          "position_y" : 777,
+          "position_y" : 790,
           "size_height" : 150,
           "size_width" : 200,
-          "z" : 167
+          "z" : 360
         },
         {
-          "card_id" : "335afe73988551e5f50fbc3e4f706ee8",
-          "document_id" : "335afe7166cd31167a752d6cb442446e",
-          "position_x" : 712,
-          "position_y" : 825,
+          "card_id" : "3368917ed42e81f51ad472095ccb1c84",
+          "color" : "Yellow",
+          "document_id" : "33689174d2c8687bb7a3061b3666bb8a",
+          "position_x" : 800,
+          "position_y" : 277,
+          "size_height" : 58,
+          "size_width" : 200,
+          "z" : 353
+        },
+        {
+          "card_id" : "33689408dacd73d8d5cfcbd4264dea01",
+          "color" : "Yellow",
+          "document_id" : "33689406899a1ce63aa2c61cc82944d3",
+          "position_x" : 101,
+          "position_y" : 277,
+          "size_height" : 77,
+          "size_width" : 238,
+          "z" : 351
+        },
+        {
+          "card_id" : "336894c4c14f61990d781914acf88e36",
+          "color" : "Yellow",
+          "document_id" : "336894c1ebc503be16d356a2b2283632",
+          "position_x" : 459,
+          "position_y" : 277,
+          "size_height" : 59,
+          "size_width" : 200,
+          "z" : 352
+        },
+        {
+          "card_id" : "3368958a04bf08ed098eaddb6236f896",
+          "color" : "Yellow",
+          "document_id" : "336895873d76beba81484ca943c99424",
+          "position_x" : 1133,
+          "position_y" : 277,
+          "size_height" : 58,
+          "size_width" : 254,
+          "z" : 354
+        },
+        {
+          "card_id" : "33689739b7d4a03a21133b764b1ddb0a",
+          "color" : "Red",
+          "document_id" : "336897371fc3f8b4a2af2d03df8840eb",
+          "position_x" : 1133,
+          "position_y" : 643,
+          "size_height" : 77,
+          "size_width" : 286,
+          "z" : 355
+        },
+        {
+          "card_id" : "33689d945ada022f4f438d00e49e2dab",
+          "color" : "Red",
+          "document_id" : "33689d8d10bd107acba1affee9f5bec0",
+          "position_x" : 724,
+          "position_y" : 838,
           "size_height" : 56,
           "size_width" : 300,
-          "z" : 168
+          "z" : 359
         }
       ],
       "connections" : [
@@ -171,40 +179,36 @@
           "335aef1458865bb2cca99d5471c0586b"
         ],
         [
-          "335af00b6854d210131987e1286f5a16",
-          "335aefe76ee88da74e09c86e36482e68"
-        ],
-        [
-          "335af26387df8f1bb39d73c31cac212b",
-          "335af26387df8f1bb39d73c31cac212b"
-        ],
-        [
-          "335af26387df8f1bb39d73c31cac212b",
-          "335af20ccbc54f7e73f04f9f95e6f67b"
-        ],
-        [
           "335af2c2969dccf27a25fa59b82c275c",
           "335af364435579deb0fa04c8b70ff6d3"
-        ],
-        [
-          "335af4180e70d3b3ed12cf98eb4beda6",
-          "335af3dfc95a835b30102c3fe789449e"
         ],
         [
           "335af52bf35f5ffeb1971520df0d5813",
           "335af534a268fcf88f8caad9e38dbea1"
         ],
         [
-          "335af5e282925fe716ae8a559b581b01",
+          "33689d945ada022f4f438d00e49e2dab",
+          "335afbb0b704862816bbb649eb79c194"
+        ],
+        [
+          "33689408dacd73d8d5cfcbd4264dea01",
+          "335af20ccbc54f7e73f04f9f95e6f67b"
+        ],
+        [
+          "336894c4c14f61990d781914acf88e36",
+          "335aefe76ee88da74e09c86e36482e68"
+        ],
+        [
+          "3368917ed42e81f51ad472095ccb1c84",
           "335af5de11dfe99eed31ca8e7beaa789"
         ],
         [
-          "335af92162cca39ff4cf11537d1187b3",
-          "335af918727b1f800bd1dd69d44a8a25"
+          "3368958a04bf08ed098eaddb6236f896",
+          "335af4180e70d3b3ed12cf98eb4beda6"
         ],
         [
-          "335afe73988551e5f50fbc3e4f706ee8",
-          "335afbb0b704862816bbb649eb79c194"
+          "33689739b7d4a03a21133b764b1ddb0a",
+          "335af918727b1f800bd1dd69d44a8a25"
         ]
       ],
       "created_at" : "2024-12-30T01:53:47Z",
@@ -237,33 +241,12 @@
       "type" : "url",
       "url" : "https:\/\/openreview.net\/forum?id=uAtjhZW1QV"
     },
-    "335af3de47fdf3d7d47c909dd854a2c4" : {
-      "created_at" : "2024-12-30T01:53:55Z",
-      "label" : "Machine Learning for Genomics Explorations (MLGenX)",
-      "title" : "Machine Learning for Genomics Explorations (MLGenX)",
-      "type" : "url",
-      "url" : "https:\/\/openreview.net\/forum?id=nGRwZgS79z"
-    },
     "335af5de0f0001ca92de3e3a35c2621e" : {
       "created_at" : "2024-12-30T01:53:54Z",
       "label" : "65_Integrating_Generative_and_",
-      "last_viewed_page" : 1,
+      "last_viewed_page" : 6,
       "original_file" : "335af5de0f0001ca92de3e3a35c2621e_original.pdf",
       "type" : "pdf"
-    },
-    "335af5e0ad5d5a6acc3133ff724a00ea" : {
-      "created_at" : "2024-12-30T01:53:54Z",
-      "label" : "Integrating Generative and Experimental Platforms for Biomolecular...",
-      "title" : "Integrating Generative and Experimental Platforms for Biomolecular...",
-      "type" : "url",
-      "url" : "https:\/\/openreview.net\/forum?id=NIk7CNB6gZ"
-    },
-    "335af009f45727fc2fae6691e8cbe2e7" : {
-      "created_at" : "2024-12-30T01:53:54Z",
-      "label" : "AI for Nucleic Acids (AI4NA)",
-      "title" : "AI for Nucleic Acids (AI4NA)",
-      "type" : "url",
-      "url" : "https:\/\/openreview.net\/forum?id=6iGHOa972f"
     },
     "335af20caf3f743499f01af5285ed8b7" : {
       "created_at" : "2024-12-30T01:53:54Z",
@@ -274,22 +257,9 @@
     "335af52bedd2571712a41fea384b8d78" : {
       "created_at" : "2024-12-30T01:53:54Z",
       "label" : "90_AI4MAT_ICLR_2025_ICLR_2025_",
+      "last_viewed_page" : 2,
       "original_file" : "335af52bedd2571712a41fea384b8d78_original.pdf",
       "type" : "pdf"
-    },
-    "335af91e451699664fc7967856d63f34" : {
-      "created_at" : "2024-12-30T01:53:55Z",
-      "label" : "Workshop on Reasoning and Planning for Large Language Models",
-      "title" : "Workshop on Reasoning and Planning for Large Language Models",
-      "type" : "url",
-      "url" : "https:\/\/openreview.net\/forum?id=u9Qy5iW4ue"
-    },
-    "335af261fd6c62a7f548d7355634b0a1" : {
-      "created_at" : "2024-12-30T01:53:54Z",
-      "label" : "Learning Meaningful Representations of Life (LMRL) Workshop @ ICLR...",
-      "title" : "Learning Meaningful Representations of Life (LMRL) Workshop @ ICLR...",
-      "type" : "url",
-      "url" : "https:\/\/openreview.net\/forum?id=6RNfPPoc7E"
     },
     "335af4180c149b33bf3b189c27b659ed" : {
       "created_at" : "2024-12-30T01:53:54Z",
@@ -321,13 +291,6 @@
       "label" : "76_Towards_Agentic_AI_for_Scie",
       "original_file" : "335afbb0b4c3ebb4cc3e898f16fb3351_original.pdf",
       "type" : "pdf"
-    },
-    "335afe7166cd31167a752d6cb442446e" : {
-      "created_at" : "2024-12-30T01:53:55Z",
-      "label" : "Towards Agentic AI for Science: Hypothesis Generation...",
-      "title" : "Towards Agentic AI for Science: Hypothesis Generation...",
-      "type" : "url",
-      "url" : "https:\/\/openreview.net\/forum?id=EDr8rXrtPt"
     },
     "335b3e9c19a6528ca39acc59d47005bb" : {
       "cards" : [
@@ -496,6 +459,48 @@
       "created_at" : "2024-12-30T01:53:47Z",
       "label" : "Public",
       "type" : "board"
+    },
+    "33689d8d10bd107acba1affee9f5bec0" : {
+      "created_at" : "2024-12-30T12:54:47Z",
+      "label" : "Home",
+      "title" : "Home",
+      "type" : "url",
+      "url" : "https:\/\/iclragenticai.github.io\/"
+    },
+    "336894c1ebc503be16d356a2b2283632" : {
+      "created_at" : "2024-12-30T12:45:11Z",
+      "label" : "AI4NA",
+      "title" : "AI4NA",
+      "type" : "url",
+      "url" : "https:\/\/ai4na-workshop.github.io\/"
+    },
+    "33689174d2c8687bb7a3061b3666bb8a" : {
+      "created_at" : "2024-12-30T12:41:35Z",
+      "label" : "GEM Workshop",
+      "title" : "GEM Workshop",
+      "type" : "url",
+      "url" : "https:\/\/www.gembio.ai\/"
+    },
+    "336895873d76beba81484ca943c99424" : {
+      "created_at" : "2024-12-30T12:46:02Z",
+      "label" : "MLGenX ICLR Workshop 2024",
+      "title" : "MLGenX ICLR Workshop 2024",
+      "type" : "url",
+      "url" : "https:\/\/mlgenx.github.io\/"
+    },
+    "336897371fc3f8b4a2af2d03df8840eb" : {
+      "created_at" : "2024-12-30T12:47:52Z",
+      "label" : "ICLR 2025 Workshop on Reasoning and Planning for Large Language Models",
+      "title" : "ICLR 2025 Workshop on Reasoning and Planning for Large Language Models",
+      "type" : "url",
+      "url" : "https:\/\/workshop-llm-reasoning-planning.github.io\/"
+    },
+    "33689406899a1ce63aa2c61cc82944d3" : {
+      "created_at" : "2024-12-30T12:44:23Z",
+      "label" : "LMRL - Learning Meaningful Representations of Life",
+      "title" : "LMRL - Learning Meaningful Representations of Life",
+      "type" : "url",
+      "url" : "https:\/\/www.lmrl.org\/"
     }
   },
   "root" : "3364db5117e09ab4e23e6ac4e7c7da4d",
