@@ -19,7 +19,7 @@
           "z" : 2
         }
       ],
-      "created_at" : "2024-12-27T22:36:01Z",
+      "created_at" : "2024-12-29T14:27:24Z",
       "label" : "Board 1",
       "type" : "board"
     },
@@ -35,11 +35,11 @@
         },
         {
           "document_id" : "335b3ea901be6314356df91bea038411",
-          "position_x" : 652,
-          "position_y" : 192,
+          "position_x" : 760,
+          "position_y" : 322,
           "size_height" : 260,
           "size_width" : 215,
-          "z" : 9
+          "z" : 15
         },
         {
           "card_id" : "335b7a1363169e90fa4bd8baf9b070ec",
@@ -58,6 +58,14 @@
           "size_height" : 56,
           "size_width" : 300,
           "z" : 6
+        },
+        {
+          "document_id" : "3363caf9c1a6f930b133cb2770d8db8c",
+          "position_x" : 445,
+          "position_y" : 75,
+          "size_height" : 127,
+          "size_width" : 580,
+          "z" : 16
         }
       ],
       "connections" : [
@@ -70,37 +78,72 @@
           "335b7a136792331288cac5e685ac72b5"
         ]
       ],
-      "created_at" : "2024-12-27T22:35:59Z",
-      "label" : "test",
+      "created_at" : "2024-12-29T14:27:17Z",
+      "ink_models" : {
+        "0" : {
+          "ink_svg" : "335b3e9239d798c9358e9ba136df33a50_0_ink.svg",
+          "scale" : 1
+        }
+      },
+      "label" : "board",
       "type" : "board"
     },
     "335b3ea901be6314356df91bea038411" : {
-      "created_at" : "2024-12-27T22:36:05Z",
+      "created_at" : "2024-12-29T14:27:24Z",
       "original_file" : "335b3ea901be6314356df91bea038411_original.txt",
       "type" : "text"
     },
     "335b4c2692f2c02bdfccb972a2da9951" : {
-      "created_at" : "2024-12-27T22:50:49Z",
+      "created_at" : "2024-12-29T14:27:27Z",
       "original_file" : "335b4c2692f2c02bdfccb972a2da9951_original.txt",
       "type" : "text"
     },
     "335b5ace97cd051ce8d652a03301291a" : {
-      "created_at" : "2024-12-27T23:06:49Z",
-      "label" : "Board 1.1 inside Board 1",
+      "cards" : [
+        {
+          "document_id" : "3363cad8756054267d37740048805ede",
+          "position_x" : 253,
+          "position_y" : 142,
+          "size_height" : 150,
+          "size_width" : 200,
+          "z" : 1
+        }
+      ],
+      "created_at" : "2024-12-29T14:27:27Z",
+      "label" : "board 2",
       "type" : "board"
     },
     "335b7a13d9d6366cc3e5ca25411fe8d4" : {
-      "created_at" : "2024-12-27T23:40:59Z",
+      "created_at" : "2024-12-29T14:27:24Z",
       "label" : "XAI4Science: From Understanding Model Behavior to Discovering New...",
       "title" : "XAI4Science: From Understanding Model Behavior to Discovering New...",
       "type" : "url",
       "url" : "https:\/\/openreview.net\/forum?id=PwoXoEM6e3"
     },
     "335b7a144eed9c8185f523e93da6a5ce" : {
-      "created_at" : "2024-12-27T23:40:59Z",
+      "created_at" : "2024-12-29T14:27:24Z",
       "label" : "ICLR2025 workshop proposal.docx",
+      "last_viewed_page" : 0,
       "original_file" : "335b7a144eed9c8185f523e93da6a5ce_original.pdf",
       "type" : "pdf"
+    },
+    "3363cad8756054267d37740048805ede" : {
+      "created_at" : "2024-12-29T14:27:27Z",
+      "label" : "board 3",
+      "type" : "board"
+    },
+    "3363caf9c1a6f930b133cb2770d8db8c" : {
+      "created_at" : "2024-12-29T14:27:24Z",
+      "excerpt_info" : {
+        "end_x" : 0.90244207057823123,
+        "end_y" : 0.21946655332209919,
+        "excerpted_id" : "335b7a144eed9c8185f523e93da6a5ce",
+        "excerpted_page" : 0,
+        "start_x" : 0.088278592687074831,
+        "start_y" : 0.093857200890707745
+      },
+      "original_file" : "3363caf9c1a6f930b133cb2770d8db8c_original.png",
+      "type" : "image"
     }
   },
   "root" : "335b3e9239d798c9358e9ba136df33a5",
