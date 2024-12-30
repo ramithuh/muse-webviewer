@@ -2,11 +2,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   eslint: {
-    ignoreDuringBuilds: true,  // Changed to true
+    ignoreDuringBuilds: true,
   },
   typescript: {
-    ignoreBuildErrors: true,   // Changed to true
+    ignoreBuildErrors: true,
   },
+  experimental: {
+    runtime: 'edge'
+  }
 };
 
 export default nextConfig;
