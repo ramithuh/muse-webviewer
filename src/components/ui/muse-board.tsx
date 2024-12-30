@@ -315,10 +315,14 @@ const Image = withParentLink(({ original_file, recurse }: any) => {
 });
 
 // INK
-const Ink = withParentLink(({ ink_svg }: any) => {
+const Ink = withParentLink(({ ink_svg, style = {} }: any) => {
   return (
     <img
-      style={{ position: "absolute" }}
+      style={{
+        position: "absolute",
+        zIndex: 501,
+        ...style
+      }}
       src={`/${b_name}/files/${ink_svg}`}
       alt="Ink drawing"
     />
@@ -647,7 +651,8 @@ const MuseCard = withParentLink(
     size_width,
     recurse,
     z,
-    color
+    color,
+    ink_model
   }: any) => {
     const router = useRouter();
     const cardInfo = board.documents[document_id];
@@ -736,6 +741,7 @@ const MuseCard = withParentLink(
             cardInfo.type === "text"
               ? {}
               : {
+                  position: "relative",
                   width: size_width,
                   height: size_height,
                   borderRadius: 8,
@@ -751,7 +757,21 @@ const MuseCard = withParentLink(
           }}
         >
           {cardInfo.type !== "board" ? (
-            <CardForType {...cardInfo} id={document_id} color={color} />
+            <>
+              <CardForType {...cardInfo} id={document_id} color={color} />
+              {ink_model?.ink_svg && (
+                <Ink 
+                  {...ink_model}
+                  style={{
+                    position: "absolute",
+                    top: -1,  // Add -1px offset to top
+                    left: -1, // Add -1px offset to left
+                    pointerEvents: "none",
+                    zIndex: 501
+                  }}
+                />
+              )}
+            </>
           ) : (
             <div
               style={{
