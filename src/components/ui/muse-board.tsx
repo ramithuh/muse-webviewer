@@ -13,8 +13,8 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 // Import your board JSON (Muse-exported data)
-var b_name = "ICLR 2025 Workshops"
-import board from "../../../public/ICLR 2025 Workshops/contents.json";
+var b_name = "Public"
+import board from "../../../public/Public/contents.json";
 
 /* ------------------------------------------------------------------
    1) Build the "parents" map:
