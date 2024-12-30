@@ -13,7 +13,8 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 // Import your board JSON (Muse-exported data)
-import board from "../../../public/board/contents.json";
+var b_name = "ICLR 2025 Workshops"
+import board from "../../../public/ICLR 2025 Workshops/contents.json";
 
 /* ------------------------------------------------------------------
    1) Build the "parents" map:
@@ -259,7 +260,7 @@ const Image = withParentLink(({ original_file, recurse }: any) => {
   return (
     <img
       style={{ position: "absolute", ...size }}
-      src={`/board/files/${original_file}`}
+      src={`/${b_name}/files/${original_file}`}
       alt={`Image: ${original_file}`}
     />
   );
@@ -270,7 +271,7 @@ const Ink = withParentLink(({ ink_svg }: any) => {
   return (
     <img
       style={{ position: "absolute" }}
-      src={`/board/files/${ink_svg}`}
+      src={`/${b_name}/files/${ink_svg}`}
       alt="Ink drawing"
     />
   );
@@ -282,11 +283,15 @@ const Pdf = withParentLink(({ original_file, recurse }: any) => {
 
   useEffect(() => {
     async function loadPDF() {
-      const pdf = await pdfjsLib.getDocument(`/board/files/${original_file}`).promise;
+      const pdf = await pdfjsLib.getDocument(`/${b_name}/files/${original_file}`).promise;
       const pagePromises: Promise<string>[] = [];
 
-      const scale = 2.0; // for better resolution
-      const maxPages = Math.min(6, pdf.numPages);
+      // Lower scale for better performance
+      const scale = recurse === 0 ? 2 : 0.3;
+      // Show more pages at top level, fewer in cards
+      const maxPages = recurse === 0 ? Math.min(6, pdf.numPages) : 2;
+      // Lower JPEG quality for thumbnails
+      const quality = recurse === 0 ? 1.0 : 0.7;
 
       for (let i = 1; i <= maxPages; i++) {
         const page = await pdf.getPage(i);
@@ -302,7 +307,7 @@ const Pdf = withParentLink(({ original_file, recurse }: any) => {
           background: "rgb(255, 255, 255)",
         };
         await page.render(renderContext).promise;
-        pagePromises.push(canvas.toDataURL("image/jpeg", 1.0));
+        pagePromises.push(canvas.toDataURL("image/jpeg", quality));
       }
 
       const result = await Promise.all(pagePromises);
@@ -310,7 +315,7 @@ const Pdf = withParentLink(({ original_file, recurse }: any) => {
     }
 
     loadPDF().catch(console.error);
-  }, [original_file]);
+  }, [original_file, recurse]);
 
   return (
     <div
@@ -341,12 +346,13 @@ const Pdf = withParentLink(({ original_file, recurse }: any) => {
   );
 });
 
+
 // TEXT
 const Text = withParentLink(({ original_file }: any) => {
   const [fileContent, setFileContent] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`/board/files/${original_file}`)
+    fetch(`/${b_name}/files/${original_file}`)
       .then((resp) => resp.text())
       .then(setFileContent)
       .catch(console.error);
