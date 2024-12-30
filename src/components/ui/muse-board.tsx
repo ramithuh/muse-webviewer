@@ -14,16 +14,17 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 
 // Import your board JSON (Muse-exported data)
 var b_name = "Public"
-import board from "../../../public/Public/contents.json";
+
+import rawData from "../../../public/Public/contents.json";
+const board: Board = rawData as Board;
+
 
 interface Board {
-  documents: {
-    [key: string]: Document;  // Add this index signature
-  };
   root: string;
+  documents: {
+    [key: string]: Document;  // <-- This is the important part
+  };
 }
-
-
 interface Document {
   cards: Array<{
     card_id: string;
