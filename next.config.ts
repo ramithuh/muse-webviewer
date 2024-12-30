@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  },
-  experimental: {
-    runtime: 'edge'
   }
 };
 
