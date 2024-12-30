@@ -321,6 +321,7 @@ const Ink = withParentLink(({ ink_svg, style = {} }: any) => {
       style={{
         position: "absolute",
         zIndex: 501,
+        pointerEvents: "none",
         ...style
       }}
       src={`/${b_name}/files/${ink_svg}`}
