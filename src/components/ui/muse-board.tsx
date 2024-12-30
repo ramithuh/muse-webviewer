@@ -17,9 +17,12 @@ var b_name = "Public"
 import board from "../../../public/Public/contents.json";
 
 interface Board {
-  documents: Record<string, Document>;  // This needs to be modified
+  documents: {
+    [key: string]: Document;  // Add this index signature
+  };
   root: string;
 }
+
 
 interface Document {
   cards: Array<{
@@ -526,7 +529,7 @@ function Connector({
         width,
         height,
         pointerEvents: "none", // so clicks pass through
-        zIndex: 50, // or behind the cards if you want
+        zIndex: 1, // or behind the cards if you want
       }}
     >
       <line
