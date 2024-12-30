@@ -16,6 +16,28 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 var b_name = "Public"
 import board from "../../../public/Public/contents.json";
 
+interface Board {
+  documents: Record<string, Document>;  // This needs to be modified
+  root: string;
+}
+
+interface Document {
+  cards: Array<{
+    card_id: string;
+    document_id: string;
+    position_x: number;
+    position_y: number;
+    size_height: number;
+    size_width: number;
+    z: number;
+  }>;
+  connections: string[][];
+  created_at: string;
+  label: string;
+  type: string;
+}
+
+
 /* ------------------------------------------------------------------
    1) Build the "parents" map:
    This is used to figure out each document's direct parent so we
@@ -42,7 +64,7 @@ function findParents(boardData: any, card: any, visited = new Set()) {
 }
 
 export const parents: Record<string, string> = Object.fromEntries(
-  findParents(board, { ...board.documents[board.root], id: board.root })
+  findParents(board, { ...board.documents[board.root as keyof typeof board.documents], id: board.root })
 );
 
 /* ------------------------------------------------------------------
