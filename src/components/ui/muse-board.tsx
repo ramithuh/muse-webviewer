@@ -13,10 +13,11 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 // Import your board JSON (Muse-exported data)
-var b_name = "Public"
+const b_name = "Public"
 
 import rawData from "../../../public/Public/contents.json";
-const board: Board = rawData as Board;
+const board: Board = rawData as unknown as Board;
+
 
 
 interface Board {
@@ -40,6 +41,12 @@ interface Document {
   label: string;
   type: string;
 }
+
+interface InkModel {
+  ink_svg: string; // or whatever type
+  // ... other fields if needed
+}
+
 
 
 /* ------------------------------------------------------------------
@@ -310,7 +317,8 @@ const Pdf = withParentLink(({ original_file, recurse }: any) => {
   useEffect(() => {
     async function loadPDF() {
       const pdf = await pdfjsLib.getDocument(`/${b_name}/files/${original_file}`).promise;
-      const pagePromises: Promise<string>[] = [];
+      // We'll collect final base64 strings here:
+      const loadedPages: string[] = [];
 
       // Lower scale for better performance
       const scale = recurse === 0 ? 2 : 0.3;
@@ -332,12 +340,15 @@ const Pdf = withParentLink(({ original_file, recurse }: any) => {
           viewport,
           background: "rgb(255, 255, 255)",
         };
+        // Wait for the page to render before creating a data URL
         await page.render(renderContext).promise;
-        pagePromises.push(canvas.toDataURL("image/jpeg", quality));
+
+        // Now push the base64-encoded image onto our array
+        loadedPages.push(canvas.toDataURL("image/jpeg", quality));
       }
 
-      const result = await Promise.all(pagePromises);
-      setPages(result);
+      // Finally, set our React state with all pages
+      setPages(loadedPages);
     }
 
     loadPDF().catch(console.error);
@@ -493,9 +504,11 @@ const Url = withParentLink(({ url, title, label }: any) => {
    - Renders child cards + ink drawings.
    - No breadcrumb logic here; that's in "withParentLink".
 ------------------------------------------------------------------ */
-function inkToArray(ink_models: any) {
+// `Record<string, InkModel>` means an object whose keys are strings 
+// and values are InkModel.
+function inkToArray(ink_models: Record<string, InkModel> | undefined) {
   return Object.entries(ink_models || {})
-    .filter(([_, v]) => v.ink_svg)
+    .filter(([_, v]) => v.ink_svg)    // now TS knows `v` is InkModel
     .map(([_, v]) => v);
 }
 
