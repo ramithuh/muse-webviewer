@@ -5,6 +5,10 @@
         {
           "card_id" : "335aef1458865bb2cca99d5471c0586b",
           "document_id" : "335aef1451fa7bfc104f1ba1a4ad7414",
+          "ink_model" : {
+            "ink_svg" : "335aef1458865bb2cca99d5471c0586b_card_ink.svg",
+            "scale" : 1
+          },
           "position_x" : 779,
           "position_y" : 443,
           "size_height" : 155,
@@ -50,6 +54,10 @@
         {
           "card_id" : "335af364435579deb0fa04c8b70ff6d3",
           "document_id" : "335af36441968681ee06eb11066b1fa5",
+          "ink_model" : {
+            "ink_svg" : "335af364435579deb0fa04c8b70ff6d3_card_ink.svg",
+            "scale" : 1
+          },
           "position_x" : 406,
           "position_y" : 443,
           "size_height" : 162,
@@ -97,6 +105,10 @@
         {
           "card_id" : "335af918727b1f800bd1dd69d44a8a25",
           "document_id" : "335af91870d1181b07256694cef29987",
+          "ink_model" : {
+            "ink_svg" : "335af918727b1f800bd1dd69d44a8a25_card_ink.svg",
+            "scale" : 1
+          },
           "position_x" : 1113,
           "position_y" : 443,
           "size_height" : 150,
@@ -212,6 +224,12 @@
         ]
       ],
       "created_at" : "2024-12-30T01:53:47Z",
+      "ink_models" : {
+        "0" : {
+          "ink_svg" : "335aeef66ec12472601054f5d4a518580_0_ink.svg",
+          "scale" : 1
+        }
+      },
       "label" : "ICLR 2025 Workshops",
       "type" : "board"
     },
