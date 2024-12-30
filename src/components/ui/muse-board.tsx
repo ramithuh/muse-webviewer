@@ -473,19 +473,96 @@ function inkToArray(ink_models: any) {
     .map(([_, v]) => v);
 }
 
-const Board = withParentLink(
-  ({ cards = [], ink_models, recurse, id }: any) => {
+// 1) A small <Connector> component that draws a line between (x1,y1) & (x2,y2).
+function Connector({
+  x1,
+  y1,
+  x2,
+  y2,
+  stroke = "black",
+  strokeWidth = 2,
+}: {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  stroke?: string;
+  strokeWidth?: number;
+}) {
+  // Compute the bounding box for the line
+  const left = Math.min(x1, x2);
+  const top = Math.min(y1, y2);
+  const width = Math.abs(x2 - x1) || 1;  // fallback if 0
+  const height = Math.abs(y2 - y1) || 1; // fallback if 0
+
+  return (
+    <svg
+      style={{
+        position: "absolute",
+        left,
+        top,
+        width,
+        height,
+        pointerEvents: "none", // so clicks pass through
+        zIndex: 50, // or behind the cards if you want
+      }}
+    >
+      <line
+        // Inside the local SVG coordinates, shift the line by subtracting left/top
+        x1={x1 - left}
+        y1={y1 - top}
+        x2={x2 - left}
+        y2={y2 - top}
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  );
+}
+
+// 2) The Board component, using individual <Connector> per line
+export const Board = withParentLink(
+  ({ cards = [], ink_models, connections = [], recurse, id }: any) => {
     const HEADER_HEIGHT = 128;
 
     return (
       <div
         style={{
           position: "relative",
-          paddingTop: HEADER_HEIGHT,
+          // If you want a top padding for a "header", you can keep it.
+          // Just remember if your card coords are raw, you might need to offset them:
+          // paddingTop: HEADER_HEIGHT,
           width: "100%",
           height: "100%",
         }}
       >
+        {/* 2A) Render each connector as a separate absolutely-positioned svg */}
+        {connections.map(([startId, endId]: [string, string], i: number) => {
+          const startCard = cards.find((c: any) => c.card_id === startId);
+          const endCard = cards.find((c: any) => c.card_id === endId);
+          if (!startCard || !endCard) return null;
+
+          // If you do NOT have a top padding in the container, use the raw coords.
+          // If you DO have `paddingTop: HEADER_HEIGHT`, then add +HEADER_HEIGHT to y1,y2.
+          const x1 = startCard.position_x + startCard.size_width / 2;
+          const y1 = startCard.position_y + startCard.size_height / 2;
+          const x2 = endCard.position_x + endCard.size_width / 2;
+          const y2 = endCard.position_y + endCard.size_height / 2;
+
+          return (
+            <Connector
+              key={i}
+              x1={x1}
+              y1={y1}
+              x2={x2}
+              y2={y2}
+              stroke="rgb(194, 192, 192)"
+              strokeWidth={2}
+            />
+          );
+        })}
+
+        {/* 2B) Render the child cards */}
         {cards.map((card: any, index: number) => (
           <MuseCard
             key={`${id}_${card.document_id}_${index}`}
@@ -495,6 +572,7 @@ const Board = withParentLink(
           />
         ))}
 
+        {/* 2C) Render any ink drawings */}
         {inkToArray(ink_models).map((ink: any, i: number) => (
           <Ink key={`${id}_${ink.ink_svg}_${i}`} {...ink} />
         ))}
@@ -502,6 +580,7 @@ const Board = withParentLink(
     );
   }
 );
+
 
 /* ------------------------------------------------------------------
    6) "MuseCard" for rendering each card in a board.
@@ -632,7 +711,7 @@ const MuseCard = withParentLink(
                 }}
               >
                 {recurse <= 3 ? (
-                  <Board {...cardInfo} id={document_id} recurse={recurse + 1} />
+                  <Board {...cardInfo} id={document_id} recurse={recurse + 1}  />
                 ) : null}
               </div>
             </div>
@@ -655,7 +734,7 @@ function CardForType({ type, ...cardInfo }: any) {
     case "text":
       return <Text {...cardInfo} />;
     case "board":
-      return <Board {...cardInfo} />;
+      return <Board {...cardInfo} connections={cardInfo.connections || []} />;
     case "pdf":
       return <Pdf {...cardInfo} />;
     case "url":
@@ -694,7 +773,7 @@ export function MuseBoard() {
       `}</style>
 
       {/* Render the chosen card/board at top-level (recurse=0) */}
-      <CardForType {...currentDoc} id={boardId} recurse={0} />
+      <CardForType {...currentDoc} id={boardId} recurse={0} connections={currentDoc.connections || []} />
     </>
   );
 }
