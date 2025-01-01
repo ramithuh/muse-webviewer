@@ -332,21 +332,33 @@ const Ink = withParentLink(({ ink_svg, style = {} }: any) => {
 });
 
 // PDF
+const pdfCache: Record<string, pdfjsLib.PDFDocumentProxy> = {};
+const renderedPagesCache: Record<string, string[]> = {};
+
 const Pdf = withParentLink(({ original_file, recurse }: any) => {
   const [pages, setPages] = useState<string[]>([]);
 
   useEffect(() => {
     async function loadPDF() {
-      const pdf = await pdfjsLib.getDocument(`/${b_name}/files/${original_file}`).promise;
-      // We'll collect final base64 strings here:
-      const loadedPages: string[] = [];
+      const cacheKey = `${original_file}_${recurse}`;
+      
+      // Check rendered pages cache first
+      if (renderedPagesCache[cacheKey]) {
+        setPages(renderedPagesCache[cacheKey]);
+        return;
+      }
 
-      // Lower scale for better performance
-      const scale = recurse === 0 ? 2 : 0.3;
-      // Show more pages at top level, fewer in cards
-      const maxPages = recurse === 0 ? Math.min(6, pdf.numPages) : 2;
-      // Lower JPEG quality for thumbnails
+      // Check if PDF document is cached, if not load and cache it
+      let pdf = pdfCache[original_file];
+      if (!pdf) {
+        pdf = await pdfjsLib.getDocument(`/${b_name}/files/${original_file}`).promise;
+        pdfCache[original_file] = pdf;
+      }
+
+      const scale = recurse === 0 ? 2 : 0.5;
+      const maxPages = recurse === 0 ? Math.min(10, pdf.numPages) : 2;
       const quality = recurse === 0 ? 1.0 : 0.7;
+      const loadedPages: string[] = [];
 
       for (let i = 1; i <= maxPages; i++) {
         const page = await pdf.getPage(i);
@@ -356,19 +368,17 @@ const Pdf = withParentLink(({ original_file, recurse }: any) => {
         canvas.width = viewport.width;
         canvas.height = viewport.height;
 
-        const renderContext = {
+        await page.render({
           canvasContext: context,
           viewport,
           background: "rgb(255, 255, 255)",
-        };
-        // Wait for the page to render before creating a data URL
-        await page.render(renderContext).promise;
+        }).promise;
 
-        // Now push the base64-encoded image onto our array
         loadedPages.push(canvas.toDataURL("image/jpeg", quality));
       }
 
-      // Finally, set our React state with all pages
+      // Cache the rendered pages
+      renderedPagesCache[cacheKey] = loadedPages;
       setPages(loadedPages);
     }
 
