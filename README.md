@@ -2,11 +2,14 @@
 [![Demo](https://img.shields.io/badge/Demo-muse.ramith.fyi-blue)](https://muse.ramith.fyi)
 [![Discord](https://img.shields.io/badge/Discord-Join_Discussion-7289da?logo=discord&logoColor=white)](https://discord.com/channels/999340856781848767/1310636960586399857)
 
-This repo provides a web-based viewer for [Muse](https://museapp.com)* app exports, built with Next.js and React. 
+This repo provides a web-based viewer for [Muse](https://museapp.com)* app exports, built with Next.js and React. It was largely inspired by the muse viewer created by [@jimmyhmiller](https://x.com/jimmyhmiller/status/1449761294589087752
+).
 
-This tool allows you to view and interact with boards created in [Muse](https://museapp.com) directly in your browser.
+With this project, you can view and interact with boards created in [Muse](https://museapp.com) directly in your browser — this becomes helpful when you need to share your thoughts/ideas with non-muse users. <br>
+For deployment, Cloudflare or Vercel works just fine!
 
-**_If you are new to Muse, it is an app for iPad and Mac that has been incredibly helpful for people who think well on canvases.
+---
+**_*If you are new to Muse, it is an app for iPad and Mac that has been incredibly helpful for people who think well on canvases.
 To learn more about that app check my posts below:_**
 
 <p float="left">
