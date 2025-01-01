@@ -1,37 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Muse Webviewer
+
+A web-based viewer for Muse app exports, built with Next.js and React. This tool allows you to view and interact with Muse boards directly in your browser.
+
+[![Demo](https://img.shields.io/badge/Demo-muse.ramith.fyi-blue)](https://muse.ramith.fyi)
+[![Discord](https://img.shields.io/badge/Discord-Join_Discussion-7289da?logo=discord&logoColor=white)](https://discord.com/channels/999340856781848767/1310636960586399857)
+
+## Features
+
+- **Board Visualization**: Renders Muse boards with their original layout and connections
+- **Interactive Navigation**: Click through nested boards and documents
+- **Support for Multiple Content Types**:
+  - PDF documents with page previews
+  - Text notes with formatting
+  - URLs with preview cards
+  - Images and ink drawings
+  - Nested boards with proper scaling
+- **Breadcrumb Navigation**: Easy navigation through board hierarchy
+- **Edge Runtime**: Optimized for Edge Runtime
 
 ## Getting Started
 
-First, run the development server:
+```
+# Clone the repository
+git clone https://github.com/ramithuh/muse-webviewer
 
-```bash
+# Install dependencies
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Export your Muse board using the Muse app
+2. Place the exported files in the `/public` directory
+3. Start the development server
+4. Open http://localhost:3000 in your browser
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+muse-webviewer/
+├── app/                 # Next.js app directory
+├── public/             # Static files and Muse exports
+├── src/
+│   ├── components/     # React components
+│   └── lib/           # Utility functions
+└── types/             # TypeScript definitions
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Technical Details
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Built with Next.js 14 and React
+- TypeScript for type safety
+- PDF.js for PDF rendering
+- SVG-based connection lines
+- Efficient board scaling and rendering
+- Edge-optimized build configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# muse-webviewer
+MIT License
+```
