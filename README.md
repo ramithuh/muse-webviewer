@@ -2,7 +2,6 @@
 [![Demo](https://img.shields.io/badge/Demo-muse.ramith.fyi-blue)](https://muse.ramith.fyi)
 [![Discord](https://img.shields.io/badge/Discord-Join_Discussion-7289da?logo=discord&logoColor=white)](https://discord.com/channels/999340856781848767/1310636960586399857)
 
-
 This repo provides a web-based viewer for [Muse](https://museapp.com)* app exports, built with Next.js and React. 
 
 This tool allows you to view and interact with boards created in [Muse](https://museapp.com) directly in your browser.
@@ -12,7 +11,7 @@ To learn more about that app check my posts below:_**
 
 <p float="left">
   <a href="https://x.com/ramith__/status/1845374809347064309">
-    <img src="https://github.com/user-attachments/assets/e13fea6d-7f9b-4ac8-8b2b-922594c8fc26" width="38.5%" />
+    <img src="https://github.com/user-attachments/assets/b9f461b1-8975-41a3-9f39-997dd9f3b3d9" width="38.5%" />
   </a>
   <a href="https://bsky.app/profile/ramith.fyi/post/3ldibkldr722r">
     <img src="https://github.com/user-attachments/assets/94b74f37-2b1f-4b0a-96d5-e003e3d399d5" width="49%" />
