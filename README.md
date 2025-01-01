@@ -16,7 +16,6 @@ A web-based viewer for Muse app exports, built with Next.js and React. This tool
   - Images and ink drawings
   - Nested boards with proper scaling
 - **Breadcrumb Navigation**: Easy navigation through board hierarchy
-- **Edge Runtime**: Optimized for Edge Runtime
 
 ## Getting Started
 
@@ -57,13 +56,11 @@ muse-webviewer/
 - PDF.js for PDF rendering
 - SVG-based connection lines
 - Efficient board scaling and rendering
-- Edge-optimized build configuration
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to submit a Pull Request. For discussions head over to museapp.com's discord thread linked above!
 
 ## License
 
 MIT License
-```
