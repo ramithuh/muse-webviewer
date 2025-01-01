@@ -49,16 +49,22 @@ interface InkModel {
 }
 
 
-// Add a color helper function
+// Add a color helper function (For Notes & Urls only!!)
 const getBackgroundColor = (color?: string, type?: string) => {
   // Only apply colors to text and url types
   if (!color || (type !== 'text' && type !== 'url')) return "rgb(233,232,231)";
   
   switch (color.toLowerCase()) {
     case "yellow":
-      return "rgb(254,249,233)";
+      return "rgb(251,241,219)";
     case "red":
-      return "rgb(251,229,224)";
+      return "rgb(255,228,223)";
+    case "purple":
+      return "rgb(235,226,253)";
+    case "green":
+      return "rgb(223,245,218)";
+    case "blue":
+      return "rgb(221,231,250)";
     default:
       return "rgb(233,232,231)";
   }
@@ -415,9 +421,9 @@ const Pdf = withParentLink(({ original_file, recurse }: any) => {
 });
 
 
-// TEXT
+// TEXT (technically note)
 // Update Text component
-const Text = withParentLink(({ original_file, color }: any) => {
+const Note = withParentLink(({ original_file, color }: any) => {
   const [fileContent, setFileContent] = useState<string | null>(null);
   
   useEffect(() => {
@@ -429,15 +435,14 @@ const Text = withParentLink(({ original_file, color }: any) => {
 
   return (
     <div style={{
-      fontSize: 14,
-      lineHeight: 1.3,
+      fontSize: 13.5,
+      lineHeight: 1.45,
       fontFamily: '-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto',
       fontWeight: 500,
       color: "rgb(55, 53, 47)",
       padding: "13px 13px",
       whiteSpace: "pre-wrap",
       backgroundColor: getBackgroundColor(color, 'text'),
-      borderRadius: "3px",
       boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
       height: "100%",
       width: "100%",
@@ -445,7 +450,9 @@ const Text = withParentLink(({ original_file, color }: any) => {
       boxSizing: "border-box",
       overflow: "hidden",
     }}>
-      {fileContent}
+      <span style={{ position: 'relative', zIndex: 502 }}>
+        {fileContent}
+      </span>
     </div>
   );
 });
@@ -591,28 +598,42 @@ function Connector({
 
 // 2) The Board component, using individual <Connector> per line
 export const Board = withParentLink(
-  ({ cards = [], ink_models, connections = [], recurse, id }: any) => {
-    const HEADER_HEIGHT = 128;
+  ({ cards = [], chains = [], ink_models, connections = [], recurse, id, color }: any) => {
+
+    {/* Colors for Boards only!! (slight variations with notes and text blocks) */}
+    const getBackgroundColor = (color?: string) => {
+      if (!color) return "rgb(233,232,231)";
+      switch (color.toLowerCase()) {
+        case "red":
+          return "rgb(255,237,234)";
+        case "blue":
+          return "rgb(229,240,255)";
+        case "yellow":
+          return "rgb(255,249,231)";
+        case "purple":
+          return "rgb(240,233,255)";
+        case "green":
+          return "rgb(230,248,225)";
+        default:
+          return "rgb(233,232,231)";
+      }
+    };
 
     return (
       <div
         style={{
           position: "relative",
-          // If you want a top padding for a "header", you can keep it.
-          // Just remember if your card coords are raw, you might need to offset them:
-          // paddingTop: HEADER_HEIGHT,
           width: "100%",
           height: "100%",
+          backgroundColor: getBackgroundColor(color),
         }}
       >
-        {/* 2A) Render each connector as a separate absolutely-positioned svg */}
+        {/* 2A) Render connections */}
         {connections.map(([startId, endId]: [string, string], i: number) => {
           const startCard = cards.find((c: any) => c.card_id === startId);
           const endCard = cards.find((c: any) => c.card_id === endId);
           if (!startCard || !endCard) return null;
 
-          // If you do NOT have a top padding in the container, use the raw coords.
-          // If you DO have `paddingTop: HEADER_HEIGHT`, then add +HEADER_HEIGHT to y1,y2.
           const x1 = startCard.position_x + startCard.size_width / 2;
           const y1 = startCard.position_y + startCard.size_height / 2;
           const x2 = endCard.position_x + endCard.size_width / 2;
@@ -631,7 +652,30 @@ export const Board = withParentLink(
           );
         })}
 
-        {/* 2B) Render the child cards */}
+        {/* Updated text blocks rendering */}
+        {chains.map((chain: any) => {
+          const textStyle = getTextBlockSize(chain.format?.[0]);
+        
+          return (
+            <div
+              key={chain.chain_id}
+              style={{
+                position: "absolute",
+                left: chain.position_x,
+                top: chain.position_y,
+                maxWidth: chain.line_break_width,
+                fontFamily: '-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto',
+                color: "rgb(55, 53, 47)",
+                whiteSpace: "pre-wrap",
+                ...textStyle
+              }}
+            >
+              <TextContent textFile={chain.text_file} format={chain.format} />
+            </div>
+          );
+        })}
+
+        {/* 2C) Render cards */}
         {cards.map((card: any, index: number) => (
           <MuseCard
             key={`${id}_${card.document_id}_${index}`}
@@ -641,7 +685,7 @@ export const Board = withParentLink(
           />
         ))}
 
-        {/* 2C) Render any ink drawings on boards (we call this board ink)*/}
+        {/* 2D) Render board ink */}
         {inkToArray(ink_models).map((ink: any, i: number) => (
           <Ink key={`${id}_${ink.ink_svg}_${i}`} {...ink} />
         ))}
@@ -649,6 +693,73 @@ export const Board = withParentLink(
     );
   }
 );
+
+// Updated TextContent component to handle multi-colored text
+const TextContent = ({ textFile, format }: { textFile: string; format?: any }) => {
+  const [content, setContent] = useState("");
+
+  useEffect(() => {
+    fetch(`/${b_name}/files/${textFile}`)
+      .then((resp) => resp.text())
+      .then(setContent)
+      .catch(console.error);
+  }, [textFile]);
+
+  if (!format) return <>{content}</>;
+
+  return (
+    <>
+      {content.split('\n').map((line, index) => {
+        const lineFormat = format[index.toString()];
+        const backgroundColor = getTextBlockColor(lineFormat);
+        
+        return (
+          <div
+            key={index}
+            style={{
+              backgroundColor,
+              padding: backgroundColor !== "transparent" ? "3px 6px" : "0",
+              borderRadius: "3px",
+              margin: "2px 0",
+            }}
+          >
+            {line}
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
+
+// Color Function for TextBlocks only!
+const getTextBlockColor = (format?: { color?: string }) => {
+  if (!format?.color) return "transparent";
+  switch (format.color.toLowerCase()) {
+    case "red": return "rgb(244,199,190)";
+    case "green": return "rgb(190,230,181)";
+    case "yellow": return "rgb(251,233,191)";
+    case "blue": return "rgb(192,212,239)";
+    case "purple": return "rgb(216,203,243)";
+    default: return "transparent";
+  }
+};
+
+// Add a helper function for text block font size
+const getTextBlockSize = (format?: { block_type?: number }) => {
+  if (format?.block_type === 1) {
+    return {
+      fontSize: "28px",
+      fontWeight: 600,
+      lineHeight: 1.2
+    };
+  }
+  return {
+    fontSize: "18px",
+    fontWeight: 500,
+    lineHeight: 1.45
+  };
+};
 
 
 /* ------------------------------------------------------------------
@@ -700,26 +811,18 @@ const MuseCard = withParentLink(
       return Math.min(scaleX, scaleY, 1) * 0.9;
     };
 
-    const getBackgroundColor = (color?: string, type?: string) => {
-      if (!color || (type !== 'text' && type !== 'url')) return "#F0F0EE";
-      
-      switch (color.toLowerCase()) {
-        case "yellow":
-          return "rgb(254,249,233)";
-        case "red":
-          return "rgb(251,229,224)";
-        default:
-          return "#F0F0EE";
-      }
-    };
-
     const scale = getScale();
-    const backgroundColor = getBackgroundColor(color, cardInfo.type);
     
     const handleCardClick = (e: React.MouseEvent) => {
+      if (cardInfo.type === "text") {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      
       if (recurse === 1) {
         if (cardInfo.type !== "url") {
-          e.preventDefault();
+          e.preventDefault(); 
           e.stopPropagation();
           router.push(`/${document_id}`);
         }
@@ -763,19 +866,15 @@ const MuseCard = withParentLink(
         )}
 
         <div
-          style={
-            cardInfo.type === "text"
-              ? {}
-              : {
-                  position: "relative",
-                  width: size_width,
-                  height: size_height,
-                  borderRadius: 8,
-                  boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
-                  backgroundColor,
-                  overflow: "hidden",
-                }
-          }
+          style={{
+            position: "relative",
+            width: size_width,
+            height: size_height,
+            borderRadius: (cardInfo.type === "text" || cardInfo.type === "url") ? 4 : 8,
+            boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
+            backgroundColor: cardInfo.type === "board" ? getBackgroundColor(color) : undefined,
+            overflow: "hidden",
+          }}
         >
           {/* Render any ink on cards. we call this card ink */}
           {cardInfo.type !== "board" ? (
@@ -815,7 +914,7 @@ const MuseCard = withParentLink(
                 }}
               >
                 {recurse <= 3 ? (
-                  <Board {...cardInfo} id={document_id} recurse={recurse + 1} />
+                  <Board {...cardInfo} id={document_id} recurse={recurse + 1} color={color} />
                 ) : null}
               </div>
             </div>
@@ -837,7 +936,7 @@ function CardForType({ type, ...cardInfo }: any) {
     case "image":
       return <Image {...cardInfo} />;
     case "text":
-      return <Text {...cardInfo} />;
+      return <Note {...cardInfo} />;
     case "board":
       return <Board {...cardInfo} connections={cardInfo.connections || []} />;
     case "pdf":
