@@ -812,9 +812,15 @@ const MuseCard = withParentLink(
     const backgroundColor = getBackgroundColor(color, cardInfo.type);
     
     const handleCardClick = (e: React.MouseEvent) => {
+      if (cardInfo.type === "text") {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      
       if (recurse === 1) {
         if (cardInfo.type !== "url") {
-          e.preventDefault();
+          e.preventDefault(); 
           e.stopPropagation();
           router.push(`/${document_id}`);
         }
