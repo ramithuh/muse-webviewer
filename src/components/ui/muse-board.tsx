@@ -468,51 +468,54 @@ const Url = withParentLink(({ url, title, label, color }: any) => {
   const truncatedTitle = truncateTitle(label || title || "Link");
   
   return (
-    <div style={{
-      padding: "10px 10px",
-      backgroundColor: getBackgroundColor(color, 'url'),
-      borderRadius: "3px",
-      boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
-      height: "100%",
-      width: "100%",
-      position: "absolute",
-      boxSizing: "border-box",
-    }}>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "flex-start",
-          gap: "8px",
-        }}
-      >
-        <LinkIcon />
-        <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-          <a
-            href={url}
-            style={{
-              textDecoration: "none",
-              color: "rgb(55, 53, 47)",
-              fontSize: "14px",
-              fontWeight: 550,
-              lineHeight: 1.3,
-            }}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {truncatedTitle}
-          </a>
-          <div
-            style={{
-              color: "rgb(120, 119, 116)",
-              fontSize: "12px",
-              fontWeight: 400,
-            }}
-          >
-            {domain}
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ textDecoration: "none" }}
+    >
+      <div style={{
+        padding: "10px 10px",
+        backgroundColor: getBackgroundColor(color, 'url'),
+        borderRadius: "3px",
+        boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
+        height: "100%",
+        width: "100%",
+        position: "absolute",
+        boxSizing: "border-box",
+      }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            gap: "8px",
+          }}
+        >
+          <LinkIcon />
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+            <div
+              style={{
+                color: "rgb(55, 53, 47)",
+                fontSize: "14px",
+                fontWeight: 550,
+                lineHeight: 1.3,
+              }}
+            >
+              {truncatedTitle}
+            </div>
+            <div
+              style={{
+                color: "rgb(120, 119, 116)",
+                fontSize: "12px",
+                fontWeight: 400,
+              }}
+            >
+              {domain}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </a>
   );
 });
 
@@ -702,6 +705,16 @@ const MuseCard = withParentLink(
 
     const scale = getScale();
     const backgroundColor = getBackgroundColor(color, cardInfo.type);
+    
+    const handleCardClick = (e: React.MouseEvent) => {
+      if (recurse === 1) {
+        if (cardInfo.type !== "url") {
+          e.preventDefault();
+          e.stopPropagation();
+          router.push(`/${document_id}`);
+        }
+      }
+    };
 
     return (
       <div
@@ -717,6 +730,7 @@ const MuseCard = withParentLink(
           transform: `scale(${isVisible ? 1 : 0.8})`,
           transition: "opacity 0.3s ease-out, transform 0.3s ease-out",
         }}
+        onClick={handleCardClick}
       >
         {cardInfo.type === "url" ? null : (
           <div
@@ -752,11 +766,6 @@ const MuseCard = withParentLink(
                   overflow: "hidden",
                 }
           }
-          onClick={() => {
-            if (recurse === 1 && cardInfo.type !== "url") {
-              router.push(`/${document_id}`);
-            }
-          }}
         >
           {/* Render any ink on cards. we call this card ink */}
           {cardInfo.type !== "board" ? (
