@@ -322,6 +322,7 @@ const Ink = withParentLink(({ ink_svg, style = {} }: any) => {
         position: "absolute",
         zIndex: 501,
         pointerEvents: "none",
+        maxWidth: "none",
         ...style
       }}
       src={`/${b_name}/files/${ink_svg}`}
@@ -627,7 +628,7 @@ export const Board = withParentLink(
           />
         ))}
 
-        {/* 2C) Render any ink drawings */}
+        {/* 2C) Render any ink drawings on boards (we call this board ink)*/}
         {inkToArray(ink_models).map((ink: any, i: number) => (
           <Ink key={`${id}_${ink.ink_svg}_${i}`} {...ink} />
         ))}
@@ -757,6 +758,7 @@ const MuseCard = withParentLink(
             }
           }}
         >
+          {/* Render any ink on cards. we call this card ink */}
           {cardInfo.type !== "board" ? (
             <>
               <CardForType {...cardInfo} id={document_id} color={color} />
