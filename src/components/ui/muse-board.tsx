@@ -49,7 +49,7 @@ interface InkModel {
 }
 
 
-// Add a color helper function
+// Add a color helper function (For Notes & Urls only!!)
 const getBackgroundColor = (color?: string, type?: string) => {
   // Only apply colors to text and url types
   if (!color || (type !== 'text' && type !== 'url')) return "rgb(233,232,231)";
@@ -599,8 +599,26 @@ function Connector({
 
 // 2) The Board component, using individual <Connector> per line
 export const Board = withParentLink(
-  ({ cards = [], chains = [], ink_models, connections = [], recurse, id }: any) => {
-    const HEADER_HEIGHT = 128;
+  ({ cards = [], chains = [], ink_models, connections = [], recurse, id, color }: any) => {
+
+    {/* Colors for Boards only!! (slight variations with notes and text blocks) */}
+    const getBackgroundColor = (color?: string) => {
+      if (!color) return "rgb(233,232,231)";
+      switch (color.toLowerCase()) {
+        case "red":
+          return "rgb(255,237,234)";
+        case "blue":
+          return "rgb(229,240,255)";
+        case "yellow":
+          return "rgb(255,249,231)";
+        case "purple":
+          return "rgb(240,233,255)";
+        case "green":
+          return "rgb(230,248,225)";
+        default:
+          return "rgb(233,232,231)";
+      }
+    };
 
     return (
       <div
@@ -608,6 +626,7 @@ export const Board = withParentLink(
           position: "relative",
           width: "100%",
           height: "100%",
+          backgroundColor: getBackgroundColor(color),
         }}
       >
         {/* 2A) Render connections */}
@@ -636,26 +655,26 @@ export const Board = withParentLink(
 
         {/* Updated text blocks rendering */}
         {chains.map((chain: any) => {
-        const textStyle = getTextBlockSize(chain.format?.[0]);
+          const textStyle = getTextBlockSize(chain.format?.[0]);
         
-        return (
-          <div
-            key={chain.chain_id}
-            style={{
-              position: "absolute",
-              left: chain.position_x,
-              top: chain.position_y,
-              maxWidth: chain.line_break_width,
-              fontFamily: '-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto',
-              color: "rgb(55, 53, 47)",
-              whiteSpace: "pre-wrap",
-              ...textStyle
-            }}
-          >
-            <TextContent textFile={chain.text_file} format={chain.format} />
-          </div>
-        );
-      })}
+          return (
+            <div
+              key={chain.chain_id}
+              style={{
+                position: "absolute",
+                left: chain.position_x,
+                top: chain.position_y,
+                maxWidth: chain.line_break_width,
+                fontFamily: '-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto',
+                color: "rgb(55, 53, 47)",
+                whiteSpace: "pre-wrap",
+                ...textStyle
+              }}
+            >
+              <TextContent textFile={chain.text_file} format={chain.format} />
+            </div>
+          );
+        })}
 
         {/* 2C) Render cards */}
         {cards.map((card: any, index: number) => (
@@ -714,7 +733,7 @@ const TextContent = ({ textFile, format }: { textFile: string; format?: any }) =
 };
 
 
-// Updated color function with more colors
+// Color Function for TextBlocks only!
 const getTextBlockColor = (format?: { color?: string }) => {
   if (!format?.color) return "transparent";
   switch (format.color.toLowerCase()) {
@@ -793,23 +812,7 @@ const MuseCard = withParentLink(
       return Math.min(scaleX, scaleY, 1) * 0.9;
     };
 
-    const getBackgroundColor = (color?: string, type?: string) => {
-      if (!color || (type !== 'text' && type !== 'url')) return "#F0F0EE";
-      
-      switch (color.toLowerCase()) {
-        case "yellow":
-          return "rgb(254,249,233)";
-        case "red":
-          return "rgb(251,229,224)";
-        // case "purple":
-        //   return "rgb(235,229,245)";
-        default:
-          return "#F0F0EE";
-      }
-    };
-
     const scale = getScale();
-    const backgroundColor = getBackgroundColor(color, cardInfo.type);
     
     const handleCardClick = (e: React.MouseEvent) => {
       if (cardInfo.type === "text") {
@@ -864,19 +867,15 @@ const MuseCard = withParentLink(
         )}
 
         <div
-          style={
-            cardInfo.type === "text"
-              ? {}
-              : {
-                  position: "relative",
-                  width: size_width,
-                  height: size_height,
-                  borderRadius: 8,
-                  boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
-                  backgroundColor,
-                  overflow: "hidden",
-                }
-          }
+          style={{
+            position: "relative",
+            width: size_width,
+            height: size_height,
+            borderRadius: 8,
+            boxShadow: "rgb(206, 206, 205) 0px 0px 3px",
+            backgroundColor: cardInfo.type === "board" ? getBackgroundColor(color) : undefined,
+            overflow: "hidden",
+          }}
         >
           {/* Render any ink on cards. we call this card ink */}
           {cardInfo.type !== "board" ? (
@@ -916,7 +915,7 @@ const MuseCard = withParentLink(
                 }}
               >
                 {recurse <= 3 ? (
-                  <Board {...cardInfo} id={document_id} recurse={recurse + 1} />
+                  <Board {...cardInfo} id={document_id} recurse={recurse + 1} color={color} />
                 ) : null}
               </div>
             </div>
