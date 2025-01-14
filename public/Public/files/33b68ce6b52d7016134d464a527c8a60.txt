@@ -1,0 +1,3 @@
+Kinase domain has a surface representation here
+ligand has a sphere representation here
+The surface representation does not show individual atoms

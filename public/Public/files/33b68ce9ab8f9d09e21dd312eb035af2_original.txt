@@ -1,0 +1,4 @@
+problems ran into
+
+* hiding water molecules (red crosses)
+* For each of the selections made in steps 3 and 4, select the "L" button on the right-hand panel of the GUI, and then select "residues" from the menu that appears. (i think this should be 4 and 5)

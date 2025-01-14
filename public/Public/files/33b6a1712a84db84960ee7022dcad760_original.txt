@@ -1,0 +1,2 @@
+Structural biologists have produced crystal structures of the RBD bound to ACE2. You are going to visualize these interactions, and compare the binding of the wild-type (WT) RBD with that of the Omicron variant.
+

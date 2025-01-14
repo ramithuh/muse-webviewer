@@ -1,0 +1,2 @@
+Side-chain atoms play a crucial role in protein-ligand binding interactions
+> It is often informative to analyze side-chain atoms close to the ligand

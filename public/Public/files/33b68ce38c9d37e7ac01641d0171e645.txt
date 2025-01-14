@@ -1,0 +1,1 @@
+The cartoon representation is comprised only of backbone atoms.
