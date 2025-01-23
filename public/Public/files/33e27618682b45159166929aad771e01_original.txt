@@ -1,0 +1,5 @@
+Due to the S477N mutation (Serine to Asparagine), we see additional hydrogen bonds in the Omicron variant between S19 and N477. The longer side chain in N477 could be the reason.
+
+Furthermore, there are two other mutations, G496S (Glycine to Serine) and Q498R (Glutamine to Arginine). The effect of those are as follows:
+1. Since R498 (Arginine) is positively charged, it can form a salt bridge with D38 (Aspartic Acid, negatively charged). 
+2. D38 and S496 form a hydrogen bond, this was not previously possible because G496 (glycine) in the wildtype had a shorter sidechain.

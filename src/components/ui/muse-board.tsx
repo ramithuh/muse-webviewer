@@ -913,7 +913,7 @@ const MuseCard = withParentLink(
                   height: `${100 / scale}%`,
                 }}
               >
-                {recurse <= 3 ? (
+                {recurse <= 5 ? (
                   <Board {...cardInfo} id={document_id} recurse={recurse + 1} color={color} />
                 ) : null}
               </div>

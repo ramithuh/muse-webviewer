@@ -1,146 +1,965 @@
 {
   "documents" : {
-    "33a2b3dd9eafa7f84cf6614d6f3f233b" : {
-      "created_at" : "2025-01-14T14:36:48Z",
-      "label" : "in mac when i generate a ssh key, should that be id_rsa or id_ed25519",
-      "title" : "in mac when i generate a ssh key, should that be id_rsa or id_ed25519",
-      "type" : "url",
-      "url" : "https:\/\/www.perplexity.ai\/search\/in-mac-when-i-generate-a-ssh-k-9BkDimxKTHWjSCs.mhfDbw"
+    "2ac8d1ac13125aa53f27a2524ed3e413" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "label" : "Amino acid chart",
+      "original_file" : "2ac8d1ac13125aa53f27a2524ed3e413_original.jpg",
+      "type" : "image"
     },
-    "33a29a802bb3562e34051eddbf70491d" : {
+    "2acb2b765f14548653a000116422046c" : {
       "cards" : [
         {
-          "document_id" : "33a29a98830e33a5cccef145312ac557",
-          "position_x" : 153,
-          "position_y" : 98,
-          "size_height" : 208,
-          "size_width" : 220,
-          "z" : 1
+          "document_id" : "2acb38ba5a40dab5394466dc488f38b4",
+          "position_x" : 1046,
+          "position_y" : 372,
+          "size_height" : 350,
+          "size_width" : 805,
+          "z" : 3
         },
         {
-          "document_id" : "33a2b3dd9eafa7f84cf6614d6f3f233b",
-          "position_x" : 484,
-          "position_y" : 121,
-          "size_height" : 56,
-          "size_width" : 300,
+          "color" : "Green",
+          "document_id" : "2acb391a43cbc326af69f2eba4c3bcbf",
+          "position_x" : 1543,
+          "position_y" : 208,
+          "size_height" : 100,
+          "size_width" : 170,
           "z" : 2
+        },
+        {
+          "color" : "Green",
+          "document_id" : "2acb3afeb28916bc4298f97af29071bd",
+          "position_x" : 2027,
+          "position_y" : 446,
+          "size_height" : 120,
+          "size_width" : 170,
+          "z" : 5
+        },
+        {
+          "card_id" : "2acb402d4387a21f53dc43edfbf7dcc8",
+          "document_id" : "2acb402d42ab2cf64846c3551f28b927",
+          "position_x" : 776,
+          "position_y" : 987,
+          "size_height" : 200,
+          "size_width" : 170,
+          "z" : 6
+        },
+        {
+          "document_id" : "2acb4679df3a0974b24be5fe41cad37a",
+          "position_x" : 1115,
+          "position_y" : 1471,
+          "size_height" : 177,
+          "size_width" : 253,
+          "z" : 7
+        },
+        {
+          "color" : "Red",
+          "document_id" : "2acb473b0fee9cca9ea2fbb5dffd40d2",
+          "position_x" : 1281,
+          "position_y" : 1768,
+          "size_height" : 100,
+          "size_width" : 170,
+          "z" : 8
+        },
+        {
+          "color" : "Red",
+          "document_id" : "2acb482c458a3975f636c881e7847dab",
+          "position_x" : 964,
+          "position_y" : 1909,
+          "size_height" : 200,
+          "size_width" : 170,
+          "z" : 9
+        },
+        {
+          "color" : "Blue",
+          "document_id" : "2acb4a2043884b957aefee10ac75b920",
+          "position_x" : 648,
+          "position_y" : 2466,
+          "size_height" : 140,
+          "size_width" : 170,
+          "z" : 10
         }
       ],
       "chains" : [
         {
-          "chain_id" : "33a2b3f11f70327f5df7927a9391083e",
+          "chain_id" : "2acb2bd1d7bc92632275e9802d177f28",
           "ink_models" : {
 
           },
           "line_break_width" : 600,
-          "position_x" : 474,
-          "position_y" : 287,
-          "text_file" : "33a2b3f11f70327f5df7927a9391083e.txt"
+          "position_x" : 180,
+          "position_y" : 132,
+          "text_file" : "2acb2bd1d7bc92632275e9802d177f28.txt"
+        },
+        {
+          "chain_id" : "2acb2da09434ae324ab72c1323e5c926",
+          "format" : {
+            "0" : {
+              "color" : "Green"
+            }
+          },
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 187,
+          "position_y" : 191,
+          "text_file" : "2acb2da09434ae324ab72c1323e5c926.txt"
+        },
+        {
+          "chain_id" : "2acb2dc596f8a40717d5330ec09fe9aa",
+          "format" : {
+            "0" : {
+              "color" : "Green"
+            }
+          },
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 189,
+          "position_y" : 426,
+          "text_file" : "2acb2dc596f8a40717d5330ec09fe9aa.txt"
+        },
+        {
+          "chain_id" : "2acb2fae69eba52c12f2a9e3c56b93f1",
+          "format" : {
+            "0" : {
+              "color" : "Red"
+            }
+          },
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 820,
+          "position_y" : 143,
+          "text_file" : "2acb2fae69eba52c12f2a9e3c56b93f1.txt"
+        },
+        {
+          "chain_id" : "2acb3dd06acb094aa9744d5ced3a3407",
+          "format" : {
+            "0" : {
+              "color" : "Red"
+            }
+          },
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 706,
+          "position_y" : 758,
+          "text_file" : "2acb3dd06acb094aa9744d5ced3a3407.txt"
+        },
+        {
+          "card_ids" : {
+            "0" : "2acb41e3d79d7651d331d9f03221ed3c"
+          },
+          "chain_id" : "2acb41e3d799676e9d06bf0e1543b2eb",
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 993,
+          "position_y" : 1056,
+          "text_file" : "2acb41e3d799676e9d06bf0e1543b2eb.txt"
+        },
+        {
+          "chain_id" : "2acb42aec3bc7556a721e4ef9df0ad44",
+          "format" : {
+            "0" : {
+              "color" : "Red"
+            }
+          },
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 170,
+          "position_y" : 796,
+          "text_file" : "2acb42aec3bc7556a721e4ef9df0ad44.txt"
+        },
+        {
+          "chain_id" : "2acb43f0359cbc66414a350046a18ae3",
+          "format" : {
+            "0" : {
+              "color" : "Red"
+            }
+          },
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 166,
+          "position_y" : 1187,
+          "text_file" : "2acb43f0359cbc66414a350046a18ae3.txt"
+        },
+        {
+          "chain_id" : "2acb44596ad73d9ebdf910d2613bd2f8",
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 204,
+          "position_y" : 1327,
+          "text_file" : "2acb44596ad73d9ebdf910d2613bd2f8.txt"
+        },
+        {
+          "chain_id" : "2acb44794c3eecfda7f293117ca4af5f",
+          "format" : {
+            "0" : {
+              "color" : "Red"
+            }
+          },
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 167,
+          "position_y" : 1479,
+          "text_file" : "2acb44794c3eecfda7f293117ca4af5f.txt"
+        },
+        {
+          "chain_id" : "2acb45f267c10b751d91750893fd8aab",
+          "format" : {
+            "0" : {
+              "color" : "Red"
+            }
+          },
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 843,
+          "position_y" : 1299,
+          "text_file" : "2acb45f267c10b751d91750893fd8aab.txt"
+        },
+        {
+          "chain_id" : "2acb469e512267e9f593e703430750ab",
+          "format" : {
+            "0" : {
+              "color" : "Red"
+            }
+          },
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 800,
+          "position_y" : 1746,
+          "text_file" : "2acb469e512267e9f593e703430750ab.txt"
+        },
+        {
+          "chain_id" : "2acb46fa555bf6d8546a86eba089552e",
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 1032,
+          "position_y" : 1747,
+          "text_file" : "2acb46fa555bf6d8546a86eba089552e.txt"
+        },
+        {
+          "chain_id" : "2acb48487a893416e6725b061e37757d",
+          "format" : {
+            "0" : {
+              "color" : "Red"
+            }
+          },
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 220,
+          "position_y" : 1885,
+          "text_file" : "2acb48487a893416e6725b061e37757d.txt"
+        },
+        {
+          "chain_id" : "2acb48c6f5e6166f5d66ce790598f231",
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 191,
+          "position_y" : 2147,
+          "text_file" : "2acb48c6f5e6166f5d66ce790598f231.txt"
+        },
+        {
+          "cards" : [
+            {
+              "document_id" : "2acb49c418e0cfefa9a3463024aed3a3",
+              "position_x" : 249,
+              "position_y" : 2431,
+              "size_height" : 205,
+              "size_width" : 320,
+              "z" : 10
+            }
+          ],
+          "chain_id" : "2acb49c42e8ffd5780ed7bc38492df92",
+          "ink_models" : {
+
+          },
+          "position_x" : 249,
+          "position_y" : 2431
         }
       ],
-      "created_at" : "2025-01-14T14:36:48Z",
-      "label" : "Recitation",
-      "type" : "board"
-    },
-    "33a29a98830e33a5cccef145312ac557" : {
-      "created_at" : "2025-01-14T14:36:48Z",
-      "original_file" : "33a29a98830e33a5cccef145312ac557_original.txt",
-      "type" : "text"
-    },
-    "33b5c5f5bc63df2bcbd7d8c63c7e8624" : {
-      "cards" : [
-        {
-          "document_id" : "33a29a802bb3562e34051eddbf70491d",
-          "position_x" : 155,
-          "position_y" : 121,
-          "size_height" : 150,
-          "size_width" : 200,
-          "z" : 1
-        }
+      "connections" : [
+        [
+          "2acb402d4387a21f53dc43edfbf7dcc8",
+          "2acb41e3d79d7651d331d9f03221ed3c"
+        ]
       ],
-      "created_at" : "2025-01-14T14:26:33Z",
-      "label" : "Recitations",
-      "type" : "board"
-    },
-    "33b5c45258e057c136f846dab761373c" : {
-      "cards" : [
-        {
-          "document_id" : "33b5c5f5bc63df2bcbd7d8c63c7e8624",
-          "position_x" : 348,
-          "position_y" : 99,
-          "size_height" : 150,
-          "size_width" : 200,
-          "z" : 15
-        },
-        {
-          "document_id" : "33b5c817661404d60e4193f93b709c54",
-          "position_x" : 105,
-          "position_y" : 95,
-          "size_height" : 150,
-          "size_width" : 200,
-          "z" : 14
-        },
-        {
-          "document_id" : "33b5ca3dd0c76dd8feac11a30810e05b",
-          "position_x" : 902,
-          "position_y" : 112,
-          "scroll_position" : 0.63302808126354626,
-          "size_height" : 150,
-          "size_width" : 200,
-          "z" : 16
-        },
-        {
-          "document_id" : "33b5ca3eca35ddcf7632a409882f3d27",
-          "position_x" : 268,
-          "position_y" : 350,
-          "size_height" : 155,
-          "size_width" : 206,
-          "z" : 12
-        },
-        {
-          "document_id" : "33b5d388e350af4b755e33128054480c",
-          "position_x" : 525,
-          "position_y" : 400,
-          "size_height" : 56,
-          "size_width" : 300,
-          "z" : 10
-        },
-        {
-          "document_id" : "33b5d3a0f14990f476762261ef5dba88",
-          "position_x" : 535,
-          "position_y" : 495,
-          "size_height" : 56,
-          "size_width" : 300,
-          "z" : 11
-        },
-        {
-          "document_id" : "33b68d61af1bbc40526b255a548de0eb",
-          "position_x" : 931,
-          "position_y" : 369,
-          "size_height" : 150,
-          "size_width" : 200,
-          "z" : 17
-        }
-      ],
-      "created_at" : "2025-01-14T14:26:26Z",
+      "created_at" : "2025-01-23T16:50:19Z",
       "ink_models" : {
         "0" : {
-          "ink_svg" : "33b5c45258e057c136f846dab761373c0_0_ink.svg",
+          "ink_svg" : "2acb2b765f14548653a000116422046c0_0_ink.svg",
           "scale" : 1
         }
       },
-      "label" : "Intro to Computational Structural Biology",
+      "label" : "β-globin mutations",
       "type" : "board"
+    },
+    "2acb3afeb28916bc4298f97af29071bd" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "2acb3afeb28916bc4298f97af29071bd_original.txt",
+      "type" : "text"
+    },
+    "2acb4a2043884b957aefee10ac75b920" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "2acb4a2043884b957aefee10ac75b920_original.txt",
+      "type" : "text"
+    },
+    "2acb38ba5a40dab5394466dc488f38b4" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "2acb38ba5a40dab5394466dc488f38b4_original.jpg",
+      "type" : "image"
+    },
+    "2acb49c418e0cfefa9a3463024aed3a3" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "deviceId" : "29ed151fd80d58bb434e22276d94b3e1",
+      "modifiedAt" : "2023-10-29T07:20:36Z",
+      "text" : "But because thalassemia patients have been studied at great length, people\nfound a deletion that takes out a whole lot of DNA far away from the\nbeta globin gene, takes out a chunk of DNA about 100,000 bases away.\nThis is a very strange case.\nI'll call this strange.",
+      "type" : "comment",
+      "user_id" : "5d8fd089d61b4e909a7d6b24b71d6a47"
+    },
+    "2acb391a43cbc326af69f2eba4c3bcbf" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "2acb391a43cbc326af69f2eba4c3bcbf_original.txt",
+      "type" : "text"
+    },
+    "2acb402d42ab2cf64846c3551f28b927" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "2acb402d42ab2cf64846c3551f28b927_original.txt",
+      "type" : "text"
+    },
+    "2acb473b0fee9cca9ea2fbb5dffd40d2" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "2acb473b0fee9cca9ea2fbb5dffd40d2_original.txt",
+      "type" : "text"
+    },
+    "2acb482c458a3975f636c881e7847dab" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "2acb482c458a3975f636c881e7847dab_original.txt",
+      "type" : "text"
+    },
+    "2acb4679df3a0974b24be5fe41cad37a" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "2acb4679df3a0974b24be5fe41cad37a_original.txt",
+      "type" : "text"
+    },
+    "2ad5fe56e50c13342818da975ab2755c" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "2ad5fe56e50c13342818da975ab2755c_original.jpg",
+      "type" : "image"
+    },
+    "2ad5fe822a6616f01b84a4da2aeb387b" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "2ad5fe822a6616f01b84a4da2aeb387b_original.jpg",
+      "type" : "image"
+    },
+    "2ad4414e36876abc929e548532a577c3" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "2ad4414e36876abc929e548532a577c3_original.jpg",
+      "type" : "image"
+    },
+    "2d2a3703ddd28b3c426630380027e7fc" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "ink_models" : {
+        "17" : {
+          "ink_svg" : "2d2a3703ddd28b3c426630380027e7fc17_17_ink.svg",
+          "scale" : 46.188679245283019
+        },
+        "18" : {
+          "ink_svg" : "2d2a3703ddd28b3c426630380027e7fc18_18_ink.svg",
+          "scale" : 46.188679245283019
+        },
+        "19" : {
+          "ink_svg" : "2d2a3703ddd28b3c426630380027e7fc19_19_ink.svg",
+          "scale" : 46.188679245283019
+        },
+        "20" : {
+          "ink_svg" : "2d2a3703ddd28b3c426630380027e7fc20_20_ink.svg",
+          "scale" : 46.188679245283019
+        },
+        "21" : {
+          "ink_svg" : "2d2a3703ddd28b3c426630380027e7fc21_21_ink.svg",
+          "scale" : 46.188679245283019
+        },
+        "22" : {
+          "ink_svg" : "2d2a3703ddd28b3c426630380027e7fc22_22_ink.svg",
+          "scale" : 46.188679245283019
+        },
+        "23" : {
+          "ink_svg" : "2d2a3703ddd28b3c426630380027e7fc23_23_ink.svg",
+          "scale" : 46.188679245283019
+        },
+        "24" : {
+          "ink_svg" : "2d2a3703ddd28b3c426630380027e7fc24_24_ink.svg",
+          "scale" : 46.188679245283019
+        },
+        "25" : {
+          "ink_svg" : "2d2a3703ddd28b3c426630380027e7fc25_25_ink.svg",
+          "scale" : 46.188679245283019
+        }
+      },
+      "label" : "Introduction_to_Protein Structure_Carl_Branden_John_Tooze",
+      "last_viewed_page" : 18,
+      "original_file" : "2d2a3703ddd28b3c426630380027e7fc_original.pdf",
+      "type" : "pdf"
+    },
+    "2d6a86fa3034b98f3aa6cf6cea0c67aa" : {
+      "created_at" : "2025-01-23T16:50:19Z",
+      "excerpt_info" : {
+        "end_x" : 0.55644573925710128,
+        "end_y" : 0.62352279122115928,
+        "excerpted_id" : "2d2a3703ddd28b3c426630380027e7fc",
+        "excerpted_page" : 23,
+        "start_x" : 0.096504005826656955,
+        "start_y" : 0.39870568373663479
+      },
+      "ink_models" : {
+        "0" : {
+          "ink_svg" : "2d6a86fa3034b98f3aa6cf6cea0c67aa0_0_ink.svg",
+          "scale" : 2.8784067085953877
+        }
+      },
+      "label" : "Ramachandran Plot",
+      "original_file" : "2d6a86fa3034b98f3aa6cf6cea0c67aa_original.png",
+      "type" : "image"
+    },
+    "2d6625c96d23ed17aecb92c19d45cf96" : {
+      "cards" : [
+        {
+          "document_id" : "2d66246d1208f257d5c99b3fdb4957d9",
+          "position_x" : 110,
+          "position_y" : 56,
+          "size_height" : 455,
+          "size_width" : 490,
+          "z" : 1
+        },
+        {
+          "document_id" : "2d662598f26ebad0fed07e55765e500b",
+          "position_x" : 728,
+          "position_y" : 39,
+          "size_height" : 215,
+          "size_width" : 269,
+          "z" : 6
+        },
+        {
+          "document_id" : "2d661726eb9ed38a981a18d85917352b",
+          "position_x" : 103,
+          "position_y" : 566,
+          "size_height" : 425,
+          "size_width" : 740,
+          "z" : 3
+        },
+        {
+          "document_id" : "2d66330214fb39d6fd996f39d5befe34",
+          "position_x" : 748,
+          "position_y" : 303,
+          "size_height" : 208,
+          "size_width" : 220,
+          "z" : 7
+        }
+      ],
+      "created_at" : "2025-01-23T16:50:19Z",
+      "label" : "disulfide bond",
+      "type" : "board"
+    },
+    "2d66246d1208f257d5c99b3fdb4957d9" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "excerpt_info" : {
+        "end_x" : 0.60888565185724697,
+        "end_y" : 0.4198086662915026,
+        "excerpted_id" : "2d2a3703ddd28b3c426630380027e7fc",
+        "excerpted_page" : 22,
+        "start_x" : 0.091405680990531687,
+        "start_y" : 0.048114800225098481
+      },
+      "ink_models" : {
+        "0" : {
+          "ink_svg" : "2d66246d1208f257d5c99b3fdb4957d90_0_ink.svg",
+          "scale" : 2.8784067085953877
+        }
+      },
+      "original_file" : "2d66246d1208f257d5c99b3fdb4957d9_original.png",
+      "type" : "image"
+    },
+    "2d661726eb9ed38a981a18d85917352b" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "excerpt_info" : {
+        "end_x" : 0.93882010196649679,
+        "end_y" : 0.94147439504783348,
+        "excerpted_id" : "2d2a3703ddd28b3c426630380027e7fc",
+        "excerpted_page" : 19,
+        "start_x" : 0.061908230152949752,
+        "start_y" : 0.55261676983680363
+      },
+      "ink_models" : {
+        "0" : {
+          "ink_svg" : "2d661726eb9ed38a981a18d85917352b0_0_ink.svg",
+          "scale" : 2.8784067085953877
+        }
+      },
+      "original_file" : "2d661726eb9ed38a981a18d85917352b_original.png",
+      "type" : "image"
+    },
+    "2d662598f26ebad0fed07e55765e500b" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "2d662598f26ebad0fed07e55765e500b_original.jpg",
+      "type" : "image"
+    },
+    "2d66330214fb39d6fd996f39d5befe34" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "2d66330214fb39d6fd996f39d5befe34_original.txt",
+      "type" : "text"
+    },
+    "29f1a7e68cf85d88f0b109ef05eaba4c" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f1a7e68cf85d88f0b109ef05eaba4c_original.jpg",
+      "type" : "image"
+    },
+    "29f1b5163dcddc805cfb02629e11b808" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f1b5163dcddc805cfb02629e11b808_original.txt",
+      "type" : "text"
+    },
+    "29f1bd9da4dadb6810af62d675da09e5" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "label" : "Arginyl-Leucine",
+      "title" : "Arginyl-Leucine",
+      "type" : "url",
+      "url" : "https:\/\/pubchem.ncbi.nlm.nih.gov\/compound\/Arginyl-Leucine#section=3D-Conformer"
+    },
+    "29f1cbcaeb44537b60a62459c5cca843" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f1cbcaeb44537b60a62459c5cca843_original.jpg",
+      "type" : "image"
+    },
+    "29f1ccb1e8e2f1b4ac403631eb573574" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f1ccb1e8e2f1b4ac403631eb573574_original.jpg",
+      "type" : "image"
+    },
+    "29f14a2c2554fbd62a8e5bd2cbd892ce" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f14a2c2554fbd62a8e5bd2cbd892ce_original.txt",
+      "type" : "text"
+    },
+    "29f14befe9ed38ba6885b2bc547c1e83" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f14befe9ed38ba6885b2bc547c1e83_original.txt",
+      "type" : "text"
+    },
+    "29f14ec5f7cf57e332c00b9012ea28bf" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f14ec5f7cf57e332c00b9012ea28bf_original.jpg",
+      "type" : "image"
+    },
+    "29f14f005f23bb9e060c573d6656bf48" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f14f005f23bb9e060c573d6656bf48_original.jpg",
+      "type" : "image"
+    },
+    "29f15bf659d06bdb7c411461925467bc" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f15bf659d06bdb7c411461925467bc_original.png",
+      "type" : "image"
+    },
+    "29f59a408dab9128dde3f513d459bcd9" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f59a408dab9128dde3f513d459bcd9_original.txt",
+      "type" : "text"
+    },
+    "29f141b72935b9f383720d3d16a04b5d" : {
+      "cards" : [
+        {
+          "document_id" : "29f14219b832bf3af1b8d5c005d2e32b",
+          "position_x" : 73,
+          "position_y" : 48,
+          "size_height" : 40,
+          "size_width" : 170,
+          "z" : 25
+        },
+        {
+          "document_id" : "29f1490db6519f40ece26fba83499c91",
+          "position_x" : 74,
+          "position_y" : 984,
+          "size_height" : 711,
+          "size_width" : 1176,
+          "z" : 8
+        },
+        {
+          "document_id" : "29f149d278c960339721c8b569339e87",
+          "position_x" : 1363,
+          "position_y" : 978,
+          "size_height" : 733,
+          "size_width" : 1170,
+          "z" : 9
+        },
+        {
+          "document_id" : "29f14ec5f7cf57e332c00b9012ea28bf",
+          "position_x" : 294,
+          "position_y" : 1830,
+          "size_height" : 817,
+          "size_width" : 1335,
+          "z" : 10
+        },
+        {
+          "document_id" : "29f14f005f23bb9e060c573d6656bf48",
+          "position_x" : 1732,
+          "position_y" : 1839,
+          "size_height" : 808,
+          "size_width" : 1154,
+          "z" : 11
+        },
+        {
+          "document_id" : "29f15886ce1bc9794b7e7c715b38d699",
+          "ink_model" : {
+            "ink_svg" : "29f15886d8ad5d5aa2a7ecc6a2149d1c_card_ink.svg",
+            "scale" : 1
+          },
+          "position_x" : 455,
+          "position_y" : 3175,
+          "size_height" : 590,
+          "size_width" : 590,
+          "z" : 12
+        },
+        {
+          "document_id" : "29f15bf659d06bdb7c411461925467bc",
+          "position_x" : 1215,
+          "position_y" : 3244,
+          "size_height" : 368,
+          "size_width" : 594,
+          "z" : 13
+        },
+        {
+          "color" : "Yellow",
+          "document_id" : "29f1971da9aa4faad730d23bb7923abe",
+          "position_x" : 929,
+          "position_y" : 3662,
+          "size_height" : 40,
+          "size_width" : 170,
+          "z" : 14
+        },
+        {
+          "color" : "Yellow",
+          "document_id" : "29f1975ed2ea3955faf8708cdcaf7c94",
+          "position_x" : 1275,
+          "position_y" : 3598,
+          "size_height" : 40,
+          "size_width" : 170,
+          "z" : 15
+        },
+        {
+          "document_id" : "29f1a7e68cf85d88f0b109ef05eaba4c",
+          "position_x" : 839,
+          "position_y" : 3794,
+          "size_height" : 357,
+          "size_width" : 738,
+          "z" : 16
+        },
+        {
+          "document_id" : "29f1b5163dcddc805cfb02629e11b808",
+          "position_x" : 447,
+          "position_y" : 3860,
+          "size_height" : 40,
+          "size_width" : 170,
+          "z" : 17
+        },
+        {
+          "document_id" : "29f1bd9da4dadb6810af62d675da09e5",
+          "position_x" : 429,
+          "position_y" : 3931,
+          "size_height" : 56,
+          "size_width" : 300,
+          "z" : 18
+        },
+        {
+          "document_id" : "29f1cbcaeb44537b60a62459c5cca843",
+          "position_x" : 2616,
+          "position_y" : 194,
+          "size_height" : 531,
+          "size_width" : 1252,
+          "z" : 19
+        },
+        {
+          "document_id" : "29f1ccb1e8e2f1b4ac403631eb573574",
+          "position_x" : 2617,
+          "position_y" : 809,
+          "size_height" : 613,
+          "size_width" : 1366,
+          "z" : 20
+        },
+        {
+          "document_id" : "2ac8d1ac13125aa53f27a2524ed3e413",
+          "position_x" : 4112,
+          "position_y" : 868,
+          "size_height" : 502,
+          "size_width" : 595,
+          "z" : 21
+        },
+        {
+          "document_id" : "2ad4414e36876abc929e548532a577c3",
+          "ink_model" : {
+            "ink_svg" : "2ad4414f83e407b06fa7dc401aed156e_card_ink.svg",
+            "scale" : 1
+          },
+          "position_x" : 3470,
+          "position_y" : 1461,
+          "size_height" : 716,
+          "size_width" : 1082,
+          "z" : 22
+        },
+        {
+          "document_id" : "2ad5fe56e50c13342818da975ab2755c",
+          "position_x" : 4750,
+          "position_y" : 539,
+          "size_height" : 1176,
+          "size_width" : 1242,
+          "z" : 23
+        },
+        {
+          "document_id" : "2ad5fe822a6616f01b84a4da2aeb387b",
+          "position_x" : 4756,
+          "position_y" : 1775,
+          "size_height" : 850,
+          "size_width" : 1716,
+          "z" : 24
+        }
+      ],
+      "chains" : [
+        {
+          "chain_id" : "2a38957f01986fced8a08f355fcd89d2",
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 3095,
+          "position_y" : 1439,
+          "text_file" : "2a38957f01986fced8a08f355fcd89d2.txt"
+        },
+        {
+          "chain_id" : "2a3895a934be10c9d43527b517caaa79",
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 3100,
+          "position_y" : 1504,
+          "text_file" : "2a3895a934be10c9d43527b517caaa79.txt"
+        },
+        {
+          "chain_id" : "2a3895c41c10e6222531e311647b5476",
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 2936,
+          "position_y" : 1452,
+          "text_file" : "2a3895c41c10e6222531e311647b5476.txt"
+        },
+        {
+          "chain_id" : "2a3895d8835787c73fb895bc065c7a60",
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 2814,
+          "position_y" : 1498,
+          "text_file" : "2a3895d8835787c73fb895bc065c7a60.txt"
+        },
+        {
+          "chain_id" : "2ad31c6390f1d0894a8e588b3d1c249c",
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 3866,
+          "position_y" : 83,
+          "text_file" : "2ad31c6390f1d0894a8e588b3d1c249c.txt"
+        }
+      ],
+      "created_at" : "2025-01-23T16:50:19Z",
+      "ink_models" : {
+        "0" : {
+          "ink_svg" : "29f141b72935b9f383720d3d16a04b5d0_0_ink.svg",
+          "scale" : 1
+        }
+      },
+      "label" : "Meet the amino acids - structures",
+      "type" : "board"
+    },
+    "29f149d278c960339721c8b569339e87" : {
+      "cards" : [
+        {
+          "document_id" : "29f14a2c2554fbd62a8e5bd2cbd892ce",
+          "position_x" : 794,
+          "position_y" : 206,
+          "size_height" : 80,
+          "size_width" : 170,
+          "z" : 1
+        },
+        {
+          "document_id" : "29f14befe9ed38ba6885b2bc547c1e83",
+          "position_x" : 487,
+          "position_y" : 629,
+          "size_height" : 40,
+          "size_width" : 201,
+          "z" : 2
+        },
+        {
+          "document_id" : "29f59a408dab9128dde3f513d459bcd9",
+          "position_x" : 469,
+          "position_y" : 732,
+          "size_height" : 40,
+          "size_width" : 170,
+          "z" : 3
+        }
+      ],
+      "created_at" : "2025-01-23T16:54:32Z",
+      "ink_models" : {
+        "0" : {
+          "ink_svg" : "29f149d278c960339721c8b569339e870_0_ink.svg",
+          "scale" : 1
+        }
+      },
+      "label" : "Special Amino Acids",
+      "type" : "board"
+    },
+    "29f1490db6519f40ece26fba83499c91" : {
+      "cards" : [
+        {
+          "document_id" : "29f1492ae00fb76c8d9fa7bfb6a327eb",
+          "position_x" : 5,
+          "position_y" : 291,
+          "size_height" : 40,
+          "size_width" : 170,
+          "z" : 0
+        },
+        {
+          "document_id" : "29f1492aebf33a6d7ab8553165fac170",
+          "position_x" : 369,
+          "position_y" : 349,
+          "size_height" : 40,
+          "size_width" : 170,
+          "z" : 1
+        },
+        {
+          "document_id" : "29f1492b068c110ecd061a5b376b359d",
+          "position_x" : 377,
+          "position_y" : 505,
+          "size_height" : 40,
+          "size_width" : 170,
+          "z" : 2
+        },
+        {
+          "document_id" : "29f1492b1b51d1218dd0884c81011977",
+          "position_x" : 382,
+          "position_y" : 689,
+          "size_height" : 60,
+          "size_width" : 170,
+          "z" : 3
+        },
+        {
+          "document_id" : "29f1492af48569eaf26fb17d1c5ed847",
+          "position_x" : 1027,
+          "position_y" : 682,
+          "size_height" : 60,
+          "size_width" : 170,
+          "z" : 4
+        },
+        {
+          "document_id" : "29f1492b121b8fcee3da9d29367a1760",
+          "position_x" : 1151,
+          "position_y" : 279,
+          "size_height" : 120,
+          "size_width" : 170,
+          "z" : 5
+        }
+      ],
+      "created_at" : "2025-01-23T16:54:32Z",
+      "label" : "Hydrophorbic",
+      "type" : "board"
+    },
+    "29f1492ae00fb76c8d9fa7bfb6a327eb" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f1492ae00fb76c8d9fa7bfb6a327eb_original.txt",
+      "type" : "text"
+    },
+    "29f1492aebf33a6d7ab8553165fac170" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f1492aebf33a6d7ab8553165fac170_original.txt",
+      "type" : "text"
+    },
+    "29f1492af48569eaf26fb17d1c5ed847" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f1492af48569eaf26fb17d1c5ed847_original.txt",
+      "type" : "text"
+    },
+    "29f1492b1b51d1218dd0884c81011977" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f1492b1b51d1218dd0884c81011977_original.txt",
+      "type" : "text"
+    },
+    "29f1492b068c110ecd061a5b376b359d" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f1492b068c110ecd061a5b376b359d_original.txt",
+      "type" : "text"
+    },
+    "29f1492b121b8fcee3da9d29367a1760" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f1492b121b8fcee3da9d29367a1760_original.txt",
+      "type" : "text"
+    },
+    "29f1971da9aa4faad730d23bb7923abe" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f1971da9aa4faad730d23bb7923abe_original.txt",
+      "type" : "text"
+    },
+    "29f1975ed2ea3955faf8708cdcaf7c94" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f1975ed2ea3955faf8708cdcaf7c94_original.txt",
+      "type" : "text"
+    },
+    "29f14219b832bf3af1b8d5c005d2e32b" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f14219b832bf3af1b8d5c005d2e32b_original.txt",
+      "type" : "text"
+    },
+    "29f15886ce1bc9794b7e7c715b38d699" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "29f15886ce1bc9794b7e7c715b38d699_original.gif",
+      "type" : "image"
     },
     "33b5c817661404d60e4193f93b709c54" : {
       "cards" : [
         {
           "document_id" : "33b5ca3c61be74841972c6ebc756a4d6",
-          "position_x" : 145,
-          "position_y" : 179,
+          "position_x" : 118,
+          "position_y" : 121,
           "size_height" : 113,
           "size_width" : 151,
-          "z" : 1
+          "z" : 22
         },
         {
           "document_id" : "33b5ccfe4284683d61411a3372a085d5",
@@ -152,47 +971,147 @@
         },
         {
           "document_id" : "33b5ce606e130e4ce4cd82f85095ccab",
-          "position_x" : 354,
-          "position_y" : 164,
-          "scroll_position" : 0.0055472958203522677,
-          "size_height" : 137,
-          "size_width" : 183,
-          "z" : 7
+          "position_x" : 341,
+          "position_y" : 121,
+          "size_height" : 117,
+          "size_width" : 156,
+          "z" : 23
         },
         {
+          "color" : "Green",
           "document_id" : "33b68cdf0c33b6385d71eb52f11fb411",
-          "position_x" : 623,
-          "position_y" : 158,
+          "position_x" : 598,
+          "position_y" : 96,
+          "size_height" : 203,
+          "size_width" : 238,
+          "z" : 25
+        },
+        {
+          "document_id" : "33b6cbdfc1c9922e7a3591dcbb08e768",
+          "position_x" : 264,
+          "position_y" : 548,
           "size_height" : 150,
           "size_width" : 200,
-          "z" : 8
+          "z" : 9
+        },
+        {
+          "document_id" : "33b7532f3866e7686dd826b5491cb0a4",
+          "ink_model" : {
+            "ink_svg" : "33b7537971c93835cfc7a95cbc15bbaa_card_ink.svg",
+            "scale" : 1
+          },
+          "position_x" : 536,
+          "position_y" : 523,
+          "size_height" : 259,
+          "size_width" : 373,
+          "z" : 10
+        },
+        {
+          "document_id" : "33b7548d907bbba75bdf24e4776fa6ba",
+          "position_x" : 441,
+          "position_y" : 833,
+          "size_height" : 434,
+          "size_width" : 565,
+          "z" : 11
+        },
+        {
+          "document_id" : "33b755889dd39c5fcc200825e16d2196",
+          "position_x" : 1262,
+          "position_y" : 438,
+          "size_height" : 455,
+          "size_width" : 538,
+          "z" : 12
+        },
+        {
+          "document_id" : "2acb2b765f14548653a000116422046c",
+          "position_x" : 1152,
+          "position_y" : 998,
+          "size_height" : 223,
+          "size_width" : 210,
+          "z" : 29
+        },
+        {
+          "document_id" : "29f141b72935b9f383720d3d16a04b5d",
+          "position_x" : 1420,
+          "position_y" : 1002,
+          "size_height" : 194,
+          "size_width" : 300,
+          "z" : 13
+        },
+        {
+          "document_id" : "33b76f154e84010804115745624b7c7a",
+          "position_x" : 1548,
+          "position_y" : 1317,
+          "size_height" : 150,
+          "size_width" : 200,
+          "z" : 30
+        },
+        {
+          "document_id" : "2d6625c96d23ed17aecb92c19d45cf96",
+          "position_x" : 569,
+          "position_y" : 1519,
+          "size_height" : 281,
+          "size_width" : 300,
+          "z" : 17
+        },
+        {
+          "document_id" : "2d6a86fa3034b98f3aa6cf6cea0c67aa",
+          "position_x" : 263,
+          "position_y" : 1895,
+          "size_height" : 400,
+          "size_width" : 632,
+          "z" : 18
+        },
+        {
+          "document_id" : "33b777198fa634688a9fb42005cde470",
+          "position_x" : 905,
+          "position_y" : 2375,
+          "size_height" : 362,
+          "size_width" : 581,
+          "z" : 21
+        },
+        {
+          "document_id" : "33b776f1092a30df5af56bdee4199839",
+          "position_x" : 262,
+          "position_y" : 2378,
+          "size_height" : 348,
+          "size_width" : 607,
+          "z" : 20
+        },
+        {
+          "document_id" : "33c191b571120ccea253d583c9e171bc",
+          "position_x" : 1078,
+          "position_y" : 1556,
+          "size_height" : 792,
+          "size_width" : 991,
+          "z" : 27
         }
       ],
-      "created_at" : "2025-01-14T14:17:55Z",
+      "created_at" : "2025-01-23T16:42:32Z",
+      "ink_models" : {
+        "0" : {
+          "ink_svg" : "33b5c817661404d60e4193f93b709c540_0_ink.svg",
+          "scale" : 1
+        }
+      },
       "label" : "Lecture 1",
       "type" : "board"
     },
     "33b5ca3c61be74841972c6ebc756a4d6" : {
-      "created_at" : "2025-01-14T14:26:30Z",
+      "created_at" : "2025-01-23T16:50:19Z",
       "label" : "01_proteins_basics slides",
       "original_file" : "33b5ca3c61be74841972c6ebc756a4d6_original.pdf",
       "type" : "pdf"
     },
-    "33b5ca3dd0c76dd8feac11a30810e05b" : {
-      "created_at" : "2025-01-14T14:26:33Z",
-      "label" : "02_structure_determination slides",
-      "original_file" : "33b5ca3dd0c76dd8feac11a30810e05b_original.pdf",
-      "type" : "pdf"
-    },
     "33b5ca3eca35ddcf7632a409882f3d27" : {
-      "created_at" : "2025-01-14T14:26:33Z",
+      "created_at" : "2025-01-23T16:42:32Z",
       "label" : "John Kuriyan, Boyana Konforti, David Wemmer - The Molecules of Life_ Physical and Chemical Principles-Garland Science (2012)",
       "last_viewed_page" : 9,
       "original_file" : "33b5ca3eca35ddcf7632a409882f3d27_original.pdf",
       "type" : "pdf"
     },
     "33b5ccfe4284683d61411a3372a085d5" : {
-      "created_at" : "2025-01-14T14:26:30Z",
+      "created_at" : "2025-01-23T16:50:19Z",
       "excerpt_info" : {
         "end_x" : 0.6708706216320246,
         "end_y" : 0.40727223949082292,
@@ -205,28 +1124,32 @@
       "type" : "image"
     },
     "33b5ce606e130e4ce4cd82f85095ccab" : {
-      "created_at" : "2025-01-14T14:26:30Z",
+      "created_at" : "2025-01-23T16:50:19Z",
+      "ink_models" : {
+        "35" : {
+          "ink_svg" : "33b5ce606e130e4ce4cd82f85095ccab35_35_ink.svg",
+          "scale" : 53.736585365853657
+        },
+        "36" : {
+          "ink_svg" : "33b5ce606e130e4ce4cd82f85095ccab36_36_ink.svg",
+          "scale" : 53.736585365853657
+        },
+        "68" : {
+          "ink_svg" : "33b5ce606e130e4ce4cd82f85095ccab68_68_ink.svg",
+          "scale" : 53.736585365853657
+        },
+        "88" : {
+          "ink_svg" : "33b5ce606e130e4ce4cd82f85095ccab88_88_ink.svg",
+          "scale" : 53.736585365853657
+        }
+      },
       "label" : "01_proteins_basics slides",
-      "last_viewed_page" : 3,
+      "last_viewed_page" : 67,
       "original_file" : "33b5ce606e130e4ce4cd82f85095ccab_original.pdf",
       "type" : "pdf"
     },
-    "33b5d3a0f14990f476762261ef5dba88" : {
-      "created_at" : "2025-01-14T14:26:33Z",
-      "label" : "2254 MSCBIO 2030 SEC1000 INTRO TO CMPTL STRUCL BIOLOGY",
-      "title" : "2254 MSCBIO 2030 SEC1000 INTRO TO CMPTL STRUCL BIOLOGY",
-      "type" : "url",
-      "url" : "https:\/\/canvas.pitt.edu\/courses\/301742"
-    },
-    "33b5d388e350af4b755e33128054480c" : {
-      "created_at" : "2025-01-14T14:26:33Z",
-      "label" : "2231 MSCBIO 2030 SEC1060 INTRO TO CMPTL STRUCL BIOLOGY",
-      "title" : "2231 MSCBIO 2030 SEC1060 INTRO TO CMPTL STRUCL BIOLOGY",
-      "type" : "url",
-      "url" : "https:\/\/canvas.pitt.edu\/courses\/170621"
-    },
     "33b6a0f15c2055491a183d22dc44b8af" : {
-      "created_at" : "2025-01-14T16:28:52Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "excerpt_info" : {
         "end_x" : 0.45308942984271516,
         "end_y" : 0.46766871882793015,
@@ -239,7 +1162,7 @@
       "type" : "image"
     },
     "33b6a6f7d3a61f3c16b8cc98cb5d6556" : {
-      "created_at" : "2025-01-14T16:35:27Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "excerpt_info" : {
         "end_x" : 0.57462618998344372,
         "end_y" : 0.46417890819825436,
@@ -252,12 +1175,12 @@
       "type" : "image"
     },
     "33b6a53c84063a293c93851769b09e56" : {
-      "created_at" : "2025-01-14T16:33:34Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "original_file" : "33b6a53c84063a293c93851769b09e56_original.jpg",
       "type" : "image"
     },
     "33b6a71ebcb561853d2ef0663361ccf2" : {
-      "created_at" : "2025-01-14T16:35:37Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "excerpt_info" : {
         "end_x" : 0.55428652731788075,
         "end_y" : 0.58892563513092266,
@@ -270,12 +1193,12 @@
       "type" : "image"
     },
     "33b6a0755b40a6fac34d124dd161e505" : {
-      "created_at" : "2025-01-14T16:28:21Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "original_file" : "33b6a0755b40a6fac34d124dd161e505_original.txt",
       "type" : "text"
     },
     "33b6a1712a84db84960ee7022dcad760" : {
-      "created_at" : "2025-01-14T16:29:25Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "original_file" : "33b6a1712a84db84960ee7022dcad760_original.txt",
       "type" : "text"
     },
@@ -283,69 +1206,190 @@
       "cards" : [
         {
           "document_id" : "33b69db9c2df80e9bd1460092a4abe8a",
-          "position_x" : 108,
-          "position_y" : 97,
-          "size_height" : 252,
-          "size_width" : 247,
-          "z" : 1
+          "ink_model" : {
+            "ink_svg" : "33b6a2db97bcc49718ef003546823a23_card_ink.svg",
+            "scale" : 1
+          },
+          "position_x" : 120,
+          "position_y" : 70,
+          "size_height" : 454,
+          "size_width" : 446,
+          "z" : 20
         },
         {
           "document_id" : "33b6a71ebcb561853d2ef0663361ccf2",
-          "position_x" : 371,
-          "position_y" : 276,
+          "position_x" : 594,
+          "position_y" : 408,
           "size_height" : 40,
           "size_width" : 209,
-          "z" : 4
+          "z" : 32
         },
         {
           "document_id" : "33b6a6f7d3a61f3c16b8cc98cb5d6556",
-          "position_x" : 370,
-          "position_y" : 139,
+          "position_x" : 582,
+          "position_y" : 164,
           "size_height" : 40,
           "size_width" : 303,
-          "z" : 5
+          "z" : 21
+        },
+        {
+          "document_id" : "33b6a53c84063a293c93851769b09e56",
+          "position_x" : 192,
+          "position_y" : 592,
+          "size_height" : 120,
+          "size_width" : 338,
+          "z" : 23
+        },
+        {
+          "document_id" : "33d33bd3363a19d142d38fc5077549b3",
+          "position_x" : 923,
+          "position_y" : 293,
+          "size_height" : 200,
+          "size_width" : 226,
+          "z" : 52
+        },
+        {
+          "document_id" : "33d33bf762f7cda1e4787cd758568d23",
+          "position_x" : 1175,
+          "position_y" : 293,
+          "size_height" : 200,
+          "size_width" : 226,
+          "z" : 53
+        },
+        {
+          "document_id" : "33d34a3ac42674a54a20d56740b177ec",
+          "position_x" : 921,
+          "position_y" : 66,
+          "size_height" : 200,
+          "size_width" : 229,
+          "z" : 48
+        },
+        {
+          "document_id" : "33d34a5b63e5282318259a0ef7f86032",
+          "position_x" : 1177,
+          "position_y" : 66,
+          "size_height" : 200,
+          "size_width" : 225,
+          "z" : 50
+        },
+        {
+          "document_id" : "33c191b571120ccea253d583c9e171bc",
+          "position_x" : 1302,
+          "position_y" : 729,
+          "size_height" : 792,
+          "size_width" : 991,
+          "z" : 55
+        },
+        {
+          "document_id" : "33c130b53ccfca6d48f6c1d16c5a771e",
+          "ink_model" : {
+            "ink_svg" : "33e2696a32a466aca924dacb60dde106_card_ink.svg",
+            "scale" : 1
+          },
+          "position_x" : 133,
+          "position_y" : 1206,
+          "size_height" : 171,
+          "size_width" : 978,
+          "z" : 56
+        },
+        {
+          "color" : "Green",
+          "document_id" : "33e27618682b45159166929aad771e01",
+          "position_x" : 658,
+          "position_y" : 560,
+          "size_height" : 300,
+          "size_width" : 367,
+          "z" : 57
         }
       ],
-      "created_at" : "2025-01-14T16:30:39Z",
+      "chains" : [
+        {
+          "chain_id" : "33d1371bdd8be1fa0f19ddc9c2514646",
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 152,
+          "position_y" : 18,
+          "text_file" : "33d1371bdd8be1fa0f19ddc9c2514646.txt"
+        },
+        {
+          "chain_id" : "33d2fa35ddeffdc2e0aba897c7856e7c",
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 161,
+          "position_y" : 338,
+          "text_file" : "33d2fa35ddeffdc2e0aba897c7856e7c.txt"
+        },
+        {
+          "chain_id" : "33e2621cff97c9f68a641c7f9b0a3d9a",
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 587,
+          "position_y" : 600,
+          "text_file" : "33e2621cff97c9f68a641c7f9b0a3d9a.txt"
+        }
+      ],
+      "created_at" : "2025-01-23T16:54:32Z",
+      "ink_models" : {
+        "0" : {
+          "ink_svg" : "33b6a29156fa07e80b6e8ad75cc840c20_0_ink.svg",
+          "scale" : 1
+        }
+      },
       "label" : "recreate the first two columns Figure 1D (4 images in total)",
       "type" : "board"
     },
-    "33b68b480b0898a9e2043f3dcbcad1de" : {
-      "created_at" : "2025-01-14T16:05:13Z",
-      "original_file" : "33b68b480b0898a9e2043f3dcbcad1de_original.png",
-      "type" : "image"
+    "33b6cbdfc1c9922e7a3591dcbb08e768" : {
+      "created_at" : "2025-01-23T16:50:19Z",
+      "label" : "Protein Chemistry",
+      "type" : "board"
     },
     "33b68cdf0c33b6385d71eb52f11fb411" : {
       "cards" : [
         {
           "document_id" : "33b694c4ae0c528e2514eef4ac086c5d",
-          "position_x" : 146,
-          "position_y" : 98,
+          "position_x" : 111,
+          "position_y" : 120,
           "size_height" : 188,
           "size_width" : 477,
-          "z" : 4
+          "z" : 12
         },
         {
           "document_id" : "33b694f26e91ca4bedd9ebd9ed60be78",
-          "position_x" : 136,
-          "position_y" : 365,
+          "position_x" : 109,
+          "position_y" : 403,
           "size_height" : 197,
           "size_width" : 490,
-          "z" : 5
+          "z" : 14
+        },
+        {
+          "document_id" : "33b5c817661404d60e4193f93b709c54",
+          "position_x" : 654,
+          "position_y" : 403,
+          "size_height" : 195,
+          "size_width" : 218,
+          "z" : 15
+        },
+        {
+          "document_id" : "33e12813606809a4d627b705ee9c607a",
+          "position_x" : 652,
+          "position_y" : 108,
+          "size_height" : 209,
+          "size_width" : 367,
+          "z" : 13
         }
       ],
-      "created_at" : "2025-01-14T16:07:00Z",
-      "ink_models" : {
-        "0" : {
-          "ink_svg" : "33b68cdf0c33b6385d71eb52f11fb4110_0_ink.svg",
-          "scale" : 1
-        }
-      },
+      "created_at" : "2025-01-23T16:42:32Z",
       "label" : "Assignment 1",
       "type" : "board"
     },
     "33b68cdf1b654af19c4b3be735ccf6f2" : {
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:51:38Z",
       "label" : "pone.0012913 1..9",
       "original_file" : "33b68cdf1b654af19c4b3be735ccf6f2_original.pdf",
       "type" : "pdf"
@@ -419,12 +1463,12 @@
           "33b68ce319795fb0c7b772d4e1dfd138"
         ]
       ],
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:51:38Z",
       "label" : "Part 1 — Recreate Figure 3A",
       "type" : "board"
     },
     "33b68ce2ae49ea6cd746455b330ba861" : {
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "excerpt_info" : {
         "end_x" : 0.36856180153145696,
         "end_y" : 0.27048026842948719,
@@ -465,6 +1509,14 @@
           "size_height" : 315,
           "size_width" : 420,
           "z" : 1
+        },
+        {
+          "document_id" : "33c102a9a42a70740beb691c1180d3a2",
+          "position_x" : 691,
+          "position_y" : 465,
+          "size_height" : 319,
+          "size_width" : 426,
+          "z" : 2
         }
       ],
       "chains" : [
@@ -484,12 +1536,12 @@
           "text_file" : "33b68ce6b52d7016134d464a527c8a60.txt"
         }
       ],
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:51:38Z",
       "label" : "Part 2 — Recreate Figure 3B",
       "type" : "board"
     },
     "33b68ce5ad1dde5bd1bc5d9bb59c5181" : {
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "excerpt_info" : {
         "end_x" : 0.64239057326158944,
         "end_y" : 0.26549979967948717,
@@ -502,7 +1554,7 @@
       "type" : "image"
     },
     "33b68ce8fab09da55e3a9808406542ff" : {
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "excerpt_info" : {
         "end_x" : 0.80838834923220104,
         "end_y" : 0.97406657102977667,
@@ -514,12 +1566,12 @@
       "type" : "image"
     },
     "33b68ce9ab8f9d09e21dd312eb035af2" : {
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:51:38Z",
       "original_file" : "33b68ce9ab8f9d09e21dd312eb035af2_original.txt",
       "type" : "text"
     },
     "33b68ce31c0fc14d5a7cd830c1c2ac88" : {
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "label" : "Output from pymol",
       "original_file" : "33b68ce31c0fc14d5a7cd830c1c2ac88_original.png",
       "type" : "image"
@@ -580,12 +1632,12 @@
           "text_file" : "33b68ce97158e350e7bf0e7159f9b9f0.txt"
         }
       ],
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:51:38Z",
       "label" : "Part 3 — Recreate Figure 5B",
       "type" : "board"
     },
     "33b68ce78ac04ec0541c5e74022a2b41" : {
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "excerpt_info" : {
         "end_x" : 0.92280952504139069,
         "end_y" : 0.45753956330128204,
@@ -598,17 +1650,17 @@
       "type" : "image"
     },
     "33b68ce87f97bba6e1d3c3a3a83c4032" : {
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "original_file" : "33b68ce87f97bba6e1d3c3a3a83c4032_original.png",
       "type" : "image"
     },
     "33b68ce7078dc914acde1ed502435c42" : {
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:51:38Z",
       "original_file" : "33b68ce7078dc914acde1ed502435c42_original.jpg",
       "type" : "image"
     },
     "33b68ce8037e4ad8e9e56680ae31acff" : {
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "excerpt_info" : {
         "end_x" : 0.68353877793874174,
         "end_y" : 0.36983423477564104,
@@ -621,7 +1673,7 @@
       "type" : "image"
     },
     "33b68ce6431866dac8cb1ecdbad516eb" : {
-      "created_at" : "2025-01-14T16:07:00Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "label" : "Recreate Figure 3B",
       "original_file" : "33b68ce6431866dac8cb1ecdbad516eb_original.png",
       "type" : "image"
@@ -629,27 +1681,36 @@
     "33b68d61af1bbc40526b255a548de0eb" : {
       "cards" : [
         {
+          "color" : "Green",
           "document_id" : "33b68cdf0c33b6385d71eb52f11fb411",
           "position_x" : 80,
           "position_y" : 127,
           "size_height" : 150,
           "size_width" : 200,
           "z" : 1
+        },
+        {
+          "document_id" : "33e5104170772046b949720d3f6bbdc9",
+          "position_x" : 337,
+          "position_y" : 125,
+          "size_height" : 150,
+          "size_width" : 200,
+          "z" : 2
         }
       ],
-      "created_at" : "2025-01-14T16:07:30Z",
-      "label" : "Assignments",
+      "created_at" : "2025-01-23T16:42:32Z",
+      "label" : "StructBio — Assignments",
       "type" : "board"
     },
     "33b69d90825fabf688861087d0dfdeaa" : {
-      "created_at" : "2025-01-14T16:25:11Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "label" : "Structural insights into the SARS-CoV-2 Omicron RBD-ACE2 interaction",
       "last_viewed_page" : 1,
       "original_file" : "33b69d90825fabf688861087d0dfdeaa_original.pdf",
       "type" : "pdf"
     },
     "33b69db9c2df80e9bd1460092a4abe8a" : {
-      "created_at" : "2025-01-14T16:25:22Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "excerpt_info" : {
         "end_x" : 0.42656055980960272,
         "end_y" : 0.57433808057980051,
@@ -662,12 +1723,12 @@
       "type" : "image"
     },
     "33b69def3fd3c421c7c058d48eedaf5a" : {
-      "created_at" : "2025-01-14T16:25:35Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "original_file" : "33b69def3fd3c421c7c058d48eedaf5a_original.txt",
       "type" : "text"
     },
     "33b69e2fa1d4469361650a559f091f91" : {
-      "created_at" : "2025-01-14T16:25:52Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "excerpt_info" : {
         "end_x" : 0.74377845612582782,
         "end_y" : 0.27535653054862841,
@@ -679,24 +1740,31 @@
       "original_file" : "33b69e2fa1d4469361650a559f091f91_original.png",
       "type" : "image"
     },
+    "33b76f154e84010804115745624b7c7a" : {
+      "created_at" : "2025-01-23T16:50:19Z",
+      "label" : "Amino_Acids",
+      "last_viewed_page" : 0,
+      "original_file" : "33b76f154e84010804115745624b7c7a_original.pdf",
+      "type" : "pdf"
+    },
     "33b694c4ae0c528e2514eef4ac086c5d" : {
       "cards" : [
         {
           "document_id" : "33b68cdf1b654af19c4b3be735ccf6f2",
-          "position_x" : 50,
-          "position_y" : 50,
+          "position_x" : 91,
+          "position_y" : 68,
           "scroll_position" : 0.10875760304259312,
           "size_height" : 150,
           "size_width" : 200,
-          "z" : 1
+          "z" : 31
         },
         {
           "document_id" : "33b68ce5a3b070af3b1a40e6c5b184cf",
-          "position_x" : 548,
-          "position_y" : 55,
+          "position_x" : 588,
+          "position_y" : 73,
           "size_height" : 150,
           "size_width" : 200,
-          "z" : 1
+          "z" : 30
         },
         {
           "document_id" : "33b68ce7078dc914acde1ed502435c42",
@@ -704,27 +1772,27 @@
             "ink_svg" : "33b694c5ab7c9eb51534321da37f566e_card_ink.svg",
             "scale" : 1
           },
-          "position_x" : 134,
-          "position_y" : 278,
+          "position_x" : 174,
+          "position_y" : 296,
           "size_height" : 393,
           "size_width" : 598,
-          "z" : 19
+          "z" : 33
         },
         {
           "document_id" : "33b68ce2a4162ca7f7f0fc8bcdb7dc3b",
-          "position_x" : 309,
-          "position_y" : 55,
+          "position_x" : 349,
+          "position_y" : 73,
           "size_height" : 150,
           "size_width" : 200,
-          "z" : 1
+          "z" : 28
         },
         {
           "document_id" : "33b68ce77f8b985f713acd3a68c98fcb",
-          "position_x" : 778,
-          "position_y" : 57,
+          "position_x" : 819,
+          "position_y" : 75,
           "size_height" : 150,
           "size_width" : 200,
-          "z" : 1
+          "z" : 32
         },
         {
           "document_id" : "33b68ce9ab8f9d09e21dd312eb035af2",
@@ -732,11 +1800,11 @@
             "ink_svg" : "33b694c5c1f7be04785c276e32787d2d_card_ink.svg",
             "scale" : 1
           },
-          "position_x" : 810,
-          "position_y" : 293,
+          "position_x" : 850,
+          "position_y" : 311,
           "size_height" : 160,
           "size_width" : 369,
-          "z" : 1
+          "z" : 29
         }
       ],
       "chains" : [
@@ -751,8 +1819,8 @@
 
           },
           "line_break_width" : 600,
-          "position_x" : 143,
-          "position_y" : 339,
+          "position_x" : 183,
+          "position_y" : 357,
           "text_file" : "33b694c752f6658fc436167c57da040f.txt"
         },
         {
@@ -766,13 +1834,13 @@
 
           },
           "line_break_width" : 600,
-          "position_x" : 537,
-          "position_y" : 390,
+          "position_x" : 577,
+          "position_y" : 408,
           "text_file" : "33b694c755f298fe951aa45e8131d9a2.txt"
         }
       ],
-      "created_at" : "2025-01-14T16:15:35Z",
-      "label" : "crystal structure of a kinase protein (AKT1) bound to an allosteric inhibitor",
+      "created_at" : "2025-01-23T16:50:07Z",
+      "label" : "Part 1 — crystal structure of a kinase protein (AKT1) bound to an allosteric inhibitor",
       "type" : "board"
     },
     "33b694f26e91ca4bedd9ebd9ed60be78" : {
@@ -872,19 +1940,31 @@
           "33b6a291572564d213578a6225f02012"
         ]
       ],
-      "created_at" : "2025-01-14T16:15:46Z",
-      "label" : "SARS-CoV-2 has spike proteins on its outer membrane that bind to the ACE2 receptor on host cells",
+      "created_at" : "2025-01-23T16:50:07Z",
+      "ink_models" : {
+        "0" : {
+          "ink_svg" : "33b694f26e91ca4bedd9ebd9ed60be780_0_ink.svg",
+          "scale" : 1
+        }
+      },
+      "label" : "Part 2 — SARS-CoV-2 has spike proteins on its outer membrane that bind to the ACE2 receptor on host cells",
       "type" : "board"
     },
-    "33b6314f6daeb339ae00a9f1e90fe83f" : {
-      "created_at" : "2025-01-14T14:26:57Z",
-      "label" : "pone.0012913 1..9",
-      "last_viewed_page" : 3,
-      "original_file" : "33b6314f6daeb339ae00a9f1e90fe83f_original.pdf",
-      "type" : "pdf"
+    "33b776f1092a30df5af56bdee4199839" : {
+      "created_at" : "2025-01-23T16:50:19Z",
+      "excerpt_info" : {
+        "end_x" : 0.94460491625310172,
+        "end_y" : 0.78171841541755893,
+        "excerpted_id" : "33b5ce606e130e4ce4cd82f85095ccab",
+        "excerpted_page" : 65,
+        "start_x" : 0.12457028019023987,
+        "start_y" : 0.17297075749464669
+      },
+      "original_file" : "33b776f1092a30df5af56bdee4199839_original.png",
+      "type" : "image"
     },
     "33b6341fe310ff6bac417e0c87762e8d" : {
-      "created_at" : "2025-01-14T14:30:01Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "excerpt_info" : {
         "end_x" : 0.93608689466059603,
         "end_y" : 0.34848507612179486,
@@ -896,12 +1976,216 @@
       "original_file" : "33b6341fe310ff6bac417e0c87762e8d_original.png",
       "type" : "image"
     },
+    "33b7532f3866e7686dd826b5491cb0a4" : {
+      "created_at" : "2025-01-23T16:50:19Z",
+      "excerpt_info" : {
+        "end_x" : 0.7349011479591836,
+        "end_y" : 0.76075250330105637,
+        "excerpted_id" : "33b5ce606e130e4ce4cd82f85095ccab",
+        "excerpted_page" : 15,
+        "start_x" : 0.23116496598639455,
+        "start_y" : 0.30793353873239437
+      },
+      "original_file" : "33b7532f3866e7686dd826b5491cb0a4_original.png",
+      "type" : "image"
+    },
+    "33b7548d907bbba75bdf24e4776fa6ba" : {
+      "created_at" : "2025-01-23T16:50:19Z",
+      "excerpt_info" : {
+        "end_x" : 0.99939024390243902,
+        "end_y" : 0.93927444794952675,
+        "excerpted_id" : "33b5ce606e130e4ce4cd82f85095ccab",
+        "excerpted_page" : 20,
+        "start_x" : 0.053658536585365853,
+        "start_y" : 0
+      },
+      "original_file" : "33b7548d907bbba75bdf24e4776fa6ba_original.png",
+      "type" : "image"
+    },
+    "33b755889dd39c5fcc200825e16d2196" : {
+      "created_at" : "2025-01-23T16:50:19Z",
+      "excerpt_info" : {
+        "end_x" : 0.73686440677966103,
+        "end_y" : 0.78673245614035081,
+        "excerpted_id" : "33b5ce606e130e4ce4cd82f85095ccab",
+        "excerpted_page" : 19,
+        "start_x" : 0.10889830508474575,
+        "start_y" : 0.099232456140350866
+      },
+      "original_file" : "33b755889dd39c5fcc200825e16d2196_original.png",
+      "type" : "image"
+    },
+    "33b777198fa634688a9fb42005cde470" : {
+      "created_at" : "2025-01-23T16:50:19Z",
+      "excerpt_info" : {
+        "end_x" : 0.95925739247311825,
+        "end_y" : 0.81344101311563177,
+        "excerpted_id" : "33b5ce606e130e4ce4cd82f85095ccab",
+        "excerpted_page" : 67,
+        "start_x" : 0.12160424421009099,
+        "start_y" : 0.13761375802997861
+      },
+      "original_file" : "33b777198fa634688a9fb42005cde470_original.png",
+      "type" : "image"
+    },
     "33b6964880bcdd99796fb55012017f8f" : {
-      "created_at" : "2025-01-14T16:17:14Z",
+      "created_at" : "2025-01-23T16:54:32Z",
+      "ink_models" : {
+        "2" : {
+          "ink_svg" : "33b6964880bcdd99796fb55012017f8f2_2_ink.svg",
+          "scale" : 52.268136585365859
+        }
+      },
       "label" : "Structural and functional properties of SARS-CoV-2 spike protein: potential antivirus drug development for COVID-19",
       "last_viewed_page" : 2,
       "original_file" : "33b6964880bcdd99796fb55012017f8f_original.pdf",
       "type" : "pdf"
+    },
+    "33c102a9a42a70740beb691c1180d3a2" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "33c102a9a42a70740beb691c1180d3a2_original.png",
+      "type" : "image"
+    },
+    "33c130b53ccfca6d48f6c1d16c5a771e" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "excerpt_info" : {
+        "end_x" : 0.96607294317217984,
+        "end_y" : 0.84418901660280976,
+        "excerpted_id" : "33b69d90825fabf688861087d0dfdeaa",
+        "excerpted_page" : 1,
+        "start_x" : 0.044953350296861747,
+        "start_y" : 0.72318007662835249
+      },
+      "original_file" : "33c130b53ccfca6d48f6c1d16c5a771e_original.png",
+      "type" : "image"
+    },
+    "33c191b571120ccea253d583c9e171bc" : {
+      "created_at" : "2025-01-23T16:50:19Z",
+      "label" : "Amino Acid Chart",
+      "original_file" : "33c191b571120ccea253d583c9e171bc_original.jpg",
+      "type" : "image"
+    },
+    "33d33bd3363a19d142d38fc5077549b3" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "33d33bd3363a19d142d38fc5077549b3_original.png",
+      "type" : "image"
+    },
+    "33d33bf762f7cda1e4787cd758568d23" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "33d33bf762f7cda1e4787cd758568d23_original.png",
+      "type" : "image"
+    },
+    "33d34a3ac42674a54a20d56740b177ec" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "33d34a3ac42674a54a20d56740b177ec_original.png",
+      "type" : "image"
+    },
+    "33d34a5b63e5282318259a0ef7f86032" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "33d34a5b63e5282318259a0ef7f86032_original.png",
+      "type" : "image"
+    },
+    "33e18ebab3e94882d5af4e84ff02eb3c" : {
+      "created_at" : "2025-01-23T16:50:15Z",
+      "original_file" : "33e18ebab3e94882d5af4e84ff02eb3c_original.txt",
+      "type" : "text"
+    },
+    "33e50e2a42ff1b6d835668bc9f558788" : {
+      "created_at" : "2025-01-23T16:50:42Z",
+      "original_file" : "33e50e2a42ff1b6d835668bc9f558788_original.png",
+      "type" : "image"
+    },
+    "33e50ecd356d0f73690298814d9b1a85" : {
+      "created_at" : "2025-01-23T16:51:24Z",
+      "original_file" : "33e50ecd356d0f73690298814d9b1a85_original.txt",
+      "type" : "text"
+    },
+    "33e185c2b55b5aa6172e8706a0aaa4c3" : {
+      "created_at" : "2025-01-23T16:50:15Z",
+      "label" : "Mechanism of gating and partial agonist action in the glycine receptor",
+      "last_viewed_page" : 9,
+      "original_file" : "33e185c2b55b5aa6172e8706a0aaa4c3_original.pdf",
+      "type" : "pdf"
+    },
+    "33e18616d368263b61440488915a2a2c" : {
+      "created_at" : "2025-01-23T16:50:15Z",
+      "label" : "nature14853 224..245",
+      "last_viewed_page" : 1,
+      "original_file" : "33e18616d368263b61440488915a2a2c_original.pdf",
+      "type" : "pdf"
+    },
+    "33e27618682b45159166929aad771e01" : {
+      "created_at" : "2025-01-23T16:54:32Z",
+      "original_file" : "33e27618682b45159166929aad771e01_original.txt",
+      "type" : "text"
+    },
+    "33e12813606809a4d627b705ee9c607a" : {
+      "cards" : [
+        {
+          "document_id" : "33e185c2b55b5aa6172e8706a0aaa4c3",
+          "position_x" : 132,
+          "position_y" : 265,
+          "scroll_position" : 0.41006420185634795,
+          "size_height" : 150,
+          "size_width" : 200,
+          "z" : 6
+        },
+        {
+          "document_id" : "33e18616d368263b61440488915a2a2c",
+          "position_x" : 391,
+          "position_y" : 261,
+          "scroll_position" : 0.19101994442380274,
+          "size_height" : 150,
+          "size_width" : 200,
+          "z" : 7
+        },
+        {
+          "color" : "Yellow",
+          "document_id" : "33e18ebab3e94882d5af4e84ff02eb3c",
+          "position_x" : 654,
+          "position_y" : 296,
+          "size_height" : 60,
+          "size_width" : 281,
+          "z" : 8
+        },
+        {
+          "document_id" : "33e50e2a42ff1b6d835668bc9f558788",
+          "position_x" : 121,
+          "position_y" : 478,
+          "size_height" : 312,
+          "size_width" : 971,
+          "z" : 9
+        },
+        {
+          "color" : "Yellow",
+          "document_id" : "33e50ecd356d0f73690298814d9b1a85",
+          "position_x" : 1122,
+          "position_y" : 275,
+          "size_height" : 340,
+          "size_width" : 368,
+          "z" : 10
+        }
+      ],
+      "chains" : [
+        {
+          "chain_id" : "33e1284cada1a37bfdaac959f823392b",
+          "ink_models" : {
+
+          },
+          "line_break_width" : 600,
+          "position_x" : 129,
+          "position_y" : 85,
+          "text_file" : "33e1284cada1a37bfdaac959f823392b.txt"
+        }
+      ],
+      "created_at" : "2025-01-23T16:50:07Z",
+      "label" : "Part 3 — ",
+      "type" : "board"
+    },
+    "33e5104170772046b949720d3f6bbdc9" : {
+      "created_at" : "2025-01-23T16:52:59Z",
+      "label" : "Assignment 2",
+      "type" : "board"
     },
     "335aeef66ec12472601054f5d4a51858" : {
       "cards" : [
@@ -1138,83 +2422,83 @@
           "335af918727b1f800bd1dd69d44a8a25"
         ]
       ],
-      "created_at" : "2025-01-14T14:26:26Z",
+      "created_at" : "2025-01-23T15:32:45Z",
       "label" : "ICLR 2025 Workshops",
       "type" : "board"
     },
     "335aef4b50566319d5978e8b0bbd349b" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "XAI4Science: From Understanding Model Behavior to Discovering New...",
       "title" : "XAI4Science: From Understanding Model Behavior to Discovering New...",
       "type" : "url",
       "url" : "https:\/\/openreview.net\/forum?id=PwoXoEM6e3"
     },
     "335aef1451fa7bfc104f1ba1a4ad7414" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "ICLR2025 workshop proposal.docx",
       "original_file" : "335aef1451fa7bfc104f1ba1a4ad7414_original.pdf",
       "type" : "pdf"
     },
     "335aefe76c5e98ffd2f9aa5e0af4c77f" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "95_AI_for_Nucleic_Acids_AI4NA_",
       "original_file" : "335aefe76c5e98ffd2f9aa5e0af4c77f_original.pdf",
       "type" : "pdf"
     },
     "335af2c051fad8e499285c950492bc03" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "Machine Learning Multiscale Processes",
       "title" : "Machine Learning Multiscale Processes",
       "type" : "url",
       "url" : "https:\/\/openreview.net\/forum?id=uAtjhZW1QV"
     },
     "335af5de0f0001ca92de3e3a35c2621e" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "65_Integrating_Generative_and_",
       "last_viewed_page" : 6,
       "original_file" : "335af5de0f0001ca92de3e3a35c2621e_original.pdf",
       "type" : "pdf"
     },
     "335af20caf3f743499f01af5285ed8b7" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "2025 LMRL ICLR Proposal - Final Version ",
       "original_file" : "335af20caf3f743499f01af5285ed8b7_original.pdf",
       "type" : "pdf"
     },
     "335af52bedd2571712a41fea384b8d78" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "90_AI4MAT_ICLR_2025_ICLR_2025_",
       "last_viewed_page" : 2,
       "original_file" : "335af52bedd2571712a41fea384b8d78_original.pdf",
       "type" : "pdf"
     },
     "335af4180c149b33bf3b189c27b659ed" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "101_Machine_Learning_for_Genom",
       "original_file" : "335af4180c149b33bf3b189c27b659ed_original.pdf",
       "type" : "pdf"
     },
     "335af91870d1181b07256694cef29987" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "106_Workshop_on_Reasoning_and_",
       "original_file" : "335af91870d1181b07256694cef29987_original.pdf",
       "type" : "pdf"
     },
     "335af5314896b321d095386acb1c862c" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "AI4MAT-ICLR-2025: ICLR 2025 Workshop on AI for Accelerated...",
       "title" : "AI4MAT-ICLR-2025: ICLR 2025 Workshop on AI for Accelerated...",
       "type" : "url",
       "url" : "https:\/\/openreview.net\/forum?id=DV0ar1j6Zw"
     },
     "335af36441968681ee06eb11066b1fa5" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "Machine Learning Multiscale Processes",
       "original_file" : "335af36441968681ee06eb11066b1fa5_original.pdf",
       "type" : "pdf"
     },
     "335afbb0b4c3ebb4cc3e898f16fb3351" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "76_Towards_Agentic_AI_for_Scie",
       "original_file" : "335afbb0b4c3ebb4cc3e898f16fb3351_original.pdf",
       "type" : "pdf"
@@ -1238,7 +2522,7 @@
           "z" : 2
         }
       ],
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "Board 1",
       "type" : "board"
     },
@@ -1297,7 +2581,7 @@
           "335b7a136792331288cac5e685ac72b5"
         ]
       ],
-      "created_at" : "2025-01-14T14:36:36Z",
+      "created_at" : "2025-01-23T16:51:58Z",
       "ink_models" : {
         "0" : {
           "ink_svg" : "335b3e9239d798c9358e9ba136df33a50_0_ink.svg",
@@ -1308,12 +2592,12 @@
       "type" : "board"
     },
     "335b3ea901be6314356df91bea038411" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "original_file" : "335b3ea901be6314356df91bea038411_original.txt",
       "type" : "text"
     },
     "335b4c2692f2c02bdfccb972a2da9951" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "original_file" : "335b4c2692f2c02bdfccb972a2da9951_original.txt",
       "type" : "text"
     },
@@ -1328,26 +2612,26 @@
           "z" : 1
         }
       ],
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "board 2",
       "type" : "board"
     },
     "335b7a13d9d6366cc3e5ca25411fe8d4" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "XAI4Science: From Understanding Model Behavior to Discovering New...",
       "title" : "XAI4Science: From Understanding Model Behavior to Discovering New...",
       "type" : "url",
       "url" : "https:\/\/openreview.net\/forum?id=PwoXoEM6e3"
     },
     "335b7a144eed9c8185f523e93da6a5ce" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "ICLR2025 workshop proposal.docx",
       "last_viewed_page" : 0,
       "original_file" : "335b7a144eed9c8185f523e93da6a5ce_original.pdf",
       "type" : "pdf"
     },
     "336af9662a46bd9b3bdbdfc576424c7f" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "excerpt_info" : {
         "end_x" : 0.82905982905982911,
         "end_y" : 0.64810017271157161,
@@ -1360,12 +2644,12 @@
       "type" : "image"
     },
     "3363cad8756054267d37740048805ede" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "board 3",
       "type" : "board"
     },
     "3363caf9c1a6f930b133cb2770d8db8c" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "excerpt_info" : {
         "end_x" : 0.90244207057823123,
         "end_y" : 0.21946655332209919,
@@ -1382,11 +2666,11 @@
         {
           "card_id" : "3364db5bc97c43bccf28d5ec1181843b",
           "document_id" : "335b3e9239d798c9358e9ba136df33a5",
-          "position_x" : 804,
+          "position_x" : 710,
           "position_y" : 68,
           "size_height" : 150,
           "size_width" : 200,
-          "z" : 29
+          "z" : 33
         },
         {
           "document_id" : "335aeef66ec12472601054f5d4a51858",
@@ -1399,28 +2683,28 @@
         {
           "card_id" : "337348c60a84ef8cb45967b28625dcd4",
           "document_id" : "337348c609a180e13d0d3f735fbd711f",
-          "position_x" : 447,
+          "position_x" : 354,
           "position_y" : 140,
           "size_height" : 40,
           "size_width" : 226,
-          "z" : 30
+          "z" : 34
         },
         {
           "card_id" : "337349381a87b79c8eaf27cd8d9d7504",
           "document_id" : "3372ec2ef7538cf2fd0cdebaa278d060",
-          "position_x" : 600,
+          "position_x" : 506,
           "position_y" : 256,
           "size_height" : 148,
           "size_width" : 223,
-          "z" : 31
+          "z" : 35
         },
         {
-          "document_id" : "33b5c45258e057c136f846dab761373c",
-          "position_x" : 91,
-          "position_y" : 338,
-          "size_height" : 125,
-          "size_width" : 284,
-          "z" : 32
+          "document_id" : "33b68d61af1bbc40526b255a548de0eb",
+          "position_x" : 105,
+          "position_y" : 348,
+          "size_height" : 150,
+          "size_width" : 200,
+          "z" : 36
         }
       ],
       "connections" : [
@@ -1433,7 +2717,7 @@
           "337348c60a84ef8cb45967b28625dcd4"
         ]
       ],
-      "created_at" : "2025-01-14T14:17:50Z",
+      "created_at" : "2025-01-23T15:32:42Z",
       "label" : "Public",
       "type" : "board"
     },
@@ -1711,7 +2995,7 @@
           "text_file" : "3372ec37bb35cd979b363520224be66f.txt"
         }
       ],
-      "created_at" : "2025-01-14T14:36:36Z",
+      "created_at" : "2025-01-23T16:51:58Z",
       "ink_models" : {
         "0" : {
           "ink_svg" : "3372ec2ef7538cf2fd0cdebaa278d0600_0_ink.svg",
@@ -1722,47 +3006,47 @@
       "type" : "board"
     },
     "3372ec3cd5bed708bb3607519a8d736a" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "original_file" : "3372ec3cd5bed708bb3607519a8d736a_original.txt",
       "type" : "text"
     },
     "3372ec3d29972588563c57dd5a56b2f5" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "No color",
       "type" : "board"
     },
     "3372ec3da5286e6facac4d8ae95f90ba" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "Red",
       "type" : "board"
     },
     "3372ec3e3f22e11ff2cc66fe563869e6" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "original_file" : "3372ec3e3f22e11ff2cc66fe563869e6_original.txt",
       "type" : "text"
     },
     "3372ec3e9e8b5a985556f5ef59491682" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "Green",
       "type" : "board"
     },
     "3372ec3f30cec012c15a6904bd0f3edc" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "Yellow",
       "type" : "board"
     },
     "3372ec3fcf694f140b35ea7b8aabd1e7" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "original_file" : "3372ec3fcf694f140b35ea7b8aabd1e7_original.txt",
       "type" : "text"
     },
     "3372ec40a7c0cab03f0171fa2474271c" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "original_file" : "3372ec40a7c0cab03f0171fa2474271c_original.txt",
       "type" : "text"
     },
     "3372ec40c5daec59d93b26b1bb5af908" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "original_file" : "3372ec40c5daec59d93b26b1bb5af908_original.txt",
       "type" : "text"
     },
@@ -2054,137 +3338,137 @@
           "3372ec425a980f700c7f6d5d55908bd9"
         ]
       ],
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "hmm",
       "type" : "board"
     },
     "3372ec42ea8e1422d19a17f282c2215c" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "original_file" : "3372ec42ea8e1422d19a17f282c2215c_original.txt",
       "type" : "text"
     },
     "3372ec399c92d2c7803b421d65d4f7f0" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "purple",
       "type" : "board"
     },
     "3372ec403c2e31ad9744dd35c9b58ec4" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "original_file" : "3372ec403c2e31ad9744dd35c9b58ec4_original.txt",
       "type" : "text"
     },
     "3372ec414a05dd050ffac19aad1fdf30" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "blue",
       "type" : "board"
     },
     "3372ec421dbd12f2d8dea0da45dbec2c" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "original_file" : "3372ec421dbd12f2d8dea0da45dbec2c_original.txt",
       "type" : "text"
     },
     "3372ec422afaa3685dd99c18fd48c584" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "original_file" : "3372ec422afaa3685dd99c18fd48c584_original.txt",
       "type" : "text"
     },
     "3372ec422e18ac7b958d3dea67990281" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "original_file" : "3372ec422e18ac7b958d3dea67990281_original.txt",
       "type" : "text"
     },
     "3372ec4235a499d06dc27b571604b5f5" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "original_file" : "3372ec4235a499d06dc27b571604b5f5_original.txt",
       "type" : "text"
     },
     "3372ec42539d93f9cd6807afafd54f16" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "original_file" : "3372ec42539d93f9cd6807afafd54f16_original.txt",
       "type" : "text"
     },
     "3372ec4224926b81ecca4e5aa4e041eb" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:32Z",
       "original_file" : "3372ec4224926b81ecca4e5aa4e041eb_original.txt",
       "type" : "text"
     },
     "3372fcd3ee5f5245d671c138ee674f86" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "Google",
       "title" : "Google",
       "type" : "url",
       "url" : "https:\/\/www.google.com\/"
     },
     "3372fcd4ad9cc882ed39723465b4ca7b" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "Google",
       "title" : "Google",
       "type" : "url",
       "url" : "https:\/\/www.google.com\/"
     },
     "3372fcd4e861dff4c2baf3747f7a2b08" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "Google",
       "title" : "Google",
       "type" : "url",
       "url" : "https:\/\/www.google.com\/"
     },
     "3372fcd43f7399331824ec7920171abf" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "Google",
       "title" : "Google",
       "type" : "url",
       "url" : "https:\/\/www.google.com\/"
     },
     "3372fcd527c5dba50b602a7db0c5f264" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "Google",
       "title" : "Google",
       "type" : "url",
       "url" : "https:\/\/www.google.com\/"
     },
     "33689d8d10bd107acba1affee9f5bec0" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "Home",
       "title" : "Home",
       "type" : "url",
       "url" : "https:\/\/iclragenticai.github.io\/"
     },
     "336894c1ebc503be16d356a2b2283632" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "AI4NA",
       "title" : "AI4NA",
       "type" : "url",
       "url" : "https:\/\/ai4na-workshop.github.io\/"
     },
     "337348c609a180e13d0d3f735fbd711f" : {
-      "created_at" : "2025-01-14T14:36:36Z",
+      "created_at" : "2025-01-23T16:51:58Z",
       "original_file" : "337348c609a180e13d0d3f735fbd711f_original.txt",
       "type" : "text"
     },
     "33689174d2c8687bb7a3061b3666bb8a" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "GEM Workshop",
       "title" : "GEM Workshop",
       "type" : "url",
       "url" : "https:\/\/www.gembio.ai\/"
     },
     "336895873d76beba81484ca943c99424" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "MLGenX ICLR Workshop 2024",
       "title" : "MLGenX ICLR Workshop 2024",
       "type" : "url",
       "url" : "https:\/\/mlgenx.github.io\/"
     },
     "336897371fc3f8b4a2af2d03df8840eb" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "ICLR 2025 Workshop on Reasoning and Planning for Large Language Models",
       "title" : "ICLR 2025 Workshop on Reasoning and Planning for Large Language Models",
       "type" : "url",
       "url" : "https:\/\/workshop-llm-reasoning-planning.github.io\/"
     },
     "33689406899a1ce63aa2c61cc82944d3" : {
-      "created_at" : "2025-01-14T14:36:48Z",
+      "created_at" : "2025-01-23T16:54:31Z",
       "label" : "LMRL - Learning Meaningful Representations of Life",
       "title" : "LMRL - Learning Meaningful Representations of Life",
       "type" : "url",
@@ -2193,6 +3477,12 @@
   },
   "root" : "3364db5117e09ab4e23e6ac4e7c7da4d",
   "users" : {
-
+    "29c1d0f2a6f719d0a57425b37cf324db" : {
+      "color" : "#d8829c",
+      "device_ids" : [
+        "29ed151fd80d58bb434e22276d94b3e1"
+      ],
+      "user_full_name" : "Ramith Hettiarachchi"
+    }
   }
 }

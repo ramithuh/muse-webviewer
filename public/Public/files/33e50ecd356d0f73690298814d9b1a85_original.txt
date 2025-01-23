@@ -1,0 +1,5 @@
+Figures A & B show the structures' views from the membrane's extracellular side (6PM0, colored in cyan, PDB ID: 3JAD, colored in salmon). Transmembrane helices are shown in higher opacity and slightly contrasting colors.
+
+Red dashed lines and associated values (in Angstroms) represent the distances between a set of residues on each of the five helices. The open state (A) shows a wider spacing of these helices, making a larger pore diameter than the closed state (B), which shows a more constrained arrangement.
+
+In figure C, If we only look at the top transmembrane helices, the open view (6PM0) has its helices slightly disintegrated compared to the closed view.

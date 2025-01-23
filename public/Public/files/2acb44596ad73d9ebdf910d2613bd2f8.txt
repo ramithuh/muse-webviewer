@@ -1,0 +1,2 @@
+What happens if there's a mutation that destroys the promoter?
+Don't make it a transcript.

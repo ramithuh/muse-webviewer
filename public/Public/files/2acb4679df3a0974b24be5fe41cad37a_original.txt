@@ -1,0 +1,3 @@
+What if there are mutations that destroy the polyadenylation site?
+Wouldn't get cut, wouldn't get polyadenylated properly, and it would
+get degraded, because the poly(A) tail protects that message.

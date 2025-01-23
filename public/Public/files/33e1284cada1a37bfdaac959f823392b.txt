@@ -1,0 +1,1 @@
+Gated ion-channel proteins are transmembrane proteins that can move between "open" and "closed" conformations to control the movement of ions in/out of a cell.

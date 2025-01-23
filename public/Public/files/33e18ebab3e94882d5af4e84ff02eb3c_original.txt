@@ -1,0 +1,2 @@
+6PM0	OPEN glycine receptor
+3JAD	CLOSED glycine receptor
