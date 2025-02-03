@@ -1,10 +1,10 @@
 {
   "bundle_version" : 6,
-  "created_at" : "2025-01-23T16:54:31Z",
+  "created_at" : "2025-02-03T19:03:45Z",
   "device" : "Catalyst",
-  "muse_build" : "10559",
+  "muse_build" : "10569",
   "muse_bundle_id" : "com.musesoftware.museios-appstore",
-  "muse_version" : "3.3.6",
+  "muse_version" : "3.3.9",
   "os_version" : "18.2",
   "resolution" : [
     2940,

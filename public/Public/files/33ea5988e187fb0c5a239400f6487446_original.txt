@@ -1,0 +1,2 @@
+Highest entropy that the system can achieve happens when the free energy is lower as possible
+

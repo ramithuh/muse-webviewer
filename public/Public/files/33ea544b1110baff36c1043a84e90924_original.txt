@@ -1,0 +1,1 @@
+at higher temperatures the probability distribution across different states becomes more uniform, resulting in a higher entropy

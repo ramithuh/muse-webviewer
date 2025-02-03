@@ -1,0 +1,3 @@
+to remove that weird black thing,
+
+use ignore_surface thing from a menu

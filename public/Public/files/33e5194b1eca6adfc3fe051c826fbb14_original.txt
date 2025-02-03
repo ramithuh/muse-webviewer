@@ -1,0 +1,6 @@
+calculate the 
+- energies, 
+- entropies, and 
+- free energies of the C-C dihedral bond 
+
+of selected amino acid residues

@@ -1,0 +1,1 @@
+For the purposes of our analysis, we will assume the bond has 360 discrete states, one for each degree of rotation

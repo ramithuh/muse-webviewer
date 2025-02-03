@@ -1,0 +1,1 @@
+Since we are using a molecular dynamics force field calibrated to proteins, which are chains of amino acids connected to one another, we will be analyzing individual residues, not an actual independent amino acid
